@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
     list: {
       width: 250,
     },
+    ListItemText: {
+      color: theme.palette.primary.main,
+    }
   }),
 );
 

@@ -13,6 +13,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
+import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
+import { ExitToAppRounded } from '@material-ui/icons';
+import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
 
 import useStyles from './styles';
 
@@ -42,33 +47,33 @@ const Header: FC = () => {
     >
       <List>
           <Link href="/" passHref>
-            <ListItem button>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="Blogs" />
+            <ListItem button >
+              <ListItemIcon><HomeRoundedIcon color="primary" /></ListItemIcon>
+              <ListItemText className={classes.ListItemText} primary="Blogs" />
             </ListItem>
           </Link>
           <Link href="/contact" passHref>
             <ListItem button>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="Contact" />
+              <ListItemIcon><ContactMailRoundedIcon color="primary" /></ListItemIcon>
+              <ListItemText className={classes.ListItemText} primary="Contact" />
             </ListItem>
           </Link>
           <Link href="/dashboard" passHref>
             <ListItem button>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemIcon><DashboardRoundedIcon color="primary" /></ListItemIcon>
+              <ListItemText className={classes.ListItemText} primary="Dashboard" />
             </ListItem>
           </Link>
           <Link href="/signin" passHref>
             <ListItem button>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="Signin" />
+              <ListItemIcon><ExitToAppRounded color="primary" /></ListItemIcon>
+              <ListItemText className={classes.ListItemText} primary="Signin" />
             </ListItem>
           </Link>
           <Link href="/signup" passHref>
             <ListItem button>
-              <ListItemIcon></ListItemIcon>
-              <ListItemText primary="Signup" />
+              <ListItemIcon><AccountBoxRoundedIcon color="primary" /></ListItemIcon>
+              <ListItemText className={classes.ListItemText} primary="Signup" />
             </ListItem>
           </Link>
       </List>
