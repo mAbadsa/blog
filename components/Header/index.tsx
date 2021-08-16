@@ -89,7 +89,7 @@ const Header: FC = () => {
             <Drawer anchor="left" open={state} onClose={toggleDrawer}>
               {list()}
             </Drawer>
-            <Navlinks className="" />
+            <Navlinks />
           </Toolbar>
         </AppBar>
       </div>

@@ -2,20 +2,15 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 
 import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
 import { Link as MUILink } from '@material-ui/core';
 
 import useStyles from './styles';
 
-interface Props {
-  className: string;
-}
-
-const Navlinks: FC<Props> = ({ className }) => {
+const Navlinks: FC = () => {
   const classes = useStyles();
 
   return (
-    <Typography className={clsx(classes.root, {[classes.sideMenuNavLink]: className === "sideMenuNavLink"})}>
+    <Typography className={classes.root}>
       <Link href="/" passHref>
         <MUILink color="textSecondary">
           Blogs
