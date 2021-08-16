@@ -1,28 +1,45 @@
 import React, { FC } from 'react';
+import Link from 'next/link';
+
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import clsx from 'clsx';
+import { Link as MUILink } from '@material-ui/core';
 
 import useStyles from './styles';
 
-const Navlinks: FC = () => {
+interface Props {
+  className: string;
+}
+
+const Navlinks: FC<Props> = ({ className }) => {
   const classes = useStyles();
 
   return (
-    <Typography className={classes.root}>
-      <Link href="#" color="textSecondary">
-        Blogs
+    <Typography className={clsx(classes.root, {[classes.sideMenuNavLink]: className === "sideMenuNavLink"})}>
+      <Link href="/" passHref>
+        <MUILink color="textSecondary">
+          Blogs
+        </MUILink>
       </Link>
-      <Link href="#" color="textSecondary">
-        Contact
+      <Link href="/contact" passHref>
+        <MUILink color="textSecondary">
+          Contact
+        </MUILink>
       </Link>
-      <Link href="#" color="textSecondary">
-        Dashboard
+      <Link href="/dashboard" passHref>
+        <MUILink color="textSecondary">
+          Dashboard
+        </MUILink>
       </Link>
-      <Link href="#" color="textSecondary">
-        Signin
+      <Link href="/signin" passHref>
+        <MUILink color="textSecondary">
+          Signin
+        </MUILink>
       </Link>
-      <Link href="#" color="textSecondary">
-        Signup
+      <Link href="/signup" passHref>
+        <MUILink color="textSecondary">
+          Signup
+        </MUILink>
       </Link>
     </Typography>
   )

@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    list: {
+      width: 250,
+    },
   }),
 );
 
