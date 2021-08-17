@@ -5,10 +5,9 @@ import { ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
 
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) =>{
-  console.log(Layout);
   return (
     <>
     <Head>
