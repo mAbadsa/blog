@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingInline: '0.5rem',
         color: '#4d5760',
         fontWeight: '400',
-        width: '65%',
+        width: '50%',
         textAlign: 'center',
         ZIndex: '10',
       },
@@ -41,12 +41,6 @@ const useStyles = makeStyles((theme: Theme) =>
         zIndex: '0',
       }
     },
-    continueButton: {
-      marginTop: '1.2rem',
-    },
-    forgetPassword: {
-      marginTop: '1.3rem',
-    }
   }),
 );
 
