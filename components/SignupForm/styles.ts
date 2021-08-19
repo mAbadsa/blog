@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: "1.2rem",
       marginTop: '2rem',
     },
+    loginStrategy:{
+      display: 'flex',
+      justifyContent: 'center',
+    },
     divider: {
       position: 'relative',
       display: 'flex',
