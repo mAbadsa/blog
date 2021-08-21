@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
-import { FC } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0';
 import { ThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
@@ -18,9 +19,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) =>{
     </Head>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <UserProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UserProvider>
     </ThemeProvider>
     </>
   )
