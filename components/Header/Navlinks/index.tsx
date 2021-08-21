@@ -26,7 +26,7 @@ const Navlinks: FC = () => {
           Dashboard
         </MUILink>
       </Link>
-      <Link href="/signin" passHref>
+      <Link href="/api/auth/login" passHref>
         <MUILink color="textSecondary">
           Signin
         </MUILink>
