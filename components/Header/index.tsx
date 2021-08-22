@@ -18,6 +18,8 @@ import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
 import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
 import { ExitToAppRounded } from '@material-ui/icons';
 import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 
 import useStyles from './styles';
 
@@ -82,22 +84,35 @@ const Header: FC = () => {
   )
 
   return (
-      <div className={classes.root}>
-        <AppBar className={classes.appBar} position="static">
-          <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Blog
-            </Typography>
-            <Drawer anchor="left" open={state} onClose={toggleDrawer}>
-              {list()}
-            </Drawer>
-            <Navlinks />
-          </Toolbar>
-        </AppBar>
-      </div>
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Blog
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <Drawer anchor="left" open={state} onClose={toggleDrawer}>
+            {list()}
+          </Drawer>
+          <Navlinks />
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 
