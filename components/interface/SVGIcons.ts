@@ -6,4 +6,13 @@ export default interface SVGIcons {
   Listing: FC;
   Podcasts: FC;
   Videos: FC;
+  Tags: FC;
+  FAQ: FC;
+  About: FC;
+  Contact: FC;
+  DEVShop: FC;
+  Sponser: FC;
+  CodeOfConduct: FC;
+  PrivacyPolicy: FC;
+  TermsOfUse: FC;
 }
