@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "250px",
+      width: "220px",
       paddingLeft: theme.spacing(1),
       transition: 'all 0.2s',
     },
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         height: "24px",
       },
     },
-    ListItemText: {
+    listItemText: {
       paddingLeft: theme.spacing(1),
     },
     listTitle: {

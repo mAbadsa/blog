@@ -1,14 +1,12 @@
 import type { NextPage } from 'next';
-import SidebarList from '../components/SidebarList';
+import HomeComponent from '../components/Home';
 
 const Home: NextPage = () => {
   return (
     <>
-      <SidebarList />
-      <h1>HOMEPAGE</h1>
-      <p>Basic homepage</p>
+      <HomeComponent />
     </>
   )
 }
 
-export default Home
+export default Home;

@@ -21,14 +21,14 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
         <Link href="/" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Home />
-            <ListItemText className={classes.ListItemText} primary="Home" />
+            <ListItemText className={classes.listItemText} primary="Home" />
           </ListItem>
         </Link>
         <Link href="/api/auth/sign" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Signin />
             <ListItemText
-              className={classes.ListItemText}
+              className={classes.listItemText}
               primary="Sign In/Up"
             />
           </ListItem>
@@ -36,55 +36,55 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
         <Link href="/listings" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Listing />
-            <ListItemText className={classes.ListItemText} primary="Listings" />
+            <ListItemText className={classes.listItemText} primary="Listings" />
           </ListItem>
         </Link>
         <Link href="/podcasts" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Podcasts />
-            <ListItemText className={classes.ListItemText} primary="Podcasts" />
+            <ListItemText className={classes.listItemText} primary="Podcasts" />
           </ListItem>
         </Link>
         <Link href="/videos" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Videos />
-            <ListItemText className={classes.ListItemText} primary="Videos" />
+            <ListItemText className={classes.listItemText} primary="Videos" />
           </ListItem>
         </Link>
         <Link href="/tags" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Tags />
-            <ListItemText className={classes.ListItemText} primary="Tags" />
+            <ListItemText className={classes.listItemText} primary="Tags" />
           </ListItem>
         </Link>
         <Link href="/faq" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.FAQ />
-            <ListItemText className={classes.ListItemText} primary="FAQ" />
+            <ListItemText className={classes.listItemText} primary="FAQ" />
           </ListItem>
         </Link>
         <Link href="/devshop" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.DEVShop />
-            <ListItemText className={classes.ListItemText} primary="DEVShop" />
+            <ListItemText className={classes.listItemText} primary="DEVShop" />
           </ListItem>
         </Link>
         <Link href="/sponser" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Sponser />
-            <ListItemText className={classes.ListItemText} primary="Sponser" />
+            <ListItemText className={classes.listItemText} primary="Sponser" />
           </ListItem>
         </Link>
         <Link href="/about" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.About />
-            <ListItemText className={classes.ListItemText} primary="About" />
+            <ListItemText className={classes.listItemText} primary="About" />
           </ListItem>
         </Link>
         <Link href="/contact" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Contact />
-            <ListItemText className={classes.ListItemText} primary="Contact" />
+            <ListItemText className={classes.listItemText} primary="Contact" />
           </ListItem>
         </Link>
       </List>
@@ -95,7 +95,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
           <ListItem className={classes.ListItem} button>
             <SVGIcons.CodeOfConduct />
             <ListItemText
-              className={classes.ListItemText}
+              className={classes.listItemText}
               primary="Code of Conduct"
             />
           </ListItem>
@@ -104,7 +104,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
           <ListItem className={classes.ListItem} button>
             <SVGIcons.PrivacyPolicy />
             <ListItemText
-              className={classes.ListItemText}
+              className={classes.listItemText}
               primary="Privacy Policy"
             />
           </ListItem>
@@ -113,7 +113,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
           <ListItem className={classes.ListItem} button>
             <SVGIcons.TermsOfUse />
             <ListItemText
-              className={classes.ListItemText}
+              className={classes.listItemText}
               primary="Terms of use"
             />
           </ListItem>
