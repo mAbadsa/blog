@@ -13,7 +13,16 @@ const theme = createTheme({
       primary: '#252525',
       secondary: '#f5f5f5',
     },
-  }
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 660,
+      md: 768,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });
 
 export default theme;

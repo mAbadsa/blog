@@ -6,10 +6,10 @@ import AppBar from "@material-ui/core/AppBar";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Close from '@material-ui/icons/Close';
-import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
 
 import Navlinks from "./Navlinks";
 import SidebarList from "../SidebarList";
@@ -46,29 +46,27 @@ const Header: FC = () => {
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer}
-          >
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Blog
           </Typography>
-          <Drawer anchor="left" open={state} onClose={toggleDrawer}>
-            <DrawerHeader>
-              <Typography variant="h2">Blog Community</Typography>
-              <IconButton onClick={toggleDrawer}>
-                <Close />
-              </IconButton>
-            </DrawerHeader>
-            <Divider />
-            <div className={classes.list} role="presentation">
-              <SidebarList drawer />
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <Drawer anchor="left" open={state} onClose={toggleDrawer}>
+            <SidebarList drawer />
           </Drawer>
           <Navlinks />
         </Toolbar>
