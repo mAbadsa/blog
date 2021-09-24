@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import { useTheme } from "@material-ui/core";
 import { Link as MUILink } from "@material-ui/core";
 import SidebarList from "../SidebarList";
+import MainComponentTaps from './Taps';
 
 import useStyles from "./styles";
 
@@ -30,8 +31,7 @@ const Home: FC = () => {
           <SidebarList drawer={false} />
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
-          <h1>HOMEPAGE</h1>
-          <p>Basic homepage</p>
+          <MainComponentTaps />
         </Grid>
         <Grid
           item
