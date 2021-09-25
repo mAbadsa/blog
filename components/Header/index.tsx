@@ -1,7 +1,9 @@
 import { FC, useState } from "react";
+import Link from 'next/link';
 
 import styled from 'styled-components';
 import { useTheme, Theme } from "@material-ui/core";
+import { Link as MUILink } from '@material-ui/core';
 import AppBar from "@material-ui/core/AppBar";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -64,6 +66,13 @@ const Header: FC = () => {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
+          </div>
+          <div className={classes.searchIcon_mobile}>
+          <Link href="/search" passHref>
+            <MUILink color="textSecondary">
+              <SearchIcon />
+            </MUILink>
+          </Link>
           </div>
           <Drawer anchor="left" open={state} onClose={toggleDrawer}>
             <SidebarList drawer />

@@ -61,6 +61,14 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
+    searchIcon_mobile: {
+      display: 'none',
+      paddingRight: '0.8rem',
+      paddingTop: '0.4rem',
+      [theme.breakpoints.down('xs')]: {
+        display: 'block',
+      },
+    },
     inputRoot: {
       color: 'inherit',
       width: '100%',
