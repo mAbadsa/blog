@@ -6,6 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
+import PostCard from '../../PostCard';
 import useStyles from "./styles";
 
 interface TabPanelProps {
@@ -64,7 +65,7 @@ const Taps: FC = () => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Feed
+        <PostCard />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Latest
