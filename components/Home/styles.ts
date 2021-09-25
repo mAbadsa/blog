@@ -7,11 +7,11 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-around",
     },
     sidebar: {
-      maxWidth: "220px",
+      maxWidth: "25%",
     },
-    // rightSidebar: {
-    //   maxWidth: "240px",
-    // },
+    rightSidebar: {
+      maxWidth: "25%",
+    },
   })
 );
 
