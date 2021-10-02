@@ -3,9 +3,11 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {},
-    avatar: {
-      backgroundColor: red[500],
+    root: {
+      padding: '1rem',
+    },
+    cardContent: {
+      paddingLeft: 'calc(2rem + 0.5rem)',
     },
     postCardActions: {
       display: 'flex',
