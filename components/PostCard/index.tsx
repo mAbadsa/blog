@@ -41,14 +41,27 @@ const PostCard: FC = () => {
           </Typography>
           <CardActions className={classes.postCardActions}>
             <div className={classes.postCard__details}>
-              <Button size="small" color="primary">
-                Share
-              </Button>
-              <Button size="small" color="primary">
-                Learn More
-              </Button>
+              <Link href="/$post-title" passHref>
+                <MUILink>
+                  Share
+                  <span className={classes.noReaction}>
+                    {"11"}
+                    <span>&nbsp; reactions</span>
+                  </span>
+                </MUILink>
+              </Link>
+              <Link href="/$post-title" passHref>
+                <MUILink>
+                  Share
+                  <span className={classes.noReaction}>
+                    {"0"}
+                    <span>&nbsp; add comment</span>
+                  </span>
+                </MUILink>
+              </Link>
             </div>
             <div className={classes.postCard__save}>
+              <small className="tertiary">2 min read</small>
               <Button size="small" color="primary">
                 Save
               </Button>

@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
     postCard__save: {
 
     },
+    noReaction: {
+      
+    },
   })
 );
 
