@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
+import SVGIcons from "../SVG/SVGIcons";
 
 import PostCardAvatar from "./PostCardAvatar";
 
@@ -42,8 +43,8 @@ const PostCard: FC = () => {
           <CardActions className={classes.postCardActions}>
             <div className={classes.postCard__details}>
               <Link href="/$post-title" passHref>
-                <MUILink>
-                  Share
+                <MUILink className={classes.reactionLink}>
+                  <SVGIcons.Love />
                   <span className={classes.noReaction}>
                     {"11"}
                     <span>&nbsp; reactions</span>
@@ -51,8 +52,8 @@ const PostCard: FC = () => {
                 </MUILink>
               </Link>
               <Link href="/$post-title" passHref>
-                <MUILink>
-                  Share
+                <MUILink className={classes.reactionLink}>
+                  <SVGIcons.Comment />
                   <span className={classes.noReaction}>
                     {"0"}
                     <span>&nbsp; add comment</span>

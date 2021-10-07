@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      padding: '0px',
+      margin: '-8px',
     },
     postCard__details: {
     },
@@ -24,6 +26,19 @@ const useStyles = makeStyles((theme: Theme) =>
     noReaction: {
       
     },
+    reactionLink: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0.25rem 0.75rem',
+      paddingLeft: '0.5rem',
+      '& svg, span': {
+        fill: '#3d3d3d',
+        color: '#3d3d3d',
+      },
+      '& svg': {
+        marginRight: '0.25rem',
+      },
+    }
   })
 );
 
