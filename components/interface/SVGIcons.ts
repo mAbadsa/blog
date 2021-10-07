@@ -15,4 +15,6 @@ export default interface SVGIcons {
   CodeOfConduct: FC;
   PrivacyPolicy: FC;
   TermsOfUse: FC;
+  Love: FC;
+  Comment: FC;
 }
