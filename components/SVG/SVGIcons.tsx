@@ -14,6 +14,8 @@ import Sponser from "./Sponser";
 import CodeOfConduct from "./CodeOfConduct";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfUse from "./TermsOfUse";
+import Love from "./Love";
+import Comment from './Comment';
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -30,6 +32,8 @@ const SVGIcons: SVGIconsInterface = {
   CodeOfConduct,
   PrivacyPolicy,
   TermsOfUse,
+  Love,
+  Comment,
 };
 
 export default SVGIcons;
