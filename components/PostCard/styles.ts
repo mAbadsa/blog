@@ -5,6 +5,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: '1rem',
+      boxShadow: '0 0 0 1px #0909091a !important',
+      borderRadius: '0.375rem',
     },
     cardContent: {
       paddingLeft: 'calc(2rem + 0.5rem)',
@@ -18,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     postCard__save: {
 
+    },
+    noReaction: {
+      
     },
   })
 );
