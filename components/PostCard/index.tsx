@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import SVGIcons from "../SVG/SVGIcons";
 
 import PostCardAvatar from "./PostCardAvatar";
+import Tags from "./Tags";
 
 import useStyles from "./styles";
 
@@ -37,9 +38,7 @@ const PostCard: FC = () => {
               <MUILink color="textPrimary">{"Post title"}</MUILink>
             </Link>
           </Typography>
-          <Typography variant="body2" color="textPrimary" component="p">
-            tags
-          </Typography>
+          <Tags />
           <CardActions className={classes.postCardActions}>
             <div className={classes.postCard__details}>
               <Link href="/$post-title" passHref>
