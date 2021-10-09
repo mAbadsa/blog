@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '-8px',
     },
     postCard__details: {
+      display: 'flex',
+      
     },
     postCard__save: {
 
