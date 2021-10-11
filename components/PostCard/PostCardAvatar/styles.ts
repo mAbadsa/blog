@@ -22,12 +22,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: 'calc(0.25rem * -1)',
       marginTop: 'calc(0.5rem * -1)',
       marginBottom: 'calc(0.5rem * -1)',
-      color: '#3d3d3d',
+      color: '#090909',
       fontSize: '0.875rem',
       '&:hover': {
         color: '#090909',
       },
       '& span': {
+        fontWeight: 400,
+        lineHeight: '1.25',
+        textTransform: 'none',
+        color: 'inherit',
         justifyContent: 'flex-start',
       }
     },
