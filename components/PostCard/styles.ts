@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     cardContent: {
       paddingLeft: 'calc(2rem + 0.5rem)',
+      paddingBlock: '0',
     },
     postCardActions: {
       display: 'flex',
