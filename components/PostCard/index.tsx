@@ -35,7 +35,7 @@ const PostCard: FC = () => {
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
             <Link href={`/#post-title`} passHref>
-              <MUILink color="textPrimary">{"Post title"}</MUILink>
+              <MUILink color="textPrimary">{"Matrix raining code effect using JavaScript"}</MUILink>
             </Link>
           </Typography>
           <Tags />

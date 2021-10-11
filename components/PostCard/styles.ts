@@ -10,6 +10,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     cardContent: {
       paddingLeft: 'calc(2rem + 0.5rem)',
+      paddingBlock: '0',
+      '& h2>a': {
+        fontSize: '1.875rem',
+        fontWeight: 'bold',
+        wordBreak: 'break-word',
+        overflowWrap: 'anywhere',
+      }
     },
     postCardActions: {
       display: 'flex',
