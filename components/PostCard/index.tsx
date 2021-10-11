@@ -62,7 +62,7 @@ const PostCard: FC = () => {
             </div>
             <div className={classes.postCard__save}>
               <small className="tertiary">2 min read</small>
-              <Button size="small" color="primary">
+              <Button className={classes.saveButton} size="small" variant="contained" color="gray" disableElevation>
                 Save
               </Button>
             </div>

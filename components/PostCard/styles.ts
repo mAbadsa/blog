@@ -30,7 +30,10 @@ const useStyles = makeStyles((theme: Theme) =>
       
     },
     postCard__save: {
-
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: '123px',
     },
     noReaction: {
       
@@ -47,7 +50,19 @@ const useStyles = makeStyles((theme: Theme) =>
       '& svg': {
         marginRight: '0.25rem',
       },
-    }
+    },
+    saveButton: {
+      color: '#3d3d3d',
+      textTransform: 'none',
+      overflowWrap: 'normal',
+      borderColor: 'transparent',
+      fontSize: '0.875rem',
+      fontWeight: 'normal',
+      '&:hover': {
+        backgroundColor: '#bdbdbd',
+        color: '#090909',
+      }
+    },
   })
 );
 
