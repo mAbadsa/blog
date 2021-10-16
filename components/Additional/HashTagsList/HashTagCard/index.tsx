@@ -3,22 +3,22 @@ import Link from "next/link";
 
 import { Link as MUILink, useTheme } from '@material-ui/core';
 
+import hashTagCardProps from '../../../interface/HashTagCard';
 import useStyles from './styles';
-let commentNo: Number = 2;
 
-const HasTagCard: FC = () => {
+const HashTagCard: FC<hashTagCardProps> = ({url, title, commentsNo}) => {
   const theme = useTheme();
   const classes = useStyles({theme });
   return (
-    <>
+    <div className={classes.root} >
       <Link href="/PATH" passHref>
         <MUILink>
-          {"TITLE"}
-          <div className={classes.comment}>{commentNo === 1 ? "comment" : "comments"}</div>
+          {title}
+          <div className={classes.comment}>{commentsNo} {commentsNo === 1 ? "comment" : "comments"}</div>
         </MUILink>
       </Link>
-    </>
+    </div>
   );
 }
 
-export default HasTagCard;
+export default HashTagCard;
