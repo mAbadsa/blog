@@ -11,6 +11,7 @@ import { useTheme } from "@material-ui/core";
 import { Link as MUILink } from "@material-ui/core";
 import SidebarList from "../SidebarList";
 import MainComponentTaps from './Taps';
+import Additional from '../Additional';
 
 import useStyles from "./styles";
 
@@ -37,11 +38,11 @@ const Home: FC = () => {
           className={classes.rightSidebar}
           item
           lg={3}
-          md={3}
+          // md={3}
           component={Box}
           display={{ xs: "none", sm: "none", md: "block", lg: 'block' }}
         >
-          Right Sidebar
+          <Additional />
         </Grid>
       </Grid>
     </Container>
