@@ -39,7 +39,7 @@ const Home: FC = () => {
           lg={3}
           md={3}
           component={Box}
-          display={{ xs: "none", sm: "none", md: "none", lg: 'block' }}
+          display={{ xs: "none", sm: "none", md: "block", lg: 'block' }}
         >
           Right Sidebar
         </Grid>
