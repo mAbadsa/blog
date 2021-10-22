@@ -17,7 +17,7 @@ const Additional: FC = () => {
   const theme = useTheme();
   const classes = useStyles({theme});
   return (
-    <div className={classes.root}>
+    <div className={classes.Additional}>
       <HashTagsList title="news" articles={fakeData} />
     </div>
   )
