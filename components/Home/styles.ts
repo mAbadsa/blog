@@ -15,6 +15,15 @@ const useStyles = makeStyles((theme: Theme) =>
     rightSidebar: {
       display: "none",
     },
+    [theme.breakpoints.between("xs", "sm")]: {
+      sidebar: {
+        display: "none",
+      },
+      mainFeed: {
+        maxWidth: "100%",
+        flexBasis: "100%",
+      },
+    },
     [theme.breakpoints.between("md", "lg")]: {
       sidebar: {
         display: "flex",
@@ -27,15 +36,6 @@ const useStyles = makeStyles((theme: Theme) =>
       },
       rightSidebar: {
         display: "none",
-      },
-    },
-    [theme.breakpoints.between("xs", "sm")]: {
-      sidebar: {
-        display: "none",
-      },
-      mainFeed: {
-        maxWidth: "100%",
-        flexBasis: "100%",
       },
     },
     [theme.breakpoints.up("lg")]: {
@@ -54,16 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
         flexBasis: "24%",
       },
     },
-    // [theme.breakpoints.up("lg")]: {
-    //   sidebar: {
-    //     maxWidth: "28.5%",
-    //     flexBasis: '28.5%',
-    //   },
-    //   mainFeed: {
-    //     maxWidth: "69%",
-    //     flexBasis: '69%',
-    //   },
-    // },
   })
 );
 
