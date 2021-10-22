@@ -42,7 +42,7 @@ function a11yProps(index: any) {
   };
 }
 
-const Taps: FC = () => {
+const FeedTabs: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
@@ -77,4 +77,4 @@ const Taps: FC = () => {
   );
 };
 
-export default Taps;
+export default FeedTabs;
