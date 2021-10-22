@@ -10,7 +10,7 @@ const CreateAccount: FC = () => {
   const theme = useTheme();
   const classes = useStyles({theme});
   return (
-    <div className={classes.root}>
+    <div className={classes.CreateAccount}>
       <Typography className={classes.mainLink} variant="h2">
         <Link href="/" passHref>
           <MUILink>DEV COMMUNITY</MUILink>
