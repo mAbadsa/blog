@@ -2,8 +2,8 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: "220px",
+    SidebarList: {
+      // width: "220px",
       paddingLeft: theme.spacing(1),
       transition: 'all 0.2s',
     },
