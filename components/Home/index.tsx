@@ -25,13 +25,13 @@ const Home: FC = () => {
           className={classes.sidebar}
           item
           sm={3}
-          md={3}
+          md={4}
           component={Box}
           display={{ xs: "none", sm: "block", lg: "block" }}
         >
           <SidebarList drawer={false} />
         </Grid>
-        <Grid item xs={12} sm={12} md={9} lg={6}>
+        <Grid item xs={12} sm={12} md={8} lg={6}>
           <MainComponentTaps />
         </Grid>
         <Grid
