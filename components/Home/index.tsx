@@ -19,19 +19,21 @@ const Home: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <Container maxWidth={"xl"}>
-      <Grid className={classes.root} container spacing={0}>
+    <Container className={classes.Home} maxWidth={"xl"}>
+      <Grid className={classes.mainGrid} container spacing={0}>
         <Grid
           className={classes.sidebar}
           item
-          sm={3}
+          // sm={3}
           md={4}
           component={Box}
-          display={{ xs: "none", sm: "block", lg: "block" }}
+          display={{ xs: "none", sm: "none", lg: "block" }}
         >
           <SidebarList drawer={false} />
         </Grid>
-        <Grid item xs={12} sm={12} md={8} lg={6}>
+        <Grid
+          className={classes.mainFeed}
+        item xs={12} sm={12} md={8} lg={6}>
           <MainComponentTaps />
         </Grid>
         <Grid

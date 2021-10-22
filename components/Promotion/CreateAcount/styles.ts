@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     CreateAccount: {
       padding: theme.spacing(2),
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
       backgroundColor: "#f9f9f9",
       color: "#242424",
       boxShadow: "0 0 0 1px #0909090d",

@@ -17,7 +17,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
   const classes = useStyles({ theme });
 
   return (
-    <div className={`${classes.root} ${!drawer && classes.hidden}`}>
+    <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
       <List>
         <Promotion.CreateAccount />
         <Link href="/" passHref>
