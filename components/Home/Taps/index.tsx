@@ -52,7 +52,7 @@ const Taps: FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.Taps}>
       <AppBar className={classes.appBar_bg} position="static">
         <Tabs
           value={value}
