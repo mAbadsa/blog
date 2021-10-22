@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
         maxWidth: "70%",
         flexBasis: "70%",
       },
+      rightSidebar: {
+        display: "none",
+      },
     },
     [theme.breakpoints.between("xs", "sm")]: {
       sidebar: {
