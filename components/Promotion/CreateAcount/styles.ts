@@ -2,7 +2,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    CreateAccount: {
       padding: theme.spacing(2),
       margin: theme.spacing(1),
       backgroundColor: "#f9f9f9",
