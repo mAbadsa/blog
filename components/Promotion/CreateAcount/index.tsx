@@ -19,6 +19,18 @@ const CreateAccount: FC = () => {
       <Typography>
         We&apos;re a place where coders share, stay up-to-date and grow their careers.
       </Typography>
+      <div className={classes.loginBtnBox}>
+        <Link href="/create-account" passHref>
+          <MUILink className={classes.createButton}>
+            Create account
+          </MUILink>
+        </Link>
+        <Link href="/create-account" passHref>
+          <MUILink className={classes.loginButton}>
+            Create account
+          </MUILink>
+        </Link>
+      </div>
     </div>
   );
 }
