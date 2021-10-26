@@ -18,6 +18,8 @@ import Tags from "./Tags";
 
 import useStyles from "./styles";
 
+const tags = [{id: "t-1", tag: "javascript"},{id: "t-2", tag: "Reactjs"},{id: "t-3", tag: "Nextjs"}];
+
 const PostCard: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -38,7 +40,7 @@ const PostCard: FC = () => {
               <MUILink color="textPrimary">{"Matrix raining code effect using JavaScript"}</MUILink>
             </Link>
           </Typography>
-          <Tags />
+          <Tags tags={tags} />
           <CardActions className={classes.postCardActions}>
             <div className={classes.postCard__details}>
               <Link href="/$post-title" passHref>

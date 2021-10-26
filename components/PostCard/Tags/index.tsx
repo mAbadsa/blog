@@ -11,9 +11,7 @@ interface tagsProps {
   tag: string;
 }
 
-const tags: tagsProps[] = [{id: "t-1", tag: "javascript"},{id: "t-2", tag: "Reactjs"},{id: "t-3", tag: "Nextjs"}];
-
-const Tags: FC = () => {
+const Tags: FC<{tags:tagsProps[]}> = ({ tags }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const tagsElmts: ReactElement[] = tags.map(({id, tag}) => {
