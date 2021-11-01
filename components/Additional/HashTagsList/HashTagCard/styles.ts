@@ -3,7 +3,7 @@ import transitions from "@material-ui/core/styles/transitions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    HashTagCard: {
       '& a': {
         display: 'block',
         padding: '1rem',

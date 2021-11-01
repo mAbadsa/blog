@@ -1,7 +1,6 @@
 import { FC, useState } from "react";
 import Link from 'next/link';
 
-import styled from 'styled-components';
 import { useTheme, Theme } from "@material-ui/core";
 import { Link as MUILink } from '@material-ui/core';
 import AppBar from "@material-ui/core/AppBar";
@@ -16,17 +15,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Navlinks from "./Navlinks";
 import SidebarList from "../SidebarList";
 import useStyles from "./styles";
-
-const DrawerHeader = styled('div')(({}) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: '8px',
-  justifyContent: 'space-between',
-  '& h2': {
-    fontWeight: 'bold',
-    fontSize: '1.125rem',
-  },
-}));
 
 const Header: FC = () => {
   const theme = useTheme();
