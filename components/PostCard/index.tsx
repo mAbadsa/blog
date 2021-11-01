@@ -15,16 +15,28 @@ import SVGIcons from "../SVG/SVGIcons";
 
 import PostCardAvatar from "./PostCardAvatar";
 import Tags from "./Tags";
+import PostsType from "../interface/Posts";
 
 import useStyles from "./styles";
 
-const tags = [{id: "t-1", tag: "javascript"},{id: "t-2", tag: "Reactjs"},{id: "t-3", tag: "Nextjs"}];
-
-const PostCard: FC = () => {
+const PostCard: FC<{ post: PostsType }> = ({ post }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+
+  const {
+    title,
+    slug,
+    reactions,
+    comments,
+    headImg,
+    createdAt,
+    tags,
+    lastRead,
+    userData: { username, joinedDate, avatar, email, location, work },
+  } = post;
+
   return (
-    <Card className={classes.root}>
+    <Card className={classes.PostCard}>
       <CardActionArea>
         {/* <CardMedia
           component="img"
@@ -36,8 +48,8 @@ const PostCard: FC = () => {
         <PostCardAvatar />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-            <Link href={`/#post-title`} passHref>
-              <MUILink color="textPrimary">{"Matrix raining code effect using JavaScript"}</MUILink>
+            <Link href={`/${username}/${slug}`} passHref>
+              <MUILink color="textPrimary">{title}</MUILink>
             </Link>
           </Typography>
           <Tags tags={tags} />
@@ -46,24 +58,26 @@ const PostCard: FC = () => {
               <Link href="/$post-title" passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Love />
-                  <span className={classes.noReaction}>
-                    {"11"}
-                    <span>&nbsp; reactions</span>
-                  </span>
+                  {reactions && (
+                    <span className={classes.noReaction}>
+                      {reactions}
+                      <span>&nbsp; reactions</span>
+                    </span>
+                  )}
                 </MUILink>
               </Link>
               <Link href="/$post-title" passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Comment />
-                  <span className={classes.noReaction}>
-                    {"0"}
+                  {comments && <span className={classes.noReaction}>
+                    {comments}
                     <span>&nbsp; add comment</span>
-                  </span>
+                  </span>}
                 </MUILink>
               </Link>
             </div>
             <div className={classes.postCard__save}>
-              <small className="tertiary">2 min read</small>
+              <small className="tertiary">{lastRead} {lastRead >= 0 ? "mins" : "min"} read</small>
               <Button size="small" color="primary">
                 Save
               </Button>
