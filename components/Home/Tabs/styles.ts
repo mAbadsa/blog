@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    Taps: {
       flexGrow: 1,
     },
     appBar_bg: {

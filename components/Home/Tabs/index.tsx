@@ -6,7 +6,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-import PostCard from '../../PostCard';
+import PostsContainer from "../../PostsContainer";
 import useStyles from "./styles";
 
 interface TabPanelProps {
@@ -42,7 +42,7 @@ function a11yProps(index: any) {
   };
 }
 
-const Taps: FC = () => {
+const FeedTabs: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
@@ -52,7 +52,7 @@ const Taps: FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.Taps}>
       <AppBar className={classes.appBar_bg} position="static">
         <Tabs
           value={value}
@@ -65,7 +65,7 @@ const Taps: FC = () => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <PostCard />
+        <PostsContainer />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Latest
@@ -77,4 +77,4 @@ const Taps: FC = () => {
   );
 };
 
-export default Taps;
+export default FeedTabs;

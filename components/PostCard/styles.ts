@@ -3,7 +3,7 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    PostCard: {
       padding: '1rem',
       boxShadow: '0 0 0 1px #0909091a !important',
       borderRadius: '0.375rem',

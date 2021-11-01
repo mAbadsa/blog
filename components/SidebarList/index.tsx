@@ -7,6 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import SVGIcons from "../SVG/SVGIcons";
+import Promotion from "../Promotion";
 
 import SidebareListProps from '../interface/SidebarList';
 import useStyles from "./styles";
@@ -16,8 +17,9 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
   const classes = useStyles({ theme });
 
   return (
-    <div className={`${classes.root} ${!drawer && classes.hidden}`}>
+    <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
       <List>
+        <Promotion.CreateAccount />
         <Link href="/" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Home />
