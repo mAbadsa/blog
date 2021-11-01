@@ -14,7 +14,7 @@ const HashTagsList: FC<HashTagsListProps> = ({title, articles}) => {
   const HashTagCards: Array<ReactElement> = articles.map(({id, title: _title, commentsNo, url}) => <HashTagCard key={id} title={_title} commentsNo={commentsNo} url={url}/>)
 
   return (
-    <section className={classes.root}>
+    <section className={classes.HashTagsList}>
       <header>
         <Typography className={classes.title} variant='h3'>
           <Link href="/t/news" passHref>
