@@ -4,12 +4,8 @@ import { useTheme } from "@material-ui/core";
 import { Link as MUILink } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import SVGIcons from "../SVG/SVGIcons";
 
