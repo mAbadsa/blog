@@ -1,13 +1,19 @@
-import { alpha, createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+  ({
     root: {
       flexGrow: 1,
     },
     appBar: {
       display: 'flex',
       justifyContent: 'space-between',
+    },
+    drawerSideBar: {
+      '& .MuiDrawer-paper': {
+        maxWidth: '300px',
+        padding: theme.spacing(1),
+      },
     },
     menuButton: {
       marginRight: theme.spacing(2),
