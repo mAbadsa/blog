@@ -22,12 +22,14 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
 
   return (
     <>
-      <div className={classes.hamburger__content__header}>
-        <Typography variant="h6">DEV Community</Typography>
-        <Button>
-          <Close />
-        </Button>
-      </div>
+      {drawer && (
+        <div className={classes.hamburger__content__header}>
+          <Typography variant="h6">DEV Community</Typography>
+          <Button>
+            <Close />
+          </Button>
+        </div>
+      )}
       <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
         {!user && <Promotion.CreateAccount />}
         <List>
