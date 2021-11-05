@@ -20,7 +20,7 @@ const Tags: FC<{tags:tagsType[]}> = ({ tags }) => {
     );
   })
   return (
-    <div className={classes.root}>
+    <div className={classes.Tags}>
       {tagsElmts}
     </div>
   );

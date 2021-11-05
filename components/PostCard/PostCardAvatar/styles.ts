@@ -2,23 +2,32 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+  ({
+    PostCardAvatar: {
       display: 'flex',
       flexDirection: 'row',
       marginBottom: '0.5rem',
     },
     avatar: {
-      backgroundColor: red[500],
+      backgroundColor: red[500] + '!important',
       marginRight: '0.5rem',
     },
     avatarMeta: {
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
+      marginTop: '5px',
+      // '& a': {
+      //   transition: 'all 0.25s',
+      //   '&:hover': {
+      //     color: '#090909',
+      //     textDecoration: 'none',
+      //     transition: 'all 0.25s',
+      //   },
+      // },
     },
     username: {
-      padding: '0.25rem',
+      padding: '0.25rem 0rem 0rem 0.0rem !important',
       marginLeft: 'calc(0.25rem * -1)',
       marginTop: 'calc(0.5rem * -1)',
       marginBottom: 'calc(0.5rem * -1)',
@@ -37,9 +46,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     avatarMetaPostLink: {
       lineHeight: '1.25',
+      transition: 'all 0.25s',
       '&:hover': {
         color: '#090909',
-        textDecoration: 'none',
+        textDecoration: 'none !important',
+        transition: 'all 0.25s',
       }
     },
     avatarMetaTime: {
@@ -47,6 +58,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#717171',
       '&:hover': {
         color: '#090909',
+        textDecoration: 'none',
+        transition: 'all 0.25s',
       }
     },
   })

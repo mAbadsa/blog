@@ -4,12 +4,8 @@ import { useTheme } from "@material-ui/core";
 import { Link as MUILink } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import SVGIcons from "../SVG/SVGIcons";
 
@@ -37,54 +33,50 @@ const PostCard: FC<{ post: PostsType }> = ({ post }) => {
 
   return (
     <Card className={classes.PostCard}>
+      <PostCardAvatar username={username} date={createdAt} slug={slug} />
       <CardActionArea>
-        {/* <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="https://placekitten.com/640/360"
-          title="Contemplative Reptile"
-        /> */}
-        <PostCardAvatar />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
             <Link href={`/${username}/${slug}`} passHref>
               <MUILink color="textPrimary">{title}</MUILink>
             </Link>
           </Typography>
-          <Tags tags={tags} />
-          <CardActions className={classes.postCardActions}>
-            <div className={classes.postCard__details}>
+        </CardContent>
+      </CardActionArea>
+      <div className={classes.postCardActions}>
+        <Tags tags={tags} />
+        <div className={classes.postCard__details}>
+          <div className={classes.postCardActions__reactions}>
+            {reactions > 0 && (
               <Link href="/$post-title" passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Love />
-                  {reactions && (
                     <span className={classes.noReaction}>
                       {reactions}
-                      <span>&nbsp; reactions</span>
+                      <span>&nbsp; {`${reactions === 1 ? 'reaction' : 'reactions'}`}</span>
                     </span>
-                  )}
                 </MUILink>
               </Link>
+            )}
+            {comments > 0 && (
               <Link href="/$post-title" passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Comment />
-                  {comments && <span className={classes.noReaction}>
-                    {comments}
-                    <span>&nbsp; add comment</span>
-                  </span>}
+                  <span className={classes.noReaction}>{comments}&nbsp;{`${comments === 1 ? 'comment' : 'comments'}`}</span>
                 </MUILink>
               </Link>
-            </div>
-            <div className={classes.postCard__save}>
-              <small className="tertiary">{lastRead} {lastRead >= 0 ? "mins" : "min"} read</small>
-              <Button size="small" color="primary">
-                Save
-              </Button>
-            </div>
-          </CardActions>
-        </CardContent>
-      </CardActionArea>
+            )}
+          </div>
+          <div className={classes.postCard__save}>
+            <small className="tertiary">
+              {lastRead} {lastRead >= 0 ? "mins" : "min"} read
+            </small>
+            <Button size="small" color="primary">
+              Save
+            </Button>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 };
