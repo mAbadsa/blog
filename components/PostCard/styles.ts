@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
         fontWeight: 'bold',
         wordBreak: 'break-word',
         overflowWrap: 'anywhere',
+        '&:hover': {
+          textDecoration: 'none',
+          color: "#323ebe",
+          transition: 'all 0.25s',
+        },
       }
     },
     postCardActions: {
@@ -40,6 +45,22 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      '& a': {
+        transition: 'all 0.25s',
+        '&:hover': {
+          textDecoration: 'none',
+          color: "#090909",
+          transition: 'all 0.25s',
+          '& svg': {
+            fill: '#090909',
+          },
+          '& span': {
+            textDecoration: 'none',
+            color: "#090909",
+            transition: 'all 0.25s',
+          },
+        },
+      },
     },
     postCard__save: {
       display: 'flex',
