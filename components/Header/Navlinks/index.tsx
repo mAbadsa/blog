@@ -74,7 +74,9 @@ const Navlinks: FC = () => {
             <MenuItem onClick={handleClose}>Reading List</MenuItem>
             <MenuItem onClick={handleClose}>Settings</MenuItem>
             <Divider />
-            <MenuItem onClick={handleClose}>Sign out</MenuItem>
+            <Link href="/api/auth/logout" passHref>
+              <MenuItem onClick={handleClose}>Sign out</MenuItem>
+            </Link>
           </Menu>
         </>) : (
         <>
