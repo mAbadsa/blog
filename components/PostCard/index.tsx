@@ -37,7 +37,7 @@ const PostCard: FC<{ post: PostsType }> = ({ post }) => {
 
   return (
     <Card className={classes.PostCard}>
-      <PostCardAvatar/>
+      <PostCardAvatar username={username} date={createdAt}/>
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
