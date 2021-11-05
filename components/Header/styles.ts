@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
     drawerSideBar: {
       '& .MuiDrawer-paper': {
         maxWidth: '300px',
-        padding: theme.spacing(1),
+        // padding: theme.spacing(1),
       },
     },
     menuButton: {
