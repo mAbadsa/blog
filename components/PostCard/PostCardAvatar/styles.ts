@@ -17,6 +17,14 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignSelf: 'center',
       marginTop: '5px',
+      // '& a': {
+      //   transition: 'all 0.25s',
+      //   '&:hover': {
+      //     color: '#090909',
+      //     textDecoration: 'none',
+      //     transition: 'all 0.25s',
+      //   },
+      // },
     },
     username: {
       padding: '0.25rem 0rem 0rem 0.0rem !important',
@@ -38,9 +46,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     avatarMetaPostLink: {
       lineHeight: '1.25',
+      transition: 'all 0.25s',
       '&:hover': {
         color: '#090909',
-        textDecoration: 'none',
+        textDecoration: 'none !important',
+        transition: 'all 0.25s',
       }
     },
     avatarMetaTime: {
@@ -48,6 +58,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#717171',
       '&:hover': {
         color: '#090909',
+        textDecoration: 'none',
+        transition: 'all 0.25s',
       }
     },
   })
