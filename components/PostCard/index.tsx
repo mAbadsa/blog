@@ -37,54 +37,49 @@ const PostCard: FC<{ post: PostsType }> = ({ post }) => {
 
   return (
     <Card className={classes.PostCard}>
+      <PostCardAvatar/>
       <CardActionArea>
-        {/* <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="https://placekitten.com/640/360"
-          title="Contemplative Reptile"
-        /> */}
-        <PostCardAvatar />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
             <Link href={`/${username}/${slug}`} passHref>
               <MUILink color="textPrimary">{title}</MUILink>
             </Link>
           </Typography>
-          <Tags tags={tags} />
-          <CardActions className={classes.postCardActions}>
-            <div className={classes.postCard__details}>
-              <Link href="/$post-title" passHref>
-                <MUILink className={classes.reactionLink}>
-                  <SVGIcons.Love />
-                  {reactions && (
-                    <span className={classes.noReaction}>
-                      {reactions}
-                      <span>&nbsp; reactions</span>
-                    </span>
-                  )}
-                </MUILink>
-              </Link>
-              <Link href="/$post-title" passHref>
-                <MUILink className={classes.reactionLink}>
-                  <SVGIcons.Comment />
-                  {comments && <span className={classes.noReaction}>
-                    {comments}
-                    <span>&nbsp; add comment</span>
-                  </span>}
-                </MUILink>
-              </Link>
-            </div>
-            <div className={classes.postCard__save}>
-              <small className="tertiary">{lastRead} {lastRead >= 0 ? "mins" : "min"} read</small>
-              <Button size="small" color="primary">
-                Save
-              </Button>
-            </div>
-          </CardActions>
         </CardContent>
       </CardActionArea>
+      <div className={classes.postCardActions}>
+        <Tags tags={tags} />
+        <div className={classes.postCard__details}>
+          <div className={classes.postCardActions__reactions}>
+            <Link href="/$post-title" passHref>
+              <MUILink className={classes.reactionLink}>
+                <SVGIcons.Love />
+                {reactions && (
+                  <span className={classes.noReaction}>
+                    {reactions}
+                    <span>&nbsp; reactions</span>
+                  </span>
+                )}
+              </MUILink>
+            </Link>
+            <Link href="/$post-title" passHref>
+              <MUILink className={classes.reactionLink}>
+                <SVGIcons.Comment />
+                {comments && <span className={classes.noReaction}>
+                  {comments}
+                  <span>&nbsp; add comment</span>
+                </span>}
+              </MUILink>
+            </Link>
+          </div>
+          <div className={classes.postCard__save}>
+            <small className="tertiary">{lastRead} {lastRead >= 0 ? "mins" : "min"} read</small>
+            <Button size="small" color="primary">
+              Save
+            </Button>
+          </div>
+        </div>
+      </div>
     </Card>
   );
 };
