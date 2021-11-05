@@ -10,18 +10,18 @@ const PostCardAvatar: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.root}>
+    <div className={classes.PostCardAvatar}>
       <Avatar aria-label="user-avatar" className={classes.avatar}>
         R
       </Avatar>
-      <Typography component="div" className={classes.avatarMeta}>
+      <div className={classes.avatarMeta}>
         <Button className={classes.username}>{"User Name"}</Button>
         <Link href="/$username/$post_sluge" passHref>
           <MUILink className={classes.avatarMetaPostLink}>
             <time className={classes.avatarMetaTime} dateTime="$2021-10-1T22:15:00">{"Oct 1 (1 day ago)"}</time>
           </MUILink>
         </Link>
-      </Typography>
+      </div>
     </div>
   );
 };

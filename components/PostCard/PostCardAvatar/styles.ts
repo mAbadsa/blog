@@ -2,23 +2,24 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+  ({
+    PostCardAvatar: {
       display: 'flex',
       flexDirection: 'row',
       marginBottom: '0.5rem',
     },
     avatar: {
-      backgroundColor: red[500],
+      backgroundColor: red[500] + '!important',
       marginRight: '0.5rem',
     },
     avatarMeta: {
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
+      marginTop: '5px',
     },
     username: {
-      padding: '0.25rem',
+      padding: '0.25rem 0rem 0rem 0.0rem !important',
       marginLeft: 'calc(0.25rem * -1)',
       marginTop: 'calc(0.5rem * -1)',
       marginBottom: 'calc(0.5rem * -1)',
