@@ -1,0 +1,102 @@
+import Posts from "../components/interface/Posts";
+
+const posts: Posts[] = [
+  {
+    id: "p-1",
+    title: "How to start with stripe",
+    slug: "how-to-start-with-stripe",
+    reactions: 25,
+    comments: 2,
+    headImg:
+      "https://res.cloudinary.com/practicaldev/image/fetch/s--DTUCaZAQ--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/t0cday8ymr8jtghcyp2c.jpg",
+    createdAt: "4/Nov/2021",
+    tags: [
+      { id: "t-1", tag: "javascript" },
+      { id: "t-2", tag: "react" },
+      { id: "t-3", tag: "webdev" },
+      { id: "t-4", tag: "payment" },
+    ],
+    lastRead: 6,
+    userData: {
+      username: "Roopali Singh",
+      joinedDate: "4/11/2021",
+      avatar: "",
+      email: "",
+      location: "Delhi, India",
+      work: "Full Stack Web Developer",
+    },
+  },
+  {
+    id: "p_2",
+    title: "Jquery in React JS",
+    slug: "jquery-in-react-js-5fed",
+    reactions: 5,
+    comments: 0,
+    headImg: "https://res.cloudinary.com/practicaldev/image/fetch/s--4MDBAPok--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ylzctfaxcw6f16f5weu1.jpg",
+    createdAt: "5/10/2021",
+    tags: [
+      { id: "t-1", tag: "javascript" },
+      { id: "t-2", tag: "react" },
+      { id: "t-3", tag: "html" },
+      { id: "t-4", tag: "css" },
+    ],
+    lastRead: 10,
+    userData: {
+      username: "ShubhamTiwari909",
+      joinedDate: "19/Jul/2021",
+      avatar: "",
+      email: "shubhmtiwri00@gmail.com",
+      location: "",
+      work: "Newbiew developer",
+    },
+  },
+  {
+    id: "p_3",
+    title: "I made 100 CSS loaders for your next project",
+    slug: "i-made-100-css-loaders-for-your-next-project-4eje",
+    reactions: 4167,
+    comments: 128,
+    headImg: "https://res.cloudinary.com/practicaldev/image/fetch/s--9yyNMtf5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_66,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/puyp945v6ifpmbji8ha7.gif",
+    createdAt: "26/10/2021",
+    tags: [
+      { id: "t-1", tag: "css" },
+      { id: "t-2", tag: "webdev" },
+      { id: "t-3", tag: "begginners" },
+      { id: "t-4", tag: "begginners" },
+    ],
+    lastRead: 6,
+    userData: {
+      username: "Temani Afif",
+      joinedDate: "12 Feb 2021",
+      avatar: "",
+      email: "username-1@gmail.com",
+      location: "Tunisia",
+      work: "Another Dev guy who love hacking with CSS",
+    },
+  },
+  {
+    id: "p_4",
+    title: "Clean Architecture on Frontend",
+    slug: "clean-architecture-on-frontend-4311",
+    reactions: 3893,
+    comments: 72,
+    headImg: "https://placeholder.com",
+    createdAt: "1/9/2021",
+    tags: [
+      { id: "t-1", tag: "typescript" },
+      { id: "t-2", tag: "react" },
+      { id: "t-3", tag: "architecture" },
+    ],
+    lastRead: 34,
+    userData: {
+      username: "Alex",
+      joinedDate: "23/4/2021",
+      avatar: "",
+      email: "",
+      location: "",
+      work: "Developer, mentor, speaker 🧑‍💻❤️",
+    },
+  },
+];
+
+export default posts;

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
+import { useUser } from '@auth0/nextjs-auth0';
 
 import { Typography, useTheme } from "@material-ui/core";
 import List from "@material-ui/core/List";
@@ -15,11 +16,12 @@ import useStyles from "./styles";
 const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { user } = useUser();
 
   return (
     <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
+      { !user && <Promotion.CreateAccount />}
       <List>
-        <Promotion.CreateAccount />
         <Link href="/" passHref>
           <ListItem className={classes.ListItem} button>
             <SVGIcons.Home />
