@@ -33,7 +33,7 @@ const Header: FC = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.Header}>
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <IconButton
