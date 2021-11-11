@@ -2,7 +2,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core";
 import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+  ({
     Tags: {
       marginBottom: '0.5rem',
       marginLeft: 'calc(0.25rem * -1)',

@@ -35,7 +35,7 @@ const Navlinks: FC = () => {
   }
 
   return (
-    <Typography className={classes.root}>
+    <Typography className={classes.Navlinks}>
       { user && !isLoading ? (
         <>
           

@@ -76,7 +76,7 @@ const SidebarLeft: FC = () => {
   );
 
   return (
-    <Paper className={classes.root} elevation={0}>
+    <Paper className={classes.SidebarLeft} elevation={0}>
       <aside>
         {list()}
       </aside>

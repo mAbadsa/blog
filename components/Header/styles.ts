@@ -2,7 +2,7 @@ import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   ({
-    root: {
+    Header: {
       flexGrow: 1,
     },
     appBar: {

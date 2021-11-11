@@ -1,7 +1,7 @@
 import { Theme, makeStyles, createStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => (
-  createStyles({
+  ({
     HashTagsList: {
       borderRadius: '0.375rem',
       backgroundColor: '#f9f9f9',

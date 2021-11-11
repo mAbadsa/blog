@@ -1,8 +1,8 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
+  ({
+    SidebarLeft: {
       backgroundColor: "#efefef",
       [theme.breakpoints.down('sm')]: {
         display: 'none',
