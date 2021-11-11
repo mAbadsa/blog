@@ -18,7 +18,7 @@ import useStyles from "./styles";
 const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
 
   return (
     <>
@@ -31,7 +31,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
         </div>
       )}
       <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
-        {!user && <Promotion.CreateAccount />}
+        {!isLoading && !user && <Promotion.CreateAccount />}
         <List>
           <Link href="/" passHref>
             <ListItem className={classes.ListItem} button>
