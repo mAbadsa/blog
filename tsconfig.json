@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...auth0].js", "pages/api/auth/me.js", "pages/api/auth/logout.js", "pages/api/auth/login.js", "pages/api/models/build.js", "pages/api/models/connection.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...auth0].js", "pages/api/auth/me.js", "pages/api/auth/logout.js", "pages/api/auth/login.js", "pages/api/models/connection.js"],
   "exclude": ["node_modules"]
 }
