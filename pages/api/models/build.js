@@ -1,11 +1,15 @@
 const { readFileSync } = require("fs");
 const { join } = require("path");
 
-import connection from "./connection";
+const connection = require("./connection");
 
 const build = () => {
-  const sqlSchema = readFileSync(join(__dirname, "./build.sql")).toString();
+  console.log({ __dirname });
+  const sqlSchema = readFileSync(
+    join(__dirname, "../../../pages/api/models/build.sql")
+  ).toString();
+  console.log({ sqlSchema });
   connection.query(sqlSchema);
 };
 
-export default build;
+module.exports = build;

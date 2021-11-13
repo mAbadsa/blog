@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "NODE_ENV=development next dev",
     "build": "NODE_ENV=production next build",
+    "build:db": "NODE_ENV=development node pages/api/models/build.js",
     "start": "NODE_ENV=production next start",
     "lint": "next lint"
   },

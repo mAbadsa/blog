@@ -2,6 +2,10 @@ const { Pool } = require("pg");
 
 const { DEV_DATABASE_URL, DATABASE_URL, NODE_ENV } = process.env;
 
+console.log(process.env.DEV_DATABASE_URL);
+console.log(process.env.DATABASE_URL);
+console.log(process.env.NODE_ENV);
+
 let dbUrl = "";
 let sslValue;
 
@@ -24,4 +28,4 @@ const options = {
   ssl: sslValue,
 };
 
-export default new Pool(options);
+module.exports = new Pool(options);
