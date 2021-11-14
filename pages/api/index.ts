@@ -13,6 +13,5 @@ export default async function handler(
 ) {
   await addUser();
   const { rows } = await getUserData();
-  console.log({rows});
   res.status(200).json({ name: 'John Doe', user: rows })
 }
