@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
-import { useUser } from '@auth0/nextjs-auth0';
+import React, { FC } from "react";
+import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0";
 
-import Typography from '@material-ui/core/Typography';
-import { Link as MUILink } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
-import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
+import Typography from "@material-ui/core/Typography";
+import { Link as MUILink } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import Divider from "@material-ui/core/Divider";
+import Avatar from "@material-ui/core/Avatar";
+import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 
-import useStyles from './styles';
+import useStyles from "./styles";
 
 const Navlinks: FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -20,26 +20,25 @@ const Navlinks: FC = () => {
 
   const handleOpenMenu = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(evt.currentTarget);
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  if(isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if(error) {
-    return <div>{error}</div>
+  if (error) {
+    return <div>{error}</div>;
   }
 
   return (
     <Typography className={classes.Navlinks}>
-      { user && !isLoading ? (
+      {user && !isLoading ? (
         <>
-          
-          <Link href="/" passHref>
+          <Link href="/new" passHref>
             <MUILink className={classes.createPostLink} color="textSecondary">
               Create Post
             </MUILink>
@@ -49,7 +48,12 @@ const Navlinks: FC = () => {
               <NotificationsNoneRoundedIcon></NotificationsNoneRoundedIcon>
             </MUILink>
           </Link>
-          <Button className={classes.profileButton} aria-controls="simple-menu" aria-haspopup="true" onClick={handleOpenMenu}>
+          <Button
+            className={classes.profileButton}
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleOpenMenu}
+          >
             <Avatar alt={`${user?.name}`} src={`${user?.picture}`} />
           </Button>
           <Menu
@@ -62,7 +66,7 @@ const Navlinks: FC = () => {
           >
             <MenuItem onClick={handleClose}>
               <Link href={`/${user?.name}`} passHref>
-                <MUILink className={classes.profileLink} underline="none" >
+                <MUILink className={classes.profileLink} underline="none">
                   <span className={classes.username}>{user?.name}</span>
                   <small>@mabadsa</small>
                 </MUILink>
@@ -78,22 +82,19 @@ const Navlinks: FC = () => {
               <MenuItem onClick={handleClose}>Sign out</MenuItem>
             </Link>
           </Menu>
-        </>) : (
+        </>
+      ) : (
         <>
           <Link href="/api/auth/login" passHref>
-            <MUILink color="textSecondary">
-              Log in
-            </MUILink>
+            <MUILink color="textSecondary">Log in</MUILink>
           </Link>
           <Link href="/signup" passHref>
-            <MUILink color="textSecondary">
-              Create account
-            </MUILink>
+            <MUILink color="textSecondary">Create account</MUILink>
           </Link>
         </>
       )}
     </Typography>
-  )
-}
+  );
+};
 
 export default Navlinks;
