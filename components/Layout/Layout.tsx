@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 
-import Header from '../Header';
-import useStyles from './styles';
+import Header from "../Header";
+import useStyles from "./styles";
 
 interface Props {
   children: React.ReactNode;
