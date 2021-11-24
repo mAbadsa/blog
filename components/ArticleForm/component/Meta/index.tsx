@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { useTheme } from "@material-ui/styles";
 import UploadCoverImage from "../UploadCoverImage";
+import Title from "../PostTitle";
 import useStyles from "./styles";
 
 const Meta: FC = () => {
@@ -11,6 +12,7 @@ const Meta: FC = () => {
   return (
     <div className={classes.Meta}>
       <UploadCoverImage />
+      <Title />
     </div>
   );
 };

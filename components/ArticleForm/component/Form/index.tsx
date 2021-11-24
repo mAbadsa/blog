@@ -4,14 +4,14 @@ import Meta from "../Meta";
 
 import useStyles from "./styles";
 
-const ArticleForm: FC = () => {
+const Form: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.ArticleForm}>
+    <div className={classes.Form}>
       <Meta />
     </div>
   );
 };
 
-export default ArticleForm;
+export default Form;

@@ -19,6 +19,24 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
+  [theme.breakpoints.between("xs", "sm")]: {
+    Header: {
+      padding: "0 0.5rem",
+    },
+    logo: {
+      display: "none",
+    },
+  },
+  // [`@media (min-width: 640px)`]: {
+  //   title: {
+  //     display: "none",
+  //   },
+  // },
+  [`@media (max-width: 639px)`]: {
+    title: {
+      display: "none",
+    },
+  },
 }));
 
 export default useStyles;
