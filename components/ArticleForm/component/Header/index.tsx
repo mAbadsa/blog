@@ -20,7 +20,9 @@ const Header: FC = () => {
           </MUILink>
         </Link>
       </Typography>
-      <Typography component="span">Create Post</Typography>
+      <Typography className={classes.title} component="span">
+        Create Post
+      </Typography>
     </div>
   );
 };
