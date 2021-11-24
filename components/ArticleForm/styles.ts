@@ -11,6 +11,27 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: "0 auto",
     fontSize: "1rem",
   },
+  [theme.breakpoints.between("xs", "sm")]: {
+    ArticleForm: {
+      gridTemplateColumns: "0 7fr",
+      gap: "0rem 0rem",
+      padding: "0rem",
+    },
+  },
+  [theme.breakpoints.between("md", "lg")]: {
+    ArticleForm: {
+      gridTemplateColumns: "0px 7fr 3fr",
+      gap: "0rem 0rem",
+      padding: "0rem 0.5rem",
+    },
+  },
+  [theme.breakpoints.up("lg")]: {
+    ArticleForm: {
+      gridTemplateColumns: "64px 7fr 3fr",
+      gap: "0rem 0rem",
+      padding: "0rem 0.5rem",
+    },
+  },
 }));
 
 export default useStyles;
