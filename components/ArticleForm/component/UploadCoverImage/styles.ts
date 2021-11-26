@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "white",
   },
   coverImage: {
-    marginRight: "1rem !important",
     borderRadius: "0.375rem",
   },
   SpinnerBox: {
@@ -36,6 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "none",
     "& span.MuiTouchRipple-root": {
       backgroundColor: "transparent",
+    },
+    "&:hover": {
+      boxShadow: "0 0 1px #000000d5",
     },
   },
   removeButton: {
