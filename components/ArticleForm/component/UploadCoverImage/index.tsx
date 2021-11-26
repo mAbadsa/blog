@@ -151,15 +151,17 @@ const UploadCoverImage: FC = () => {
   return (
     <div className={classes.UploadCoverImage}>
       {!uploadingImage && imageView && (
-        <Image
-          className={classes.coverImage}
-          src={`${imageView}`}
-          width={250}
-          height={105}
-          layout="intrinsic"
-          objectFit="cover"
-          alt={"Post cover"}
-        />
+        <div className={classes.coverImage}>
+          <Image
+            className={classes.coverImage}
+            src={`${imageView}`}
+            width={250}
+            height={105}
+            layout="intrinsic"
+            objectFit="cover"
+            alt={"Post cover"}
+          />
+        </div>
       )}
       <div className={classes.buttonBox}>
         <Button
