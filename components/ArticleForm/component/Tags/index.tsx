@@ -1,6 +1,6 @@
 import { FC, useState, useEffect, useRef, useCallback } from "react";
 import { useTheme } from "@material-ui/core";
-import tagsArr from "../../../../fakeData/tags";
+import tagsArr from "./tags";
 import useStyles from "./styles";
 
 const Tags: FC = () => {
