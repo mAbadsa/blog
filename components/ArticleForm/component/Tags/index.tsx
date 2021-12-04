@@ -65,7 +65,9 @@ const Tags: FC = () => {
     return tag.trim();
   };
 
-  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    evt: React.ChangeEvent<HTMLInputElement> | React.BaseSyntheticEvent<any>
+  ) {
     var { value } = evt.target;
 
     if (evt.target.selectionStart !== null) {
@@ -76,6 +78,7 @@ const Tags: FC = () => {
         value = insertSpace(value, evt.target.selectionStart - 1);
       }
     }
+    console.log(evt);
     if (evt.nativeEvent.data === ",") {
       value += " ";
       setInputValue(value);
