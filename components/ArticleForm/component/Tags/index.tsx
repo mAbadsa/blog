@@ -78,7 +78,6 @@ const Tags: FC = () => {
         value = insertSpace(value, evt.target.selectionStart - 1);
       }
     }
-    console.log(evt);
     if (evt.nativeEvent.data === ",") {
       value += " ";
       setInputValue(value);
@@ -159,7 +158,6 @@ const Tags: FC = () => {
   }, [inputValue]);
 
   const fetchTopTagSuggestions = useCallback(() => {
-    searchResults.length > 0 && setShowingTopTags(true);
     if (tagsList.length > 0) {
       return setSearchResults(
         tagsList.filter(
@@ -176,7 +174,6 @@ const Tags: FC = () => {
 
   useEffect(() => {
     fetchTopTagSuggestions();
-    console.log("fetch");
   }, [fetchTopTagSuggestions]);
 
   useEffect(() => {
