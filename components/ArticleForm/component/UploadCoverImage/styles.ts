@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   coverImage: {
     borderRadius: "0.375rem",
-    marginRight: theme.spacing(2),
   },
   SpinnerBox: {
     minWidth: "100px",
