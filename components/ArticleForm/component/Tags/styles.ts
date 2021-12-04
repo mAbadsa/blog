@@ -43,9 +43,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   searchResultRow: {
     position: "relative",
     padding: "0.75rem",
-    backgroundColor: "#0909090d",
     cursor: "pointer",
     color: "#242424",
+    transition: "all 0.25s",
+    "&:hover": {
+      backgroundColor: "#0909090d",
+      transition: "all 0.25s",
+    },
   },
   clickableSearchResultRow: {
     position: "absolute",
