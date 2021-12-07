@@ -165,11 +165,13 @@ const Tags: FC = () => {
         )
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchResults.length, tagsList, selectedTags, searchQuery]);
 
   const fetchMatchedTag = useCallback(() => {
     setShowingTopTags(true);
     search(searchQuery);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   useEffect(() => {
@@ -178,6 +180,7 @@ const Tags: FC = () => {
 
   useEffect(() => {
     setSelectedTags(handleSelecteTags());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
   useEffect(() => {
