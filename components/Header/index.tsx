@@ -16,7 +16,7 @@ import Navlinks from "./Navlinks";
 import SidebarList from "../SidebarList";
 import useStyles from "./styles";
 
-const Header: FC = () => {
+const Header: FC<{ display: Boolean }> = ({ display }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [state, setState] = useState<boolean>(false);
@@ -31,9 +31,9 @@ const Header: FC = () => {
     }
     setState(!state);
   };
-
+  console.log(display);
   return (
-    <div className={classes.Header}>
+    <div className={`${classes.Header} ${display && classes.hidden}`}>
       <AppBar className={classes.appBar} position="static">
         <Toolbar>
           <IconButton
