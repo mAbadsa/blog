@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 
 import Form from "./component/Form";
 import Header from "./component/Header";
+import Preview from "./component/preview";
 
 import useStyles from "./styles";
 
@@ -33,20 +34,27 @@ const ArticleForm: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
+  const [textareaValue, setTextareaValue] = useState("");
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
+
+  function handleChangeMD(evt: React.ChangeEvent<HTMLTextAreaElement>) {
+    setTextareaValue(evt.target.value);
+  }
+
+  console.log("render");
 
   return (
     <div className={classes.ArticleForm}>
       <Header value={value} handleChange={handleChange} />
       <div className={classes.tapPanel}>
         <TabPanel value={value} index={0}>
-          <Form />
+          <Form handleMDText={handleChangeMD} mdText={textareaValue} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Preview
+          <Preview mdText={textareaValue} />
         </TabPanel>
       </div>
     </div>
