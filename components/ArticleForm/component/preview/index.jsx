@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useTheme } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
@@ -6,13 +7,34 @@ import CodeBlock from "../MDEditor/codeBlock";
 
 import useStyles from "./styles";
 
-const Preview = ({ mdText }) => {
+const Preview = ({ mdText, imageUrl }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <ReactMarkdown className={classes.Preview} components={CodeBlock} remarkPlugins={[remarkGfm]}>
-      {mdText}
-    </ReactMarkdown>
+    <div className={classes.Preview}>
+      <article className={classes.article}>
+        <header>
+          <div className={classes.cover}>
+            <Image
+              className={classes.coverImage}
+              loader={() => imageUrl}
+              src={imageUrl}
+              width={250}
+              height={105}
+              layout="fill"
+              objectFit="cover"
+              alt={"Post cover"}
+            />
+          </div>
+          <div className={classes.tags}></div>
+        </header>
+        <div className={classes.articleMain}>
+          <ReactMarkdown className={classes.markDown} components={CodeBlock} remarkPlugins={[remarkGfm]}>
+            {mdText}
+          </ReactMarkdown>
+        </div>
+      </article>
+    </div>
   );
 };
 

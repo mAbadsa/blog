@@ -45,6 +45,8 @@ const ArticleForm: FC = () => {
   }
 
   console.log("render");
+  const imgUrl =
+    "https://image.shutterstock.com/image-photo/water-drop-closeup-600w-256885258.jpg";
 
   return (
     <div className={classes.ArticleForm}>
@@ -54,7 +56,7 @@ const ArticleForm: FC = () => {
           <Form handleMDText={handleChangeMD} mdText={textareaValue} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Preview mdText={textareaValue} />
+          <Preview mdText={textareaValue} imageUrl={imgUrl} />
         </TabPanel>
       </div>
     </div>
