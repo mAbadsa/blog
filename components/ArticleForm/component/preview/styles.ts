@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: 1.25,
     },
   },
+  articleMain: {
+    padding: "2rem 3rem",
+  },
   markDown: {
     "& table": {
       width: "100%",
