@@ -30,6 +30,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
     minHeight: "100%",
   },
+  articleTitle: {
+    padding: "2rem 3rem 0rem 3rem",
+    "& h1": {
+      marginBottom: "0.5rem",
+      fontSize: "2.25rem",
+      fontWeight: 800,
+      lineHeight: 1.25,
+    },
+  },
   markDown: {
     "& table": {
       width: "100%",
