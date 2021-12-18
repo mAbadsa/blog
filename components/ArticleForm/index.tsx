@@ -45,8 +45,7 @@ const ArticleForm: FC = () => {
   }
 
   console.log("render");
-  const imgUrl =
-    "https://image.shutterstock.com/image-photo/water-drop-closeup-600w-256885258.jpg";
+  const imgUrl = "https://via.placeholder.com/300/925";
 
   let tags: Array<tagsProps> = [
     { id: "t_1", tag: "javascript" },
