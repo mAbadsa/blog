@@ -1,4 +1,3 @@
-import {ReactElement} from "react";
 import Image from 'next/image';
 import { Typography, useTheme } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
