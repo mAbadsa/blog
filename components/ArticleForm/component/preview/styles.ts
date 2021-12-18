@@ -78,6 +78,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: "#6a737d",
       borderLeft: "0.25em solid #dfe2e5",
     },
+    "& p code": {
+      background: "rgba(0,0,0,0.1)",
+      borderRadius: "0.375rem",
+      maxWidth: "100%",
+      fontSize: "80%",
+      padding: "0.1em 0.25em",
+    },
   },
 }));
 
