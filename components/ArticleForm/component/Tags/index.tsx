@@ -3,7 +3,10 @@ import { useTheme } from "@material-ui/core";
 import tagsArr from "./tags";
 import useStyles from "./styles";
 
-const Tags: FC = () => {
+const Tags: FC<{
+  passSelectedTags: Function;
+  tags: Array<string>;
+}> = ({ passSelectedTags, tags }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -36,6 +39,10 @@ const Tags: FC = () => {
   >([]);
   const [topTags, setTopTags] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    setInputValue(tags.join(", "));
+  }, [setInputValue]);
 
   useEffect(() => {
     setTagsList(tagsArr);
@@ -176,6 +183,7 @@ const Tags: FC = () => {
 
   useEffect(() => {
     fetchTopTagSuggestions();
+    passSelectedTags(selectedTags);
   }, [fetchTopTagSuggestions]);
 
   useEffect(() => {

@@ -11,6 +11,11 @@ const Preview = ({ mdText, imageUrl, articleTitle, tags }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
+  let _tags = tags.map((t, idx) => ({
+    id: `${t}_${idx}`,
+    tag: t,
+  }));
+  
   return (
     <div className={classes.Preview}>
       <article className={classes.article}>
@@ -30,7 +35,7 @@ const Preview = ({ mdText, imageUrl, articleTitle, tags }) => {
           <div className={classes.articleTitle}>
             <Typography component={"h1"}>{articleTitle}</Typography>
           <div className={classes.tags}></div>
-            <Tags tags={tags} />
+            <Tags tags={_tags} />
           </div>
         </header>
         <div className={classes.articleMain}>

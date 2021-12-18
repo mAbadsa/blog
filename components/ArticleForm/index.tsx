@@ -35,6 +35,7 @@ const ArticleForm: FC = () => {
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
   const [textareaValue, setTextareaValue] = useState("");
+  const [tags, setTags] = useState<string[]>();
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -47,25 +48,29 @@ const ArticleForm: FC = () => {
   console.log("render");
   const imgUrl = "https://via.placeholder.com/300/925";
 
-  let tags: Array<tagsProps> = [
-    { id: "t_1", tag: "javascript" },
-    { id: "t_2", tag: "nextjs" },
-    { id: "t_3", tag: "storybook" },
-  ];
+  function passSelectedTags(t: Array<string>) {
+    console.log(t);
+    setTags(t);
+  }
 
   return (
     <div className={classes.ArticleForm}>
       <Header value={value} handleChange={handleChange} />
       <div className={classes.tapPanel}>
         <TabPanel value={value} index={0}>
-          <Form handleMDText={handleChangeMD} mdText={textareaValue} />
+          <Form
+            handleMDText={handleChangeMD}
+            mdText={textareaValue}
+            passSelectedTags={passSelectedTags}
+            selectedTags={tags || []}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Preview
             mdText={textareaValue}
             imageUrl={imgUrl}
             articleTitle={"Title"}
-            tags={tags}
+            tags={tags || []}
           />
         </TabPanel>
       </div>

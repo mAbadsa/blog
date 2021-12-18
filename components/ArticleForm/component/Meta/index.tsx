@@ -6,7 +6,10 @@ import Title from "../PostTitle";
 import Tags from "../Tags";
 import useStyles from "./styles";
 
-const Meta: FC = () => {
+const Meta: FC<{
+  passSelectedTags: Function;
+  selectedTags: Array<string>;
+}> = ({ passSelectedTags, selectedTags }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -14,7 +17,7 @@ const Meta: FC = () => {
     <div className={classes.Meta}>
       <UploadCoverImage />
       <Title />
-      <Tags />
+      <Tags passSelectedTags={passSelectedTags} tags={selectedTags} />
     </div>
   );
 };

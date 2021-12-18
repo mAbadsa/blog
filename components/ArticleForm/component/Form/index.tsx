@@ -5,15 +5,17 @@ import MDEditor from "../MDEditor";
 
 import useStyles from "./styles";
 
-const Form: FC<{ handleMDText: Function; mdText: string }> = ({
-  handleMDText,
-  mdText,
-}) => {
+const Form: FC<{
+  handleMDText: Function;
+  passSelectedTags: Function;
+  mdText: string;
+  selectedTags: Array<string>;
+}> = ({ handleMDText, mdText, passSelectedTags, selectedTags }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
     <div className={classes.Form}>
-      <Meta />
+      <Meta passSelectedTags={passSelectedTags} selectedTags={selectedTags} />
       <MDEditor handleMDText={handleMDText} mdText={mdText} />
     </div>
   );
