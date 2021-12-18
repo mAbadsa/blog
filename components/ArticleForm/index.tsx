@@ -7,6 +7,7 @@ import Header from "./component/Header";
 import Preview from "./component/preview";
 import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
+import { ChangeEventHandler } from "react-transition-group/node_modules/@types/react";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,6 +37,7 @@ const ArticleForm: FC = () => {
   const [value, setValue] = useState(0);
   const [textareaValue, setTextareaValue] = useState("");
   const [tags, setTags] = useState<string[]>();
+  const [title, setTitle] = useState("");
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -53,6 +55,10 @@ const ArticleForm: FC = () => {
     setTags(t);
   }
 
+  function handleChangeTitle(evt: React.ChangeEvent<HTMLTextAreaElement>) {
+    setTitle(evt.target.value);
+  }
+
   return (
     <div className={classes.ArticleForm}>
       <Header value={value} handleChange={handleChange} />
@@ -63,13 +69,15 @@ const ArticleForm: FC = () => {
             mdText={textareaValue}
             passSelectedTags={passSelectedTags}
             selectedTags={tags || []}
+            handleChangeTitle={handleChangeTitle}
+            defaultTitle={title}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Preview
             mdText={textareaValue}
             imageUrl={imgUrl}
-            articleTitle={"Title"}
+            articleTitle={title}
             tags={tags || []}
           />
         </TabPanel>

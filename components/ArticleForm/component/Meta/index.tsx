@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEventHandler, FC } from "react";
 
 import { useTheme } from "@material-ui/styles";
 import UploadCoverImage from "../UploadCoverImage";
@@ -8,15 +8,20 @@ import useStyles from "./styles";
 
 const Meta: FC<{
   passSelectedTags: Function;
+  handleChangeTitle: ChangeEventHandler<HTMLTextAreaElement>;
   selectedTags: Array<string>;
-}> = ({ passSelectedTags, selectedTags }) => {
+  defaultTitle: string;
+}> = ({ passSelectedTags, selectedTags, handleChangeTitle, defaultTitle }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
   return (
     <div className={classes.Meta}>
       <UploadCoverImage />
-      <Title />
+      <Title
+        handleChangeTitle={handleChangeTitle}
+        defaultTitle={defaultTitle}
+      />
       <Tags passSelectedTags={passSelectedTags} tags={selectedTags} />
     </div>
   );
