@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 import Form from "./component/Form";
 import Header from "./component/Header";
 import Preview from "./component/preview";
-
+import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
 
 interface TabPanelProps {
@@ -48,6 +48,12 @@ const ArticleForm: FC = () => {
   const imgUrl =
     "https://image.shutterstock.com/image-photo/water-drop-closeup-600w-256885258.jpg";
 
+  let tags: Array<tagsProps> = [
+    { id: "t_1", tag: "javascript" },
+    { id: "t_2", tag: "nextjs" },
+    { id: "t_3", tag: "storybook" },
+  ];
+
   return (
     <div className={classes.ArticleForm}>
       <Header value={value} handleChange={handleChange} />
@@ -56,7 +62,12 @@ const ArticleForm: FC = () => {
           <Form handleMDText={handleChangeMD} mdText={textareaValue} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Preview mdText={textareaValue} imageUrl={imgUrl} />
+          <Preview
+            mdText={textareaValue}
+            imageUrl={imgUrl}
+            articleTitle={"Title"}
+            tags={tags}
+          />
         </TabPanel>
       </div>
     </div>
