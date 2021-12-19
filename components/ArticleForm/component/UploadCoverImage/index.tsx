@@ -84,29 +84,19 @@ const UploadCoverImage: FC<{
     imageView,
   } = state;
 
-  console.log("insertionImageUrls", insertionImageUrls);
-
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    console.log("1::");
     if (!evt.target.files || evt.target.files.length === 0) return;
-    console.log("2::", evt.target.files[0]);
     const image = evt.target.files[0] || insertionImageUrls;
-    console.log("3::", image);
     dispatch({ type: "uploading_image" });
     const formData = new FormData();
     formData.append("image", image, image?.name);
 
     setTimeout(() => {
-      console.log("timeout");
-      console.log("image", image);
       handleUploadImageSucess(image);
     }, 1000);
-
-    console.log("Upload");
   };
 
   function handleUploadImageSucess<T extends File>(payload: T) {
-    console.log(payload.name);
     dispatch({
       type: "upload_image_success",
       payload: { name: payload.name },
@@ -117,7 +107,6 @@ const UploadCoverImage: FC<{
   const removeImage = (evt: MouseEvent<HTMLSpanElement | MouseEvent>) => {
     const formData = new FormData();
     // if (image) {
-    console.log(formData.get("image"));
     formData.delete("image");
     dispatch({ type: "remove_image" });
     // }
@@ -125,8 +114,6 @@ const UploadCoverImage: FC<{
 
   const previewImage = <T extends File>(payload: { imageFile: File }) => {
     const reader = new FileReader();
-    console.log("previewImage");
-    console.log({ payload });
     if (payload) {
       reader.readAsDataURL(payload.imageFile);
       reader.onload = () => {
@@ -143,11 +130,9 @@ const UploadCoverImage: FC<{
           type: "preview_image",
           payload: { imageView: reader.result },
         });
-        console.log("Load End!", reader.result);
         articleCoverImage(reader.result);
       };
     }
-    console.log("Result", reader.result);
   };
 
   const uploadLabel = insertionImageUrls ? "Change" : "Add a cover image";
