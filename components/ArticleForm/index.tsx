@@ -49,7 +49,6 @@ const ArticleForm: FC = () => {
   }
 
   function passSelectedTags(t: Array<string>) {
-    console.log(t);
     setTags(t);
   }
 
