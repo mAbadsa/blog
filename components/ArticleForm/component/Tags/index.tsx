@@ -42,6 +42,7 @@ const Tags: FC<{
 
   useEffect(() => {
     setInputValue(tags.join(", "));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setInputValue]);
 
   useEffect(() => {
