@@ -7,7 +7,7 @@ import CodeBlock from "../MDEditor/codeBlock";
 import Tags from '../../../PostCard/Tags';
 import useStyles from "./styles";
 
-const Preview = ({ mdText, imageUrl, articleTitle, tags }) => {
+const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -21,16 +21,17 @@ const Preview = ({ mdText, imageUrl, articleTitle, tags }) => {
       <article className={classes.article}>
         <header>
           <div className={classes.cover}>
-            <Image
+            { coverImage && (<Image
               className={classes.coverImage}
-              loader={() => imageUrl}
-              src={imageUrl}
+              loader={() => coverImage}
+              src={`${coverImage}`}
               width={250}
               height={105}
               layout="fill"
               objectFit="cover"
               alt={"Post cover"}
-            />
+            />)
+            }
           </div>
           <div className={classes.articleTitle}>
             <Typography component={"h1"}>{articleTitle}</Typography>

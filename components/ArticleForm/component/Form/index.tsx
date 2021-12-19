@@ -12,6 +12,8 @@ const Form: FC<{
   defaultTitle: string;
   mdText: string;
   selectedTags: Array<string>;
+  articleCoverImage: Function;
+  defaultCoverImage: string | ArrayBuffer | null;
 }> = ({
   handleMDText,
   mdText,
@@ -19,6 +21,8 @@ const Form: FC<{
   selectedTags,
   handleChangeTitle,
   defaultTitle,
+  articleCoverImage,
+  defaultCoverImage,
 }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -29,6 +33,8 @@ const Form: FC<{
         selectedTags={selectedTags}
         handleChangeTitle={handleChangeTitle}
         defaultTitle={defaultTitle}
+        articleCoverImage={articleCoverImage}
+        defaultCoverImage={defaultCoverImage}
       />
       <MDEditor handleMDText={handleMDText} mdText={mdText} />
     </div>
