@@ -15,8 +15,6 @@ const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
     id: `${t}_${idx}`,
     tag: t,
   }));
-
-  console.log({coverImage});
   
   return (
     <div className={classes.Preview}>
