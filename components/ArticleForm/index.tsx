@@ -48,9 +48,6 @@ const ArticleForm: FC = () => {
     setTextareaValue(evt.target.value);
   }
 
-  console.log("render");
-  const imgUrl = "https://via.placeholder.com/300/925";
-
   function passSelectedTags(t: Array<string>) {
     console.log(t);
     setTags(t);
