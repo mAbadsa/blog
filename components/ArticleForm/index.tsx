@@ -38,6 +38,7 @@ const ArticleForm: FC = () => {
   const [textareaValue, setTextareaValue] = useState("");
   const [tags, setTags] = useState<string[]>();
   const [title, setTitle] = useState("");
+  const [coverImage, setCoverImage] = useState<string | ArrayBuffer | null>("");
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -59,24 +60,30 @@ const ArticleForm: FC = () => {
     setTitle(evt.target.value);
   }
 
+  function articleCoverImage(image: string | ArrayBuffer | null) {
+    setCoverImage(image);
+  }
+
   return (
     <div className={classes.ArticleForm}>
       <Header value={value} handleChange={handleChange} />
       <div className={classes.tapPanel}>
         <TabPanel value={value} index={0}>
           <Form
+            articleCoverImage={articleCoverImage}
             handleMDText={handleChangeMD}
             mdText={textareaValue}
             passSelectedTags={passSelectedTags}
             selectedTags={tags || []}
             handleChangeTitle={handleChangeTitle}
             defaultTitle={title}
+            defaultCoverImage={coverImage}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Preview
+            coverImage={coverImage || ""}
             mdText={textareaValue}
-            imageUrl={imgUrl}
             articleTitle={title}
             tags={tags || []}
           />

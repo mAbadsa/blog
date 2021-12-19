@@ -61,7 +61,10 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
   }
 }
 
-const UploadCoverImage: FC = () => {
+const UploadCoverImage: FC<{
+  articleCoverImage: Function;
+  defaultCoverImage: string | ArrayBuffer | null;
+}> = ({ articleCoverImage, defaultCoverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -70,7 +73,7 @@ const UploadCoverImage: FC = () => {
     uploadErrorMessage: null,
     uploadingImage: false,
     insertionImageUrls: "",
-    imageView: "",
+    imageView: defaultCoverImage || "",
   });
 
   const {
@@ -141,6 +144,7 @@ const UploadCoverImage: FC = () => {
           payload: { imageView: reader.result },
         });
         console.log("Load End!", reader.result);
+        articleCoverImage(reader.result);
       };
     }
     console.log("Result", reader.result);
