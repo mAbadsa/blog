@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { QueryClientProvider, QueryClient } from "react-query";
 import { useTheme } from "@material-ui/styles";
 import Box from "@material-ui/core/Box";
 
@@ -7,13 +8,14 @@ import Header from "./component/Header";
 import Preview from "./component/preview";
 import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
-import { ChangeEventHandler } from "react-transition-group/node_modules/@types/react";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
 }
+
+const queryClient = new QueryClient();
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -61,31 +63,33 @@ const ArticleForm: FC = () => {
   }
 
   return (
-    <div className={classes.ArticleForm}>
-      <Header value={value} handleChange={handleChange} />
-      <div className={classes.tapPanel}>
-        <TabPanel value={value} index={0}>
-          <Form
-            articleCoverImage={articleCoverImage}
-            handleMDText={handleChangeMD}
-            mdText={textareaValue}
-            passSelectedTags={passSelectedTags}
-            selectedTags={tags || []}
-            handleChangeTitle={handleChangeTitle}
-            defaultTitle={title}
-            defaultCoverImage={coverImage}
-          />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Preview
-            coverImage={coverImage || ""}
-            mdText={textareaValue}
-            articleTitle={title}
-            tags={tags || []}
-          />
-        </TabPanel>
+    <QueryClientProvider client={queryClient}>
+      <div className={classes.ArticleForm}>
+        <Header value={value} handleChange={handleChange} />
+        <div className={classes.tapPanel}>
+          <TabPanel value={value} index={0}>
+            <Form
+              articleCoverImage={articleCoverImage}
+              handleMDText={handleChangeMD}
+              mdText={textareaValue}
+              passSelectedTags={passSelectedTags}
+              selectedTags={tags || []}
+              handleChangeTitle={handleChangeTitle}
+              defaultTitle={title}
+              defaultCoverImage={coverImage}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Preview
+              coverImage={coverImage || ""}
+              mdText={textareaValue}
+              articleTitle={title}
+              tags={tags || []}
+            />
+          </TabPanel>
+        </div>
       </div>
-    </div>
+    </QueryClientProvider>
   );
 };
 
