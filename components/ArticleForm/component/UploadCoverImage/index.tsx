@@ -1,5 +1,6 @@
 import { FC, useState, useReducer, ChangeEvent, MouseEvent } from "react";
 import Image from "next/image";
+import { useMutation } from "react-query";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -67,6 +68,9 @@ const UploadCoverImage: FC<{
 }> = ({ articleCoverImage, defaultCoverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { mutate, isLoading, error, isError, data } = useMutation(
+    "api/article/cover-image"
+  );
 
   const [state, dispatch] = useReducer(coverImageUploaderReducer, {
     uploadError: false,
@@ -90,10 +94,10 @@ const UploadCoverImage: FC<{
     dispatch({ type: "uploading_image" });
     const formData = new FormData();
     formData.append("image", image, image?.name);
-
-    setTimeout(() => {
-      handleUploadImageSucess(image);
-    }, 1000);
+    mutate();
+    // setTimeout(() => {
+    //   handleUploadImageSucess(image);
+    // }, 1000);
   };
 
   function handleUploadImageSucess<T extends File>(payload: T) {
