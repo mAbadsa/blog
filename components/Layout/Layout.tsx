@@ -11,7 +11,6 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   const classes = useStyles();
-  console.log(router.pathname);
   return (
     <div className={classes.root}>
       <Header display={router.pathname === "/new" ? true : false} />
