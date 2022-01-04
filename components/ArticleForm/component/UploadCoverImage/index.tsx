@@ -4,16 +4,16 @@ import { useMutation } from "react-query";
 import axios, { AxiosResponse } from "axios";
 
 import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import useStyles from "./styles";
 import { useTheme } from "@material-ui/styles";
 
 const uploadImage = async (imgData: string | ArrayBuffer | null) => {
-  let response: AxiosResponse = await axios.post(
-    "api/article/cover-image",
-    imgData
-  );
+  let response: AxiosResponse = await axios.post("api/article/cover-image", {
+    data: imgData,
+  });
 
   return response;
 };
@@ -52,7 +52,7 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
     case "upload_image_success":
       return {
         ...state,
-        insertionImageUrls: payload.name,
+        insertionImageUrls: payload.url,
         uploadingImage: payload.uploadingImage,
       };
     case "preview_image":
@@ -80,15 +80,15 @@ const UploadCoverImage: FC<{
 }> = ({ articleCoverImage, defaultCoverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  const { data, isLoading, isError, isSuccess, mutate } = useMutation(
+  const [open, setOpen] = useState<boolean>(false);
+  const { isLoading, isError, isSuccess, mutate } = useMutation(
     (imgData: string | ArrayBuffer | null) => uploadImage(imgData),
     {
-      onSuccess: async (data: unknown) => {
-        console.log({ data });
+      onSuccess: async (data: AxiosResponse) => {
+        handleUploadImageSucess(data.data.imageUrl);
       },
     }
   );
-  console.log({ isLoading });
 
   const [state, dispatch] = useReducer(coverImageUploaderReducer, {
     uploadError: false,
@@ -116,65 +116,65 @@ const UploadCoverImage: FC<{
 
     const reader = new FileReader();
 
-    // console.log(imgData.image);
     reader.readAsDataURL(image);
 
     reader.onload = async () => {
       mutate(reader.result);
     };
-    if (!isLoading) {
-      console.log(data);
-      handleUploadImageSucess(image);
-    }
   };
 
-  function handleUploadImageSucess<T extends File>(payload: T) {
+  function handleUploadImageSucess<T extends string>(imageUrl: T) {
     dispatch({
       type: "upload_image_success",
-      payload: { name: payload.name, uploadingImage: isLoading },
+      payload: { url: imageUrl, uploadingImage: isLoading },
     });
-    previewImage({ imageFile: payload });
+    previewImage(imageUrl);
   }
 
   const removeImage = (evt: MouseEvent<HTMLSpanElement | MouseEvent>) => {
     const formData = new FormData();
-    // if (image) {
     formData.delete("image");
     dispatch({ type: "remove_image", payload: { uploadingImage: isLoading } });
-    // }
   };
 
-  const previewImage = <T extends File>(payload: { imageFile: File }) => {
-    const reader = new FileReader();
-    if (payload) {
-      reader.readAsDataURL(payload.imageFile);
-      reader.onload = () => {
-        dispatch({
-          type: "preview_image",
-          payload: { imageView: reader.result, uploadingImage: isLoading },
-        });
-      };
-      reader.onloadstart = () => {
-        dispatch({
-          type: "uploading_image",
-          payload: { uploadingImage: isLoading },
-        });
-      };
-      reader.onloadend = () => {
-        dispatch({
-          type: "preview_image",
-          payload: { imageView: reader.result, uploadingImage: isLoading },
-        });
-        articleCoverImage(reader.result);
-      };
+  const previewImage = (imageUrl: string) => {
+    if (imageUrl) {
+      dispatch({
+        type: "preview_image",
+        payload: { imageView: imageUrl, uploadingImage: isLoading },
+      });
+    } else {
+      dispatch({
+        type: "uploading_image",
+        payload: { uploadingImage: isLoading },
+      });
     }
+  };
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const uploadLabel = insertionImageUrls ? "Change" : "Add a cover image";
 
   return (
     <div className={classes.UploadCoverImage}>
-      {!isLoading && imageView && (
+      {uploadErrorMessage && (
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message={uploadErrorMessage}
+        />
+      )}
+      {!uploadingImage && imageView && (
         <div className={classes.coverImage}>
           <Image
             className={classes.coverImage}
@@ -215,7 +215,7 @@ const UploadCoverImage: FC<{
             data-max-file-size-mb="25"
           />
         </Button>
-        {insertionImageUrls && !isLoading && (
+        {insertionImageUrls && !uploadingImage && (
           <Button className={classes.removeButton} onClick={removeImage}>
             Remove
           </Button>
