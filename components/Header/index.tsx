@@ -31,7 +31,6 @@ const Header: FC<{ display: Boolean }> = ({ display }) => {
     }
     setState(!state);
   };
-  console.log(display);
   return (
     <div className={`${classes.Header} ${display && classes.hidden}`}>
       <AppBar className={classes.appBar} position="static">

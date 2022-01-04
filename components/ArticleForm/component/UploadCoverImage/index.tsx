@@ -1,10 +1,22 @@
 import { FC, useState, useReducer, ChangeEvent, MouseEvent } from "react";
 import Image from "next/image";
+import { useMutation } from "react-query";
+import axios, { AxiosResponse } from "axios";
+
 import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import useStyles from "./styles";
 import { useTheme } from "@material-ui/styles";
+
+const uploadImage = async (imgData: string | ArrayBuffer | null) => {
+  let response: AxiosResponse = await axios.post("api/article/cover-image", {
+    data: imgData,
+  });
+
+  return response;
+};
 
 function coverImageUploaderReducer<T extends Object, U extends Object>(
   state: {
@@ -20,11 +32,12 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
 
   switch (type) {
     case "uploading_image":
+      console.log("payload", payload.uploadingImage);
       return {
         ...state,
         uploadError: false,
         uploadErrorMessage: null,
-        uploadingImage: true,
+        uploadingImage: payload.uploadingImage,
       };
 
     case "upload_image_error":
@@ -39,20 +52,20 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
     case "upload_image_success":
       return {
         ...state,
-        insertionImageUrls: payload.name,
-        uploadingImage: false,
+        insertionImageUrls: payload.url,
+        uploadingImage: payload.uploadingImage,
       };
     case "preview_image":
       return {
         ...state,
         imageView: payload.imageView,
-        uploadingImage: false,
+        uploadingImage: payload.uploadingImage,
       };
     case "remove_image":
       return {
         ...state,
         insertionImageUrls: null,
-        uploadingImage: false,
+        uploadingImage: payload.uploadingImage,
         imageView: null,
       };
 
@@ -67,11 +80,20 @@ const UploadCoverImage: FC<{
 }> = ({ articleCoverImage, defaultCoverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const [open, setOpen] = useState<boolean>(false);
+  const { isLoading, isError, isSuccess, mutate } = useMutation(
+    (imgData: string | ArrayBuffer | null) => uploadImage(imgData),
+    {
+      onSuccess: async (data: AxiosResponse) => {
+        handleUploadImageSucess(data.data.imageUrl);
+      },
+    }
+  );
 
   const [state, dispatch] = useReducer(coverImageUploaderReducer, {
     uploadError: false,
     uploadErrorMessage: null,
-    uploadingImage: false,
+    uploadingImage: isLoading,
     insertionImageUrls: "",
     imageView: defaultCoverImage || "",
   });
@@ -87,58 +109,71 @@ const UploadCoverImage: FC<{
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if (!evt.target.files || evt.target.files.length === 0) return;
     const image = evt.target.files[0] || insertionImageUrls;
-    dispatch({ type: "uploading_image" });
-    const formData = new FormData();
-    formData.append("image", image, image?.name);
+    dispatch({
+      type: "uploading_image",
+      payload: { uploadingImage: isLoading },
+    });
 
-    setTimeout(() => {
-      handleUploadImageSucess(image);
-    }, 1000);
+    const reader = new FileReader();
+
+    reader.readAsDataURL(image);
+
+    reader.onload = async () => {
+      mutate(reader.result);
+    };
   };
 
-  function handleUploadImageSucess<T extends File>(payload: T) {
+  function handleUploadImageSucess<T extends string>(imageUrl: T) {
     dispatch({
       type: "upload_image_success",
-      payload: { name: payload.name },
+      payload: { url: imageUrl, uploadingImage: isLoading },
     });
-    previewImage({ imageFile: payload });
+    previewImage(imageUrl);
   }
 
   const removeImage = (evt: MouseEvent<HTMLSpanElement | MouseEvent>) => {
     const formData = new FormData();
-    // if (image) {
     formData.delete("image");
-    dispatch({ type: "remove_image" });
-    // }
+    dispatch({ type: "remove_image", payload: { uploadingImage: isLoading } });
   };
 
-  const previewImage = <T extends File>(payload: { imageFile: File }) => {
-    const reader = new FileReader();
-    if (payload) {
-      reader.readAsDataURL(payload.imageFile);
-      reader.onload = () => {
-        dispatch({
-          type: "preview_image",
-          payload: { imageView: reader.result },
-        });
-      };
-      reader.onloadstart = () => {
-        dispatch({ type: "uploading_image" });
-      };
-      reader.onloadend = () => {
-        dispatch({
-          type: "preview_image",
-          payload: { imageView: reader.result },
-        });
-        articleCoverImage(reader.result);
-      };
+  const previewImage = (imageUrl: string) => {
+    if (imageUrl) {
+      dispatch({
+        type: "preview_image",
+        payload: { imageView: imageUrl, uploadingImage: isLoading },
+      });
+    } else {
+      dispatch({
+        type: "uploading_image",
+        payload: { uploadingImage: isLoading },
+      });
     }
+  };
+
+  const handleClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const uploadLabel = insertionImageUrls ? "Change" : "Add a cover image";
 
   return (
     <div className={classes.UploadCoverImage}>
+      {uploadErrorMessage && (
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message={uploadErrorMessage}
+        />
+      )}
       {!uploadingImage && imageView && (
         <div className={classes.coverImage}>
           <Image
@@ -158,7 +193,7 @@ const UploadCoverImage: FC<{
           variant="contained"
           component="label"
         >
-          {uploadingImage && (
+          {isLoading && (
             <div className={classes.SpinnerBox}>
               <CircularProgress
                 className={classes.Spinner}
@@ -169,7 +204,7 @@ const UploadCoverImage: FC<{
               {" Uploading"}
             </div>
           )}
-          {!uploadingImage && uploadLabel}
+          {!isLoading && uploadLabel}
           <input
             accept="image/*"
             type="file"

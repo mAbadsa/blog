@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+
 import { ThemeProvider } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../styles/theme";
@@ -9,6 +11,7 @@ import theme from "../styles/theme";
 import Layout from "../components/Layout/Layout";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <>
       <Head>
@@ -18,7 +21,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <CssBaseline />
         <UserProvider>
           <Layout>
-            <Component {...pageProps} />
+            <QueryClientProvider client={queryClient}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <Component {...pageProps} />
+              </Hydrate>
+            </QueryClientProvider>
           </Layout>
         </UserProvider>
       </ThemeProvider>

@@ -7,7 +7,6 @@ import Header from "./component/Header";
 import Preview from "./component/preview";
 import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
-import { ChangeEventHandler } from "react-transition-group/node_modules/@types/react";
 
 interface TabPanelProps {
   children?: React.ReactNode;
