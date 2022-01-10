@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { useTheme } from "@material-ui/styles";
 import Box from "@material-ui/core/Box";
 
@@ -7,6 +7,8 @@ import Header from "./component/Header";
 import Preview from "./component/preview";
 import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
+import Modal from "../Modal";
+import CloseDialog from "./component/CloseDialog";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,6 +40,7 @@ const ArticleForm: FC = () => {
   const [tags, setTags] = useState<string[]>();
   const [title, setTitle] = useState("");
   const [coverImage, setCoverImage] = useState<string | ArrayBuffer | null>("");
+  const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -59,10 +62,25 @@ const ArticleForm: FC = () => {
     setCoverImage(image);
   }
 
+  function handleCloseModal() {
+    setOpen(false);
+  }
+
+  function handleOpenCloseDialog() {
+    setOpen(true);
+  }
+
   return (
     <div className={classes.ArticleForm}>
-      <Header value={value} handleChange={handleChange} />
+      <Header
+        value={value}
+        handleChange={handleChange}
+        handleClose={handleOpenCloseDialog}
+      />
       <div className={classes.tapPanel}>
+        <Modal open={open} handleClose={handleOpenCloseDialog}>
+          <CloseDialog handleClose={handleCloseModal} />
+        </Modal>
         <TabPanel value={value} index={0}>
           <Form
             articleCoverImage={articleCoverImage}

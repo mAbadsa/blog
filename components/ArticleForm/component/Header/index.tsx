@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import Link from "next/link";
 
 import { useTheme } from "@material-ui/styles";
@@ -10,10 +10,11 @@ import { Typography } from "@material-ui/core";
 import SVGIcons from "../../../SVG/SVGIcons";
 import FormTabs from "./Tabs";
 
-const Header: FC<{ value: number; handleChange: any }> = ({
-  value,
-  handleChange,
-}) => {
+const Header: FC<{
+  value: number;
+  handleChange: any;
+  handleClose: MouseEventHandler<HTMLAnchorElement>;
+}> = ({ value, handleChange, handleClose }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -33,7 +34,12 @@ const Header: FC<{ value: number; handleChange: any }> = ({
       </div>
       <div className={classes.headerTaps}>
         <FormTabs value={value} handleChange={handleChange} />
-        <IconButton className={classes.closeForm}>
+        <IconButton
+          className={classes.closeForm}
+          href={""}
+          aria-label="close-article-editor"
+          onClick={handleClose}
+        >
           <Close aria-label="close" />
         </IconButton>
       </div>
