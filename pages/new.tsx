@@ -11,7 +11,8 @@ const New: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
+    if (user === undefined) {
+    } else if (!user) {
       router.push("api/auth/login");
     } else {
       setIsLoading(false);
