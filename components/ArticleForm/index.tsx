@@ -39,7 +39,7 @@ const ArticleForm: FC = () => {
   const [textareaValue, setTextareaValue] = useState("");
   const [tags, setTags] = useState<string[]>();
   const [title, setTitle] = useState("");
-  const [coverImage, setCoverImage] = useState<string | ArrayBuffer | null>("");
+  const [coverImage, setCoverImage] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -58,7 +58,7 @@ const ArticleForm: FC = () => {
     setTitle(evt.target.value);
   }
 
-  function articleCoverImage(image: string | ArrayBuffer | null) {
+  function articleCoverImage(image: string) {
     setCoverImage(image);
   }
 
