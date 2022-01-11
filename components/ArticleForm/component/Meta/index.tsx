@@ -12,7 +12,7 @@ const Meta: FC<{
   articleCoverImage: Function;
   selectedTags: Array<string>;
   defaultTitle: string;
-  defaultCoverImage: string | ArrayBuffer | null;
+  defaultCoverImage: string;
 }> = ({
   passSelectedTags,
   selectedTags,

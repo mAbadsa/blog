@@ -13,7 +13,7 @@ const Form: FC<{
   mdText: string;
   selectedTags: Array<string>;
   articleCoverImage: Function;
-  defaultCoverImage: string | ArrayBuffer | null;
+  defaultCoverImage: string;
 }> = ({
   handleMDText,
   mdText,
