@@ -76,7 +76,7 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
 
 const UploadCoverImage: FC<{
   articleCoverImage: Function;
-  defaultCoverImage: string | ArrayBuffer | null;
+  defaultCoverImage: string;
 }> = ({ articleCoverImage, defaultCoverImage }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -86,6 +86,7 @@ const UploadCoverImage: FC<{
     {
       onSuccess: async (data: AxiosResponse) => {
         handleUploadImageSucess(data.data.imageUrl);
+        articleCoverImage(data.data.imageUrl);
       },
     }
   );
@@ -94,7 +95,7 @@ const UploadCoverImage: FC<{
     uploadError: false,
     uploadErrorMessage: null,
     uploadingImage: isLoading,
-    insertionImageUrls: "",
+    insertionImageUrls: defaultCoverImage || "",
     imageView: defaultCoverImage || "",
   });
 
