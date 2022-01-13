@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from "@material-ui/core";
+import ToolPanel from './ToolPanel';
 import useStyles from './styles';
 
 const MDEditor = ({handleMDText, mdText}) => {
@@ -7,6 +8,7 @@ const MDEditor = ({handleMDText, mdText}) => {
   const classes = useStyles({ theme });
   return (
     <div className={classes.MDEditor}>
+      <ToolPanel></ToolPanel>
       <textarea
       className={classes.textArea}
       aria-label="Post Content"
