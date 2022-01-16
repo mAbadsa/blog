@@ -9,6 +9,7 @@ import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
 import Modal from "../Modal";
 import CloseDialog from "./component/CloseDialog";
+import Footer from "./component/Footer";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -92,6 +93,7 @@ const ArticleForm: FC = () => {
             defaultTitle={title}
             defaultCoverImage={coverImage}
           />
+          <Footer />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Preview
