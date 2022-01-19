@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     display: "flex",
     justifyContent: "space-between",
+    backgroundColor: "#fff",
+    height: "56px",
+  },
+  toobar: {
+    padding: "0 0.5rem",
+    minHeight: "56px",
   },
   drawerSideBar: {
     "& .MuiDrawer-paper": {
@@ -18,16 +24,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    padding: "0.5rem",
+    color: "#3d3d3d",
+    backgroundColor: "#00000000",
     display: "flex",
+    borderRadius: "0.375rem",
+    width: "40px",
+    height: "40px",
+    "&:hover": {
+      color: "#323ebe",
+      backgroundColor: "#3b49df1a",
+    },
     [theme.breakpoints.up("md")]: {
       display: "none",
       transition: "all 0.25s",
     },
   },
   title: {
+    padding: "0",
     [theme.breakpoints.down("xs")]: {
-      flexGrow: 1,
+      // flexGrow: 1,
     },
   },
   list: {
@@ -40,7 +58,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   search: {
     flexGrow: 1,
     position: "relative",
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -56,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: "none",
     },
     [theme.breakpoints.up("xs")]: {
-      marginLeft: theme.spacing(3),
+      marginLeft: theme.spacing(2),
       width: "auto",
     },
   },
@@ -64,27 +81,33 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
     position: "absolute",
+    top: 0,
+    right: "-13px",
     pointerEvents: "none",
     display: "flex",
+    color: "#3d3d3d",
+    backgroundColor: "#00000000",
     alignItems: "center",
     justifyContent: "center",
-  },
-  searchIcon_mobile: {
-    display: "none",
-    paddingRight: "0.8rem",
-    paddingTop: "0.4rem",
-    [theme.breakpoints.down("xs")]: {
-      display: "block",
+    cursor: "pointer",
+    zIndex: 1000,
+    transition: "all 0.25s",
+    "&:hover": {
+      color: "#323ebe",
+      backgroundColor: "#3b49df1a",
+      transition: "all 0.25s",
     },
   },
   inputRoot: {
-    color: "inherit",
+    color: "#090909",
     width: "100%",
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    padding: theme.spacing(1, 2, 1, 1),
+    lineHeight: "1.5",
+    resize: "vertical",
+    border: "1px solid #d6d6d7",
+    borderRadius: theme.shape.borderRadius,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
