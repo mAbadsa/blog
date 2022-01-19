@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run: echo "yarn installing"
       - run: yarn install
-      - run: yarn run dev
+      - run: CI=true yarn run build
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
