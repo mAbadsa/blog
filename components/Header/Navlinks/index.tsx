@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
+import SearchIcon from "@material-ui/icons/Search";
 import Avatar from "@material-ui/core/Avatar";
 import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 
@@ -44,7 +45,7 @@ const Navlinks: FC = () => {
             </MUILink>
           </Link>
           <Link href="/notifications" passHref>
-            <MUILink color="textSecondary">
+            <MUILink className={classes.NotificationsNoneRoundedIcon}>
               <NotificationsNoneRoundedIcon></NotificationsNoneRoundedIcon>
             </MUILink>
           </Link>
@@ -86,10 +87,17 @@ const Navlinks: FC = () => {
       ) : (
         <>
           <Link href="/api/auth/login" passHref>
-            <MUILink color="textSecondary">Log in</MUILink>
+            <MUILink className={classes.linkItem}>Log in</MUILink>
           </Link>
+          <div className={classes.searchIcon_mobile}>
+            <Link href="/search" passHref>
+              <MUILink color="textSecondary">
+                <SearchIcon />
+              </MUILink>
+            </Link>
+          </div>
           <Link href="/signup" passHref>
-            <MUILink color="textSecondary">Create account</MUILink>
+            <MUILink className={classes.linkItem}>Create account</MUILink>
           </Link>
         </>
       )}
