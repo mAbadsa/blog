@@ -65,7 +65,6 @@ const Header: FC<{ display: Boolean }> = ({ display }) => {
               <SearchIcon />
             </IconButton>
           </div>
-
           <Drawer
             className={classes.drawerSideBar}
             anchor="left"
