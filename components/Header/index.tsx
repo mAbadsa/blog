@@ -71,6 +71,7 @@ const Header: FC<{ display: Boolean }> = ({ display }) => {
             open={state}
             onClose={toggleDrawer}
           >
+            <h1>hi alex</h1>
             <SidebarList drawer />
           </Drawer>
           <Navlinks />
