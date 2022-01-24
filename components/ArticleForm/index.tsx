@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
 import { useTheme } from "@material-ui/styles";
 import Box from "@material-ui/core/Box";
+import { useMutation } from "react-query";
+import axios, { AxiosResponse } from "axios";
 
 import Form from "./component/Form";
 import Header from "./component/Header";
@@ -9,11 +11,17 @@ import tagsProps from "../interface/Tags";
 import useStyles from "./styles";
 import Modal from "../Modal";
 import CloseDialog from "./component/CloseDialog";
+import Footer from "./component/Footer";
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
+}
+
+async function postArticle<T extends Object>(article: T) {
+  const res: AxiosResponse = await axios.post("api/article", { data: article });
+  return res;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -41,6 +49,12 @@ const ArticleForm: FC = () => {
   const [title, setTitle] = useState("");
   const [coverImage, setCoverImage] = useState<string>("");
   const [open, setOpen] = useState<boolean>(false);
+  const { mutate, isLoading, isError, isSuccess } = useMutation(
+    (article: Object) => postArticle(article),
+    {
+      onSuccess: async (data: AxiosResponse) => {},
+    }
+  );
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -70,6 +84,19 @@ const ArticleForm: FC = () => {
     setOpen(true);
   }
 
+  function handlePublishArticle() {
+    const articlePayload = {
+      coverImage,
+      title,
+      tags,
+      textareaValue,
+    };
+    console.log({ articlePayload });
+    mutate(articlePayload);
+  }
+
+  function handleSaveDraft() {}
+
   return (
     <div className={classes.ArticleForm}>
       <Header
@@ -91,6 +118,10 @@ const ArticleForm: FC = () => {
             handleChangeTitle={handleChangeTitle}
             defaultTitle={title}
             defaultCoverImage={coverImage}
+          />
+          <Footer
+            handlePublishArticle={handlePublishArticle}
+            handleSaveDraft={handleSaveDraft}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>

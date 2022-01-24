@@ -1,16 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import cloudinary from "../../../utils/cloudinary";
+import auth0 from "../../../lib/auth0";
 
 type Data = {
   statusCode?: Number;
   success?: boolean;
-  imageUrl: string;
+  imageUrl?: string;
+  error?: string;
 };
 
-export default async function uploadCoverImage(
+export default auth0.withApiAuthRequired(async function uploadCoverImage(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
-  next: Function
+  res: NextApiResponse<Data>
 ) {
   const { data } = req.body;
   try {
@@ -23,8 +25,8 @@ export default async function uploadCoverImage(
       success: true,
       imageUrl: url,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    return next(error);
+    res.status(error.status || 500).json({ error: error });
   }
-}
+});
