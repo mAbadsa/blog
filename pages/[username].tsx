@@ -1,14 +1,46 @@
-import { useEffect, useState } from "react";
-import type { NextPage } from "next";
-import router from "next/router";
+import type {
+  NextPage,
+  GetServerSideProps,
+  PreviewData,
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+  InferGetServerSidePropsType,
+} from "next";
+import { ParsedUrlQuery } from "querystring";
+import Axios, { AxiosResponse } from "axios";
 
 import UserProfile from "../components/UserProfile";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
-const Profile: NextPage = () => {
-  console.log(router.router?.query.username);
+type UserData = {};
+
+const Profile: NextPage<any, any> = ({ userData }) => {
+  console.log(userData);
   return <UserProfile />;
+};
+
+export const getServerSideProps: GetServerSideProps<
+  { [key: string]: any },
+  ParsedUrlQuery,
+  PreviewData
+> = async (
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
+  console.log({ context });
+  const userData: AxiosResponse = await Axios.get(
+    `api/users/${context?.params?.username}`
+  );
+
+  if (!userData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { userData }, // will be passed to the page component as props
+  };
 };
 
 export default withPageAuthRequired(Profile, {
