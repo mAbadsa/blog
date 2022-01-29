@@ -1,12 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import auth0 from "../../../lib/auth0";
-import { insertNewArticle } from "../models/queries/articles";
+import { insertNewArticle, getAllArticle } from "../models/queries/articles";
 import { getUserByEmail } from "../models/queries/users";
 
 type Data = {
   statusCode?: Number;
   success?: boolean;
-  article: Object;
+  article?: Object;
+  articles?: Object[];
+  error?: string;
 };
 
 export default auth0.withApiAuthRequired(
@@ -38,12 +40,23 @@ export default auth0.withApiAuthRequired(
           .status(201)
           .json({ statusCode: 201, success: true, article: dbResult[0] });
       } else if (req.method === "GET") {
+        const { limit, offset } = req.query;
+        console.log({ limit, offset });
+        const { rows, rowCount } = await getAllArticle({
+          limit: +limit,
+          offset: +offset,
+        });
+        console.log({ rows });
+        console.log({ rowCount });
         return res
           .status(201)
-          .json({ statusCode: 201, success: true, article: [] });
+          .json({ statusCode: 200, success: true, articles: rows });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      return res
+        .status(error.status || 500)
+        .json({ success: false, error: error.message });
     }
   }
 );
