@@ -4,20 +4,19 @@ import type {
   PreviewData,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-  InferGetServerSidePropsType,
 } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Axios, { AxiosResponse } from "axios";
-
+import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
+import auth0 from "../lib/auth0";
 import UserProfile from "../components/UserProfile";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
 type UserData = {};
 
-const Profile: NextPage<any, any> = ({ userData }) => {
+const Profile: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);
-  return <UserProfile />;
+  return <UserProfile userData={userData} />;
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -27,20 +26,36 @@ export const getServerSideProps: GetServerSideProps<
 > = async (
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
-  console.log({ context });
-  const userData: AxiosResponse = await Axios.get(
-    `api/users/${context?.params?.username}`
-  );
+  try {
+    const { query } = context;
+    const { username } = query;
 
-  if (!userData) {
+    const headers = context?.req?.headers as AxiosRequestHeaders;
+
+    const { data }: AxiosResponse = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
+      {
+        headers: headers,
+      }
+    );
+
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      props: { data },
+    };
+  } catch (error: any) {
+    console.log(error);
+    return {
+      props: {
+        error: error.data,
+      },
     };
   }
-
-  return {
-    props: { userData }, // will be passed to the page component as props
-  };
 };
 
 export default withPageAuthRequired(Profile, {
