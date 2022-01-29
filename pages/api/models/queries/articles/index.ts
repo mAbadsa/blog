@@ -1,3 +1,4 @@
 import insertNewArticle from "./insertNewArticle";
+import getAllArticle from "./getAllArticle";
 
-export { insertNewArticle };
+export { insertNewArticle, getAllArticle };
