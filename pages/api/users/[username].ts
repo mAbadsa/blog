@@ -12,6 +12,7 @@ type Data = {
 export default auth0.withApiAuthRequired(
   async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const { username } = req.query;
+
     try {
       if (req.method === "POST") {
       } else if (req.method === "GET") {

@@ -66,10 +66,10 @@ const Navlinks: FC = () => {
             onClose={handleClose}
           >
             <MenuItem onClick={handleClose}>
-              <Link href={`/${user?.name}`} passHref>
+              <Link href={`/${user?.nickname}`} passHref>
                 <MUILink className={classes.profileLink} underline="none">
                   <span className={classes.username}>{user?.name}</span>
-                  <small>@mabadsa</small>
+                  <small>@{user?.nickname}</small>
                 </MUILink>
               </Link>
             </MenuItem>
