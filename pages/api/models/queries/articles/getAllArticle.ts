@@ -11,8 +11,9 @@ const getAllArticle = <T extends ArticleType>({
   offset = 0,
 }: T): Promise<QueryResult<any>> => {
   const sql: QueryConfig = {
-    text: `SELECT id, title, slug, content, cover_image, tags, last_reading,
-    user_id, created_at, updated_at FROM articles LIMIT $1 OFFSET $2;`,
+    text: `SELECT a.id, a.title, a.slug, a.content, a.cover_image, a.tags, a.last_reading,
+    a.user_id, a.created_at, a.updated_at, u.username, u.name, u.bio, u.email, u.display_email, u.profile_image,
+    u.location, u.github_account, u.website_url, u.created_at as user_created_at FROM articles as a INNER JOIN users as u ON u.id = a.user_id LIMIT $1 OFFSET $2;`,
     values: [limit, offset],
   };
 
