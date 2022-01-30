@@ -11,11 +11,11 @@ import SVGIcons from "../SVG/SVGIcons";
 
 import PostCardAvatar from "./PostCardAvatar";
 import Tags from "./Tags";
-import PostsType from "../interface/Posts";
+import ArticlesType from "../interface/Articles";
 
 import useStyles from "./styles";
 
-const PostCard: FC<{ post: PostsType }> = ({ post }) => {
+const PostCard: FC<{ post: ArticlesType }> = ({ post }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -24,11 +24,11 @@ const PostCard: FC<{ post: PostsType }> = ({ post }) => {
     slug,
     reactions,
     comments,
-    headImg,
+    coverImage,
     createdAt,
     tags,
-    lastRead,
-    userData: { username, joinedDate, avatar, email, location, work },
+    lastReading,
+    userData: { username, joinedDate, profileImage, email, location, work },
   } = post;
 
   return (
@@ -48,28 +48,33 @@ const PostCard: FC<{ post: PostsType }> = ({ post }) => {
         <div className={classes.postCard__details}>
           <div className={classes.postCardActions__reactions}>
             {reactions > 0 && (
-              <Link href="/$post-title" passHref>
+              <Link href={`${username}/${title}`} passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Love />
-                    <span className={classes.noReaction}>
-                      {reactions}
-                      <span>&nbsp; {`${reactions === 1 ? 'reaction' : 'reactions'}`}</span>
+                  <span className={classes.noReaction}>
+                    {reactions}
+                    <span>
+                      &nbsp; {`${reactions === 1 ? "reaction" : "reactions"}`}
                     </span>
+                  </span>
                 </MUILink>
               </Link>
             )}
             {comments > 0 && (
-              <Link href="/$post-title" passHref>
+              <Link href={`${username}/${title}`} passHref>
                 <MUILink className={classes.reactionLink}>
                   <SVGIcons.Comment />
-                  <span className={classes.noReaction}>{comments}&nbsp;{`${comments === 1 ? 'comment' : 'comments'}`}</span>
+                  <span className={classes.noReaction}>
+                    {comments}&nbsp;
+                    {`${comments === 1 ? "comment" : "comments"}`}
+                  </span>
                 </MUILink>
               </Link>
             )}
           </div>
           <div className={classes.postCard__save}>
             <small className="tertiary">
-              {lastRead} {lastRead >= 0 ? "mins" : "min"} read
+              {lastReading} {lastReading >= 0 ? "mins" : "min"} read
             </small>
             <Button size="small" color="primary">
               Save
