@@ -21,13 +21,13 @@ export default auth0.withApiAuthRequired(
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
-
+        console.log({ user: rows[0] });
         const { rowCount, rows: dbResult } = await insertNewArticle({
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
           slug: "",
-          tags: "data.tags",
+          tags: data.tags.join(", "),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
         });
