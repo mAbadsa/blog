@@ -15,7 +15,7 @@ import ArticlesType from "../interface/Articles";
 
 import useStyles from "./styles";
 
-const PostCard: FC<{ post: ArticlesType }> = ({ post }) => {
+const PostCard: FC<{ article: ArticlesType }> = ({ article }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
@@ -29,11 +29,17 @@ const PostCard: FC<{ post: ArticlesType }> = ({ post }) => {
     tags,
     lastReading,
     userData: { username, joinedDate, profileImage, email, location, work },
-  } = post;
+  } = article;
+  console.log({ article });
 
   return (
     <Card className={classes.PostCard}>
-      <PostCardAvatar username={username} date={createdAt} slug={slug} />
+      <PostCardAvatar
+        username={username}
+        date={createdAt}
+        slug={slug}
+        avatar={profileImage}
+      />
       <CardActionArea>
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
