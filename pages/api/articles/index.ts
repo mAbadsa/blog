@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import slugify from "slugify";
 import auth0 from "../../../lib/auth0";
 import { insertNewArticle, getAllArticle } from "../models/queries/articles";
 import { getUserByEmail } from "../models/queries/users";
@@ -26,7 +27,7 @@ export default auth0.withApiAuthRequired(
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
-          slug: "",
+          slug: slugify(data.title),
           tags: data.tags.join(", "),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
