@@ -20,7 +20,9 @@ interface TabPanelProps {
 }
 
 async function postArticle<T extends Object>(article: T) {
-  const res: AxiosResponse = await axios.post("api/article", { data: article });
+  const res: AxiosResponse = await axios.post("api/articles", {
+    data: article,
+  });
   return res;
 }
 
