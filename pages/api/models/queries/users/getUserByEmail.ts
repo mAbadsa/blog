@@ -10,7 +10,7 @@ const getUserByEmail = <T extends UserType>({
 }: T): Promise<QueryResult<any>> => {
   console.log({ email });
   const sql: QueryConfig<any[]> = {
-    text: `SELECT username, name, bio, email, display_email, profile_image, location, github_account, website_url FROM users WHERE email = $1;`,
+    text: `SELECT id, username, name, bio, email, display_email, profile_image, location, github_account, website_url FROM users WHERE email = $1;`,
     values: [email],
   };
   return connection.query(sql);
