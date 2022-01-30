@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import slugify from "slugify";
 import auth0 from "../../../lib/auth0";
 import { insertNewArticle, getAllArticle } from "../models/queries/articles";
 import { getUserByEmail } from "../models/queries/users";
@@ -21,13 +22,13 @@ export default auth0.withApiAuthRequired(
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
-
+        console.log({ user: rows[0] });
         const { rowCount, rows: dbResult } = await insertNewArticle({
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
-          slug: "",
-          tags: "data.tags",
+          slug: slugify(data.title),
+          tags: data.tags.join(", "),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
         });
