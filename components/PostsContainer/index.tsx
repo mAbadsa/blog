@@ -35,7 +35,7 @@ interface dbData {
   name: string;
   email: string;
   bio: string;
-  image_profile: string;
+  profile_image: string;
   location: string;
   github_account: string;
   website_url: string;
@@ -65,7 +65,7 @@ const PostsContainer: FC = () => {
         name,
         email,
         bio,
-        image_profile,
+        profile_image,
         location,
         github_account,
         website_url,
@@ -98,7 +98,7 @@ const PostsContainer: FC = () => {
             name: name,
             email: email,
             bio: bio,
-            profileImage: image_profile,
+            profileImage: profile_image,
             location: location,
             githubAccount: github_account,
             websiteUrl: website_url,
@@ -112,7 +112,7 @@ const PostsContainer: FC = () => {
   const postsElm: ReactElement[] | boolean =
     !isLoading &&
     articles.map((article) => {
-      return <PostCard key={article.id} post={article} />;
+      return <PostCard key={article.id} article={article} />;
     });
 
   return <div>{!isLoading && postsElm}</div>;
