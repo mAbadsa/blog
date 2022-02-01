@@ -12,7 +12,11 @@ import auth0 from "../../lib/auth0";
 
 const Article: NextPage<any, any> = ({ data }) => {
   console.log({ data });
-  return <div>AAAAA</div>;
+  return (
+    <div>
+      <pre>{JSON.stringify(data, null, 4)}</pre>
+    </div>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -26,9 +30,9 @@ export const getServerSideProps: GetServerSideProps<
     console.log({ context });
     const { query } = context;
     console.log({ query });
-    const { username, id } = query;
+    const { username, slug } = query;
     const res: AxiosResponse = await Axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/9`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/${slug}`
     );
     return {
       props: {
