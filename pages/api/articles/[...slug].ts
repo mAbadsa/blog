@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import auth0 from "../../../lib/auth0";
-import { getArticleById } from "../models/queries/articles";
+import { getArticleBySlug } from "../models/queries/articles";
 
 type Data = {
   success: boolean;
@@ -13,11 +13,11 @@ export default async function getArticle(
   res: NextApiResponse<Data>
 ) {
   try {
-    const { id } = req.query;
+    const { slug } = req.query;
 
-    const { rows, rowCount } = await getArticleById({
-      id: +id[1],
-      username: id[0],
+    const { rows, rowCount } = await getArticleBySlug({
+      slug: slug[1],
+      username: slug[0],
     });
 
     if (rowCount < 1) {

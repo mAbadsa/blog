@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import slugify from "slugify";
+import cryptoRandomString from "crypto-random-string";
 import auth0 from "../../../lib/auth0";
 import { insertNewArticle, getAllArticle } from "../models/queries/articles";
 import { getUserByEmail } from "../models/queries/users";
@@ -19,6 +20,9 @@ export default auth0.withApiAuthRequired(
         const { data } = req.body;
         // get the looged user session
         const me = await auth0.getSession(req, res);
+        const cryptoString = cryptoRandomString({ length: 4, type: "base64" });
+        const titleWithCryptoString = data.title + " " + cryptoString;
+        const slug = slugify(titleWithCryptoString);
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
@@ -27,7 +31,7 @@ export default auth0.withApiAuthRequired(
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
-          slug: slugify(data.title),
+          slug,
           tags: data.tags.join(", "),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
