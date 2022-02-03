@@ -7,7 +7,7 @@ type ArticleType = {
 };
 
 const getAllArticle = <T extends ArticleType>({
-  limit = 10,
+  limit = 15,
   offset = 0,
 }: T): Promise<QueryResult<any>> => {
   const sql: QueryConfig = {
