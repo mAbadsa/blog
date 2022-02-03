@@ -7,8 +7,8 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
-import auth0 from "../lib/auth0";
-import UserProfile from "../components/UserProfile";
+import auth0 from "../../lib/auth0";
+import UserProfile from "../../components/UserProfile";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
