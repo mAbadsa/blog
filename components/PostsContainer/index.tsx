@@ -15,7 +15,7 @@ const getArticles = async ({
   offset: number;
 }) => {
   const res: AxiosResponse = await Axios.get(
-    `/api/articles?limit=${limit}&offset=${offset}`
+    `/api/articles/get-articles?limit=${limit}&offset=${offset}`
   );
   return res;
 };
@@ -44,7 +44,7 @@ interface dbData {
 
 const PostsContainer: FC = () => {
   const { data, isLoading, error } = useQuery("articles", () =>
-    getArticles({ limit: 10, offset: 0 })
+    getArticles({ limit: 15, offset: 0 })
   );
 
   const articles: Articles[] =
