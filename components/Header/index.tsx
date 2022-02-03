@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { useTheme, Theme } from "@material-ui/core";
 import { Link as MUILink } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Drawer from "@material-ui/core/Drawer";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
@@ -16,7 +16,7 @@ import Navlinks from "./Navlinks";
 import SidebarList from "../SidebarList";
 import useStyles from "./styles";
 
-const Header: FC = () => {
+const Header: FC<{ display: Boolean }> = ({ display }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [state, setState] = useState<boolean>(false);
@@ -31,11 +31,10 @@ const Header: FC = () => {
     }
     setState(!state);
   };
-
   return (
-    <div className={classes.Header}>
+    <div className={`${classes.Header} ${display && classes.hidden}`}>
       <AppBar className={classes.appBar} position="static">
-        <Toolbar>
+        <Toolbar className={classes.toobar}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -45,13 +44,15 @@ const Header: FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Blog
-          </Typography>
+          <IconButton href="/" className={classes.title}>
+            <Image
+              src={"/assets/images/logo.png"}
+              alt="logo"
+              width="50"
+              height="40"
+            />
+          </IconButton>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -60,13 +61,9 @@ const Header: FC = () => {
               }}
               inputProps={{ "aria-label": "search" }}
             />
-          </div>
-          <div className={classes.searchIcon_mobile}>
-            <Link href="/search" passHref>
-              <MUILink color="textSecondary">
-                <SearchIcon />
-              </MUILink>
-            </Link>
+            <IconButton className={classes.searchIcon}>
+              <SearchIcon />
+            </IconButton>
           </div>
           <Drawer
             className={classes.drawerSideBar}
