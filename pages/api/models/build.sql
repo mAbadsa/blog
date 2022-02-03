@@ -1,12 +1,12 @@
 BEGIN;
-DROP TABLE IF EXISTS users, posts, comments, user_coding, reading_list, likes, tags, post_tags;
+DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags;
 
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(50),
 	name VARCHAR(255),
 	bio VARCHAR(200),
-	email VARCHAR(50) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
 	display_email BOOLEAN DEFAULT true,
 	profile_image TEXT,
 	location VARCHAR(100),
@@ -16,11 +16,13 @@ CREATE TABLE users (
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE posts (
+CREATE TABLE articles (
 	id SERIAL PRIMARY KEY,
-	title VARCHAR(255) NOT NULL,
+	title TEXT NOT NULL,
+	slug TEXT NOT NULL,
 	content TEXT NOT NULL,
 	cover_image TEXT,
+	tags VARCHAR(255) NOT NULL,
 	last_reading TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -31,12 +33,12 @@ CREATE TABLE comments (
 	id SERIAL PRIMARY KEY,
 	contents VARCHAR(240) NOT NULL,
 	user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-	post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
-	comment_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+	article_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
+	comment_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   CHECK(
-    COALESCE((post_id)::BOOLEAN::INTEGER,0)
+    COALESCE((article_id)::BOOLEAN::INTEGER,0)
     +
     COALESCE((comment_id)::BOOLEAN::INTEGER,0)
     = 1
@@ -58,25 +60,25 @@ CREATE TABLE user_coding (
 CREATE TABLE reading_list (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER REFERENCES users(id) NOT NULL,
-	post_id INTEGER REFERENCES posts(id) NOT NULL,
+	article_id INTEGER REFERENCES articles(id) NOT NULL,
 	archive BOOLEAN DEFAULT false,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-	UNIQUE(user_id, post_id)
+	UNIQUE(user_id, article_id)
 );
 
 CREATE TABLE likes (
 	id SERIAL PRIMARY KEY,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-	post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE,
+	article_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
 	comment_id INTEGER REFERENCES comments(id) ON DELETE CASCADE,
 	CHECK(
-		COALESCE((post_id)::BOOLEAN::INTEGER,0)
+		COALESCE((article_id)::BOOLEAN::INTEGER,0)
 		+
 		COALESCE((comment_id)::BOOLEAN::INTEGER,0)
 		= 1
 	),
-	UNIQUE(post_id, user_id, comment_id)
+	UNIQUE(article_id, user_id, comment_id)
 );
 
 CREATE TABLE tags (
@@ -85,12 +87,12 @@ CREATE TABLE tags (
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE post_tags (
+CREATE TABLE article_tags (
 	id SERIAL PRIMARY KEY,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	tags_id INTEGER NOT NULL REFERENCES tags(id),
-	post_id INTEGER NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
-	UNIQUE(post_id, tags_id)
+	article_id INTEGER NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
+	UNIQUE(article_id, tags_id)
 );
 
 COMMIT;
