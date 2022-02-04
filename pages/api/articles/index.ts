@@ -19,7 +19,7 @@ export default auth0.withApiAuthRequired(
       if (req.method === "POST") {
         const { data } = req.body;
         // get the looged user session
-        const me = await auth0.getSession(req, res);
+        const me = auth0.getSession(req, res);
         const cryptoString = cryptoRandomString({ length: 4, type: "base64" });
         const titleWithCryptoString = data.title + " " + cryptoString;
         const slug = slugify(titleWithCryptoString);
@@ -44,18 +44,6 @@ export default auth0.withApiAuthRequired(
         return res
           .status(201)
           .json({ statusCode: 201, success: true, article: dbResult[0] });
-      } else if (req.method === "GET") {
-        const { limit, offset } = req.query;
-        console.log({ limit, offset });
-        const { rows, rowCount } = await getAllArticle({
-          limit: +limit,
-          offset: +offset,
-        });
-        console.log({ rows });
-        console.log({ rowCount });
-        return res
-          .status(201)
-          .json({ statusCode: 200, success: true, articles: rows });
       }
     } catch (error: any) {
       console.log(error);
