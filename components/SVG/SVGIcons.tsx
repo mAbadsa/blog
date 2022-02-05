@@ -17,6 +17,10 @@ import TermsOfUse from "./TermsOfUse";
 import Love from "./Love";
 import Comment from "./Comment";
 import DEVLogo from "./DEVLogo";
+import Location from "./Location";
+import Joined from "./Joined";
+import Email from "./Email";
+import Github from "./Github";
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -36,6 +40,10 @@ const SVGIcons: SVGIconsInterface = {
   Love,
   Comment,
   DEVLogo,
+  Location,
+  Joined,
+  Email,
+  Github,
 };
 
 export default SVGIcons;

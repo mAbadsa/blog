@@ -10,7 +10,6 @@ import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
 import auth0 from "../../lib/auth0";
 import UserProfile from "../../components/UserProfile";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
 type UserData = {};
 
@@ -58,30 +57,4 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
-export default withPageAuthRequired(Profile, {
-  onRedirecting: () => (
-    <Container
-      maxWidth="sm"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        height: "100vh",
-        justifyContent: "center",
-      }}
-    >
-      <CircularProgress />
-    </Container>
-  ),
-  onError: (error) => (
-    <Snackbar
-      open={error && true}
-      autoHideDuration={6000}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-    >
-      <p>{error}</p>
-    </Snackbar>
-  ),
-});
+export default Profile;
