@@ -77,7 +77,13 @@ const Navlinks: FC = () => {
             <MenuItem onClick={handleClose}>Dashboard</MenuItem>
             <MenuItem onClick={handleClose}>Create Post</MenuItem>
             <MenuItem onClick={handleClose}>Reading List</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href={`/settings`} passHref>
+                <MUILink className={classes.profileLink} underline="none">
+                  Settings
+                </MUILink>
+              </Link>
+            </MenuItem>
             <Divider />
             <Link href="/api/auth/logout" passHref>
               <MenuItem onClick={handleClose}>Sign out</MenuItem>
