@@ -13,15 +13,20 @@ const Footer: FC<{
     <div className={classes.Footer}>
       <Button
         className={classes.publish}
-        tabIndex={1}
+        variant="text"
+        color="primary"
+        tabIndex={0}
         onClick={handlePublishArticle}
       >
         Publish
       </Button>
       <Button
-        className={classes.saveDraft}
-        tabIndex={2}
+        // className={classes.saveDraft}
+        variant="contained"
+        color="primary"
+        tabIndex={0}
         onClick={handleSaveDraft}
+        disableElevation
       >
         Save draft
       </Button>

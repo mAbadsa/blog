@@ -39,6 +39,7 @@ const Header: FC<{
           href={""}
           aria-label="close-article-editor"
           onClick={handleClose}
+          color="primary"
         >
           <Close aria-label="close" />
         </IconButton>

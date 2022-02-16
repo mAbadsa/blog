@@ -30,7 +30,6 @@ const PostCard: FC<{ article: ArticlesType }> = ({ article }) => {
     lastReading,
     userData: { username, joinedDate, profileImage, email, location, work },
   } = article;
-  console.log({ article });
 
   return (
     <Card className={classes.PostCard}>
@@ -79,10 +78,16 @@ const PostCard: FC<{ article: ArticlesType }> = ({ article }) => {
             )}
           </div>
           <div className={classes.postCard__save}>
-            <small className="tertiary">
+            <small className={classes.tertiary}>
               {lastReading} {lastReading >= 0 ? "mins" : "min"} read
             </small>
-            <Button size="small" color="primary">
+            <Button
+              className={classes.saveButton}
+              size="small"
+              color="secondary"
+              variant="contained"
+              disableElevation
+            >
               Save
             </Button>
           </div>

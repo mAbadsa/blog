@@ -6,23 +6,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     gap: "10px",
     height: "72px",
-    "& button": {
-      whiteSpace: "nowrap",
-      fontWeight: 500,
-      padding: "0.5rem 1rem",
-      borderRadius: "0.375rem",
-      "&:hover": {
-        transition: "all 0.25s",
-      },
-    },
+    // "& button": {
+    //   whiteSpace: "nowrap",
+    //   fontWeight: 500,
+    //   padding: "0.5rem 1rem",
+    //   borderRadius: "0.375rem",
+    //   "&:hover": {
+    //     transition: "all 0.25s",
+    //   },
+    // },
   },
   publish: {
     marginRight: "0.5rem",
-    backgroundColor: "#3b49df",
-    color: "#fff",
-    "&:hover": {
-      backgroundColor: "#323ebe",
-    },
+    // backgroundColor: "#3b49df",
+    // color: "#fff",
+    // "&:hover": {
+    //   backgroundColor: "#323ebe",
+    // },
   },
   saveDraft: {
     marginRight: "0.5rem",

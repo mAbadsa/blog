@@ -37,12 +37,20 @@ const UserProfile: FC<{ userData: any }> = ({ userData }) => {
                 user.nickname === userData.data.username ? (
                   <Button
                     className={classes.headerActionBtn}
+                    color="primary"
+                    variant="text"
                     href={"/settings"}
                   >
                     Edit Profile
                   </Button>
                 ) : (
-                  <Button className={classes.headerActionBtn}>Follow</Button>
+                  <Button
+                    className={classes.headerActionBtn}
+                    color="primary"
+                    variant="text"
+                  >
+                    Follow
+                  </Button>
                 )}
               </div>
             </div>

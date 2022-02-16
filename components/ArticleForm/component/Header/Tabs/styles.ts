@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: "none !important",
     "& button": {
       margin: "0 0.25rem",
-      borderRadius: "0.375rem",
       "&:first-of-type": {
         width: "50px",
       },

@@ -4,7 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 
 import Typography from "@material-ui/core/Typography";
 import { Link as MUILink } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
@@ -49,14 +49,14 @@ const Navlinks: FC = () => {
               <NotificationsNoneRoundedIcon></NotificationsNoneRoundedIcon>
             </MUILink>
           </Link>
-          <Button
+          <IconButton
             className={classes.profileButton}
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleOpenMenu}
           >
             <Avatar alt={`${user?.name}`} src={`${user?.picture}`} />
-          </Button>
+          </IconButton>
           <Menu
             className={classes.menu}
             id="profile-menu"
@@ -77,7 +77,13 @@ const Navlinks: FC = () => {
             <MenuItem onClick={handleClose}>Dashboard</MenuItem>
             <MenuItem onClick={handleClose}>Create Post</MenuItem>
             <MenuItem onClick={handleClose}>Reading List</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href={`/settings`} passHref>
+                <MUILink className={classes.profileLink} underline="none">
+                  Settings
+                </MUILink>
+              </Link>
+            </MenuItem>
             <Divider />
             <Link href="/api/auth/logout" passHref>
               <MenuItem onClick={handleClose}>Sign out</MenuItem>

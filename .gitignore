@@ -34,3 +34,4 @@ yarn-error.log*
 .vercel
 /fakeData
 Untitled Document
+pages/playground.tsx
