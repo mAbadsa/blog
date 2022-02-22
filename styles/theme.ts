@@ -37,21 +37,18 @@ const theme = createTheme({
         backgroundColor: "#3b49df",
         alignItems: "flex-start",
         fontWeight: 400,
+        padding: "0.5rem 1rem",
+        fontSize: "1rem",
       },
-      text: {
-        fontWeight: 400,
-      },
-      textPrimary: {
+      containedPrimary: {
         color: "#fff",
         backgroundColor: "#3b49df",
-        padding: "0.5rem 1rem",
         "&:hover": {
           backgroundColor: "#2f3ab2",
         },
       },
-      containedSecondary: {
+      textSecondary: {
         color: "#262626",
-        fontWeight: 400,
         backgroundColor: "#00000000",
         "&:hover": {
           backgroundColor: "#3b49df1a",
@@ -59,7 +56,6 @@ const theme = createTheme({
       },
       outlinedPrimary: {
         color: "#3b49df",
-        fontWeight: 400,
         backgroundColor: "#fff",
         border: "1px solid #3b49df",
         "&:hover": {
@@ -67,9 +63,18 @@ const theme = createTheme({
           color: "#fff",
         },
       },
-      containedPrimary: {
+      outlinedSecondary: {
         color: "#262626",
-        fontWeight: 400,
+        backgroundColor: "#00000000",
+        border: "2px solid #d6d6d7",
+        "&:hover": {
+          color: "#090909",
+          backgroundColor: "#00000005",
+          border: "2px solid #d6d6d7",
+        },
+      },
+      textPrimary: {
+        color: "#262626",
         backgroundColor: "#00000000",
         "&:hover": {
           color: "#3b49df",
