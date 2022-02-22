@@ -3,7 +3,8 @@ import Image from "next/image";
 import { useMutation } from "react-query";
 import axios, { AxiosResponse } from "axios";
 
-import Button from "@material-ui/core/Button";
+import MUIButton from "@material-ui/core/Button";
+import Button from "../../../Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -189,11 +190,7 @@ const UploadCoverImage: FC<{
         </div>
       )}
       <div className={classes.buttonBox}>
-        <Button
-          className={classes.selectButton}
-          variant="contained"
-          component="label"
-        >
+        <MUIButton variant="outlined" color="secondary" component="label">
           {isLoading && (
             <div className={classes.SpinnerBox}>
               <CircularProgress
@@ -215,9 +212,14 @@ const UploadCoverImage: FC<{
             onChange={handleChange}
             data-max-file-size-mb="25"
           />
-        </Button>
+        </MUIButton>
         {insertionImageUrls && !uploadingImage && (
-          <Button className={classes.removeButton} onClick={removeImage}>
+          <Button
+            className={classes.removeButton}
+            onClick={removeImage}
+            variant="text"
+            color="secondary"
+          >
             Remove
           </Button>
         )}
