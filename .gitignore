@@ -33,3 +33,6 @@ yarn-error.log*
 # vercel
 .vercel
 /fakeData
+Untitled Document
+pages/playground.tsx
+stories

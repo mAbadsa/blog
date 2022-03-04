@@ -17,4 +17,9 @@ export default interface SVGIcons {
   TermsOfUse: FC;
   Love: FC;
   Comment: FC;
+  DEVLogo: FC;
+  Location: FC;
+  Joined: FC;
+  Email: FC;
+  Github: FC;
 }

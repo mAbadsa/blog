@@ -1,21 +1,26 @@
-import { FC } from "react"
-import SVGIconsInterface from '../interface/SVGIcons';
-import Home from './Home';
-import Signin from './Signin';
-import Listing from './Listing';
-import Podcasts from './Podcasts';
-import Videos from './Videos';
-import Tags from './Tags';
-import FAQ from './FAQ';
-import About from './About';
-import Contact from './Contact';
+import { FC } from "react";
+import SVGIconsInterface from "../interface/SVGIcons";
+import Home from "./Home";
+import Signin from "./Signin";
+import Listing from "./Listing";
+import Podcasts from "./Podcasts";
+import Videos from "./Videos";
+import Tags from "./Tags";
+import FAQ from "./FAQ";
+import About from "./About";
+import Contact from "./Contact";
 import DEVShop from "./DEVShop";
 import Sponser from "./Sponser";
 import CodeOfConduct from "./CodeOfConduct";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfUse from "./TermsOfUse";
 import Love from "./Love";
-import Comment from './Comment';
+import Comment from "./Comment";
+import DEVLogo from "./DEVLogo";
+import Location from "./Location";
+import Joined from "./Joined";
+import Email from "./Email";
+import Github from "./Github";
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -34,6 +39,11 @@ const SVGIcons: SVGIconsInterface = {
   TermsOfUse,
   Love,
   Comment,
+  DEVLogo,
+  Location,
+  Joined,
+  Email,
+  Github,
 };
 
 export default SVGIcons;
