@@ -127,6 +127,11 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      root: {
+        padding: "0.5rem 1rem",
+      },
+    },
   },
 });
 

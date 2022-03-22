@@ -1,21 +1,20 @@
 import React, { FC } from "react";
-import Link from 'next/link';
+import Link from "next/link";
 
 import { useTheme } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
-import ContactMailRoundedIcon from '@material-ui/icons/ContactMailRounded';
-import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
-import { ExitToAppRounded } from '@material-ui/icons';
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
+import ContactMailRoundedIcon from "@material-ui/icons/ContactMailRounded";
+import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
+import { ExitToAppRounded } from "@material-ui/icons";
 
-
-import Navlinks from "../Header/Navlinks";
+import Navlinks from "../Header/NavLinks/NavLinks";
 import useStyles from "./styles";
 
 const SidebarLeft: FC = () => {
@@ -23,9 +22,7 @@ const SidebarLeft: FC = () => {
   const classes = useStyles({ theme });
 
   const list = () => (
-    <div
-      className={classes.list}
-    >
+    <div className={classes.list}>
       <List>
         <Link href="/" passHref>
           <ListItem button>
@@ -40,7 +37,10 @@ const SidebarLeft: FC = () => {
             <ListItemIcon>
               <ContactMailRoundedIcon color="primary" />
             </ListItemIcon>
-            <ListItemText className={classes.ListItemText} primary="Sign In/Up" />
+            <ListItemText
+              className={classes.ListItemText}
+              primary="Sign In/Up"
+            />
           </ListItem>
         </Link>
         <Link href="/dashboard" passHref>
@@ -77,9 +77,7 @@ const SidebarLeft: FC = () => {
 
   return (
     <Paper className={classes.SidebarLeft} elevation={0}>
-      <aside>
-        {list()}
-      </aside>
+      <aside>{list()}</aside>
     </Paper>
   );
 };

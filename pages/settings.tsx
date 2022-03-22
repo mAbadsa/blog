@@ -7,13 +7,12 @@ import type {
 } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
-import auth0 from "../../lib/auth0";
-import UserProfile from "../../components/UserProfile";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import auth0 from "../lib/auth0";
+import UserProfile from "../components/UserProfile";
+import { withPageAuthRequired, Session } from "@auth0/nextjs-auth0";
+import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
-type UserData = {};
-
-const Profile: NextPage<any, any> = ({ data: userData }) => {
+const Settings: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);
   return <UserProfile userData={userData} />;
 };
@@ -26,13 +25,12 @@ export const getServerSideProps: GetServerSideProps<
   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   try {
-    const { query } = context;
-    const { username } = query;
+    const session = auth0.getSession(context.req, context.res);
 
     const headers = context?.req?.headers as AxiosRequestHeaders;
 
     const res: AxiosResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${session?.user?.nickname}`,
       {
         headers: headers,
       }
@@ -62,4 +60,30 @@ export const getServerSideProps: GetServerSideProps<
   }
 };
 
-export default Profile;
+export default withPageAuthRequired(Settings, {
+  onRedirecting: () => (
+    <Container
+      maxWidth="sm"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        height: "100vh",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress />
+    </Container>
+  ),
+  onError: (error) => (
+    <Snackbar
+      open={error && true}
+      autoHideDuration={6000}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "left",
+      }}
+    >
+      <p>{error}</p>
+    </Snackbar>
+  ),
+});

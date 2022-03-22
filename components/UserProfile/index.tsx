@@ -14,7 +14,9 @@ const UserProfile: FC<{ userData: any }> = ({ userData }) => {
   const classes = useStyles({ theme });
   const { error, isLoading, user } = useUser();
 
-  console.log({ user });
+  console.log({ userData });
+
+  if (userData.error) return <div>{userData.message}</div>;
 
   return (
     <div className={classes.UserProfile}>
@@ -25,8 +27,8 @@ const UserProfile: FC<{ userData: any }> = ({ userData }) => {
               <div className={classes.profileHeaderAvatar}>
                 <Image
                   className={classes.profileHeaderAvatar_image}
-                  src={userData.data.profile_image}
-                  alt={userData.data.name}
+                  src={userData?.data.profile_image}
+                  alt={userData?.data.name}
                   width="120"
                   height="120"
                 />
@@ -34,7 +36,7 @@ const UserProfile: FC<{ userData: any }> = ({ userData }) => {
               <div className={classes.headerAction}>
                 {!isLoading &&
                 typeof user !== "undefined" &&
-                user.nickname === userData.data.username ? (
+                user.nickname === userData?.data.username ? (
                   <Button
                     className={classes.headerActionBtn}
                     color="primary"

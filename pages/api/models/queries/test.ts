@@ -1,8 +1,8 @@
-import connection from '../connection';
+import connection from "../connection";
 
 const getUserData = () => {
   const sql = {
-    text: 'SELECT * FROM users;',
+    text: "SELECT * FROM users;",
   };
   return connection.query(sql);
 };
@@ -14,5 +14,4 @@ const addUser = () => {
   return connection.query(sql);
 };
 
-
-export {getUserData, addUser};
+export { getUserData, addUser };
