@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   profileLink: {
     width: "100%",
     color: "#000",
+    padding: 0,
     "& small": {
       opacity: 0.75,
     },
