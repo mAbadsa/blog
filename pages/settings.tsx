@@ -12,8 +12,6 @@ import UserProfile from "../components/UserProfile";
 import { withPageAuthRequired, Session } from "@auth0/nextjs-auth0";
 import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 
-type UserData = {};
-
 const Settings: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);
   return <UserProfile userData={userData} />;
@@ -34,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<
     const headers = context?.req?.headers as AxiosRequestHeaders;
 
     const res: AxiosResponse = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${session?.user.nickname}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${session?.user?.nickname}`,
       {
         headers: headers,
       }
