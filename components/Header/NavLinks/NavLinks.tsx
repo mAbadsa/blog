@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser, UserProfile } from "@auth0/nextjs-auth0";
 
 import Typography from "@material-ui/core/Typography";
 import { Link as MUILink } from "@material-ui/core";
@@ -12,12 +12,20 @@ import SearchIcon from "@material-ui/icons/Search";
 import Avatar from "@material-ui/core/Avatar";
 import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
 
-import useStyles from "./styles";
+import NavLink from "../../NavLink";
 
-const Navlinks: FC = () => {
+import useStyles from "./styles";
+import SVGIcons from "../../SVG/SVGIcons";
+
+type NavLinksType = {
+  user: UserProfile | undefined;
+  isLoading: boolean;
+  error?: any;
+};
+
+const Navlinks: FC<NavLinksType> = ({ user, isLoading, error }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const classes = useStyles();
-  const { user, isLoading, error } = useUser();
 
   const handleOpenMenu = (evt: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(evt.currentTarget);
@@ -36,18 +44,33 @@ const Navlinks: FC = () => {
   }
 
   return (
-    <Typography className={classes.Navlinks}>
+    <Typography className={classes.Navlinks} component="div">
       {user && !isLoading ? (
         <>
+          <div className={classes.searchIcon_mobile}>
+            <Link href="/search" passHref>
+              <NavLink textPrimary icon>
+                <SVGIcons.Lens />
+              </NavLink>
+            </Link>
+          </div>
           <Link href="/new" passHref>
-            <MUILink className={classes.createPostLink} color="textSecondary">
+            <NavLink
+              className={classes.createPost_mobile}
+              color="primary"
+              outlined
+            >
               Create Post
-            </MUILink>
+            </NavLink>
           </Link>
           <Link href="/notifications" passHref>
-            <MUILink className={classes.NotificationsNoneRoundedIcon}>
+            <NavLink
+              className={classes.NotificationsNoneRoundedIcon}
+              color="secondary"
+              textPrimary
+            >
               <NotificationsNoneRoundedIcon></NotificationsNoneRoundedIcon>
-            </MUILink>
+            </NavLink>
           </Link>
           <IconButton
             className={classes.profileButton}
@@ -67,10 +90,15 @@ const Navlinks: FC = () => {
           >
             <MenuItem onClick={handleClose}>
               <Link href={`/${user?.nickname}`} passHref>
-                <MUILink className={classes.profileLink} underline="none">
+                <NavLink
+                  className={classes.profileLink}
+                  underline="hover"
+                  textPrimary
+                  color="secondary"
+                >
                   <span className={classes.username}>{user?.name}</span>
                   <small>@{user?.nickname}</small>
-                </MUILink>
+                </NavLink>
               </Link>
             </MenuItem>
             <Divider />
@@ -92,18 +120,22 @@ const Navlinks: FC = () => {
         </>
       ) : (
         <>
-          <Link href="/api/auth/login" passHref>
-            <MUILink className={classes.linkItem}>Log in</MUILink>
-          </Link>
           <div className={classes.searchIcon_mobile}>
             <Link href="/search" passHref>
-              <MUILink color="textSecondary">
-                <SearchIcon />
-              </MUILink>
+              <NavLink textPrimary icon>
+                <SVGIcons.Lens />
+              </NavLink>
             </Link>
           </div>
-          <Link href="/signup" passHref>
-            <MUILink className={classes.linkItem}>Create account</MUILink>
+          <Link href="/api/auth/login" passHref>
+            <NavLink className={classes.login_mobile} textPrimary>
+              Log in
+            </NavLink>
+          </Link>
+          <Link href="/api/auth/login" passHref>
+            <NavLink className={classes.createAccount_mobile} outlined>
+              Create account
+            </NavLink>
           </Link>
         </>
       )}

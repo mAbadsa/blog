@@ -3,7 +3,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core";
 const useStyles = makeStyles((theme: Theme) => ({
   CreateAccount: {
     padding: theme.spacing(2),
-    // margin: theme.spacing(1),
     backgroundColor: "#f9f9f9",
     color: "#242424",
     boxShadow: "0 0 0 1px #0909090d",
@@ -42,24 +41,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: 1.5,
       fontWeight: 500,
       overflowWrap: "normal",
-      transition: "all 0.2s",
-    },
-  },
-  createButton: {
-    color: "#f9f9f9",
-    backgroundColor: "#3b49df",
-    "&:hover": {
-      backgroundColor: "#323ebe",
-      textDecoration: "none",
-      transition: "all 0.2s",
-    },
-  },
-  loginButton: {
-    color: "#323ebe",
-    backgroundColor: "#00000000",
-    "&:hover": {
-      backgroundColor: "#00000009",
-      textDecoration: "none",
       transition: "all 0.2s",
     },
   },

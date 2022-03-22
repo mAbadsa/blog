@@ -22,4 +22,6 @@ export default interface SVGIcons {
   Joined: FC;
   Email: FC;
   Github: FC;
+  Lens: FC;
+  Close: FC;
 }

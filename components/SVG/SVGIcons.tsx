@@ -21,6 +21,8 @@ import Location from "./Location";
 import Joined from "./Joined";
 import Email from "./Email";
 import Github from "./Github";
+import Lens from "./Lens";
+import Close from "./Close";
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -44,6 +46,8 @@ const SVGIcons: SVGIconsInterface = {
   Joined,
   Email,
   Github,
+  Lens,
+  Close,
 };
 
 export default SVGIcons;

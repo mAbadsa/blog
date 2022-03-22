@@ -1,21 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, KeyboardEvent, MouseEvent } from "react";
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0";
 
 import { Typography, useTheme } from "@material-ui/core";
 import List from "@material-ui/core/List";
-import Button from "@material-ui/core/Button";
+import Button from "../Button";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Close from "@material-ui/icons/Close";
 import SVGIcons from "../SVG/SVGIcons";
 import Promotion from "../Promotion";
 
 import SidebareListProps from "../interface/SidebarList";
 import useStyles from "./styles";
 
-const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
+const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { user, isLoading } = useUser();
@@ -23,12 +22,16 @@ const SidebarList: FC<SidebareListProps> = ({ drawer }) => {
   return (
     <>
       {drawer && (
-        <div className={classes.hamburger__content__header}>
+        <header className={classes.hamburger__content__header}>
           <Typography variant="h6">DEV Community</Typography>
-          <Button>
-            <Close />
+          <Button
+            variant="text"
+            color="primary"
+            onClick={(e: KeyboardEvent | MouseEvent) => closeSideBar(e)}
+          >
+            <SVGIcons.Close />
           </Button>
-        </div>
+        </header>
       )}
       <div className={`${classes.SidebarList} ${!drawer && classes.hidden}`}>
         {!isLoading && !user && <Promotion.CreateAccount />}

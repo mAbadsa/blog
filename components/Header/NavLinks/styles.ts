@@ -2,28 +2,11 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   Navlinks: {
-    // display: 'none',
-    // [theme.breakpoints.up('md')]: {
-    //   display: 'flex',
-    // },
     display: "flex",
     alignItems: "center",
     marginLeft: "auto",
     "& > * + *": {
-      marginLeft: theme.spacing(2),
-    },
-  },
-  createPostLink: {
-    color: "#3b49df",
-    border: "1px solid #3b49df",
-    borderRadius: "0.375rem",
-    padding: "0.5rem 1rem",
-    whiteSpace: "nowrap",
-    transition: "all 0.25s",
-    "&:hover": {
-      backgroundColor: "#3b49df",
-      color: "#fff",
-      transition: "all 0.25s",
+      marginLeft: theme.spacing(1),
     },
   },
   menu: {
@@ -58,12 +41,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     minWidth: "40px",
   },
   profileLink: {
+    width: "100%",
     color: "#000",
     "& small": {
-      color: "#959595",
+      opacity: 0.75,
     },
     "&:hover": {
-      color: theme.palette.primary.main,
+      color: "#2f3ab2",
     },
   },
   username: {
@@ -111,40 +95,39 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   NotificationsNoneRoundedIcon: {
-    color: "#3d3d3d",
-    backgroundColor: "#00000000",
-    borderRadius: "0.375rem",
     padding: "0.5rem",
     width: "40px",
     height: "40px",
     marginLeft: "0.25rem",
     marginRight: "0.25rem",
-    "&:hover": {
-      backgroundColor: "#3b49df1a",
-      color: "#323ebe",
-      transition: "all 0.25s",
+  },
+  login_mobile: {
+    display: "block",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
+  },
+  createPost_mobile: {
+    display: "block",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
+  },
+  createAccount_mobile: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: theme.spacing(0),
     },
   },
   searchIcon_mobile: {
-    backgroundColor: "#00000000",
     display: "none",
+    width: "40px",
     marginRight: theme.spacing(1),
-    borderRadius: "0.375rem",
-    padding: "0.5rem",
-    paddingBottom: "0",
-    transition: "all 0.25s",
     "& a": {
-      color: "#3d3d3d",
+      padding: "0.5rem",
     },
     [theme.breakpoints.down("xs")]: {
       display: "block",
-    },
-    "&:hover": {
-      backgroundColor: "#3b49df1a",
-      "& a": {
-        color: "#323ebe",
-        transition: "all 0.25s",
-      },
     },
   },
 }));

@@ -14,7 +14,7 @@ import ContactMailRoundedIcon from "@material-ui/icons/ContactMailRounded";
 import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
 import { ExitToAppRounded } from "@material-ui/icons";
 
-import Navlinks from "../Header/Navlinks";
+import Navlinks from "../Header/NavLinks/NavLinks";
 import useStyles from "./styles";
 
 const SidebarLeft: FC = () => {
