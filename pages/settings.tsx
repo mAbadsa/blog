@@ -27,8 +27,6 @@ export const getServerSideProps: GetServerSideProps<
   try {
     const session = auth0.getSession(context.req, context.res);
 
-    console.log({ session });
-
     const headers = context?.req?.headers as AxiosRequestHeaders;
 
     const res: AxiosResponse = await axios.get(
@@ -50,7 +48,6 @@ export const getServerSideProps: GetServerSideProps<
       },
     };
   } catch (error: any) {
-    // console.log("error", error);
     return {
       props: {
         data: {
