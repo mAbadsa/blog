@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 
-import ArticleForm from "../components/ArticleForm";
+import ArticleForm from "../src/components/ArticleForm";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { CircularProgress, Container, Snackbar } from "@material-ui/core";
 

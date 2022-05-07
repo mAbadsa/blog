@@ -8,7 +8,7 @@ import { ThemeProvider } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../styles/theme";
 
-import Layout from "../components/Layout/Layout";
+import Layout from "../src/components/Layout/Layout";
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
