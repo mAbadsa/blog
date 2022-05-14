@@ -1,4 +1,4 @@
-import ToolPanelSVGIconsType from '../../../../../../../interface/ToolPanelSVGIcons';
+import ToolPanelSVGIconsType from '../../../../../../../../components/interface/ToolPanelSVGIcons';
 import BoldIcon from './BoldIcon';
 import CodeIcon from './Code';
 import CodeBlockIcon from './CodeBlock';
