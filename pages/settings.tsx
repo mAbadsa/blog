@@ -4,13 +4,13 @@ import type {
   PreviewData,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-} from "next";
-import { ParsedUrlQuery } from "querystring";
-import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
-import auth0 from "../lib/auth0";
-import UserProfile from "../src/components/UserProfile";
-import { withPageAuthRequired, Session } from "@auth0/nextjs-auth0";
-import { CircularProgress, Container, Snackbar } from "@material-ui/core";
+} from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import axios, { AxiosResponse, AxiosRequestHeaders } from 'axios';
+import auth0 from '../lib/auth0';
+import UserProfile from '../src/screens/UserProfile';
+import { withPageAuthRequired, Session } from '@auth0/nextjs-auth0';
+import { CircularProgress, Container, Snackbar } from '@material-ui/core';
 
 const Settings: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<
   ParsedUrlQuery,
   PreviewData
 > = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   try {
     const session = auth0.getSession(context.req, context.res);
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${session?.user?.nickname}`,
       {
         headers: headers,
-      }
+      },
     );
 
     if (!res) {
@@ -65,22 +65,22 @@ export default withPageAuthRequired(Settings, {
     <Container
       maxWidth="sm"
       style={{
-        display: "flex",
-        alignItems: "center",
-        height: "100vh",
-        justifyContent: "center",
+        display: 'flex',
+        alignItems: 'center',
+        height: '100vh',
+        justifyContent: 'center',
       }}
     >
       <CircularProgress />
     </Container>
   ),
-  onError: (error) => (
+  onError: error => (
     <Snackbar
       open={error && true}
       autoHideDuration={6000}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "left",
+        vertical: 'top',
+        horizontal: 'left',
       }}
     >
       <p>{error}</p>

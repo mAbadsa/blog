@@ -4,12 +4,12 @@ import type {
   PreviewData,
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-} from "next";
-import { ParsedUrlQuery } from "querystring";
-import axios, { AxiosResponse, AxiosRequestHeaders } from "axios";
-import auth0 from "../../lib/auth0";
-import UserProfile from "../../src/components/UserProfile";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+} from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import axios, { AxiosResponse, AxiosRequestHeaders } from 'axios';
+import auth0 from '../../lib/auth0';
+import UserProfile from '../../src/screens/UserProfile';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 type UserData = {};
 
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps<
   ParsedUrlQuery,
   PreviewData
 > = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   try {
     const { query } = context;
@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps<
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${username}`,
       {
         headers: headers,
-      }
+      },
     );
 
     if (!res) {

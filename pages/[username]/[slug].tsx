@@ -4,19 +4,16 @@ import type {
   GetServerSideProps,
   GetServerSidePropsResult,
   GetServerSidePropsContext,
-} from "next";
-import { ParsedUrlQuery } from "querystring";
-import Axios, { AxiosResponse } from "axios";
+} from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import Axios, { AxiosResponse } from 'axios';
+import ArticleScreen from '../../src/screens/Article';
 
-import auth0 from "../../lib/auth0";
+import auth0 from '../../lib/auth0';
 
 const Article: NextPage<any, any> = ({ data }) => {
   console.log({ data });
-  return (
-    <div>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
-    </div>
-  );
+  return <ArticleScreen article={data?.article} />;
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -24,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<
   ParsedUrlQuery,
   PreviewData
 > = async (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
 ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
   try {
     console.log({ context });
@@ -32,8 +29,13 @@ export const getServerSideProps: GetServerSideProps<
     console.log({ query });
     const { username, slug } = query;
     const res: AxiosResponse = await Axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/${slug}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/${slug}`,
     );
+
+    if (!res) {
+      throw new Error('Something went wrong!');
+    }
+
     return {
       props: {
         data: res.data,
@@ -43,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<
     // console.log({ error });
     return {
       props: {
-        error: "Error!!!",
+        error: 'Error!!!',
       },
     };
   }
