@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import HomeComponent from "../src/components/Home";
+import type { NextPage } from 'next';
+import HomeComponent from '../src/screens/Home';
 
 const Home: NextPage = () => {
   return (

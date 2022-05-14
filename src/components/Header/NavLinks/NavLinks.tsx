@@ -1,21 +1,21 @@
-import React, { FC } from "react";
-import Link from "next/link";
-import { useUser, UserProfile } from "@auth0/nextjs-auth0";
+import React, { FC } from 'react';
+import Link from 'next/link';
+import { useUser, UserProfile } from '@auth0/nextjs-auth0';
 
-import Typography from "@material-ui/core/Typography";
-import { Link as MUILink } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Divider from "@material-ui/core/Divider";
-import SearchIcon from "@material-ui/icons/Search";
-import Avatar from "@material-ui/core/Avatar";
-import NotificationsNoneRoundedIcon from "@material-ui/icons/NotificationsNoneRounded";
+import Typography from '@material-ui/core/Typography';
+import { Link as MUILink } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
+import SearchIcon from '@material-ui/icons/Search';
+import Avatar from '@material-ui/core/Avatar';
+import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 
-import NavLink from "../../NavLink";
+import NavLink from '../../NavLink';
 
-import useStyles from "./styles";
-import SVGIcons from "../../SVG/SVGIcons";
+import useStyles from './styles';
+import SVGIcons from '../../SVG/SVGIcons';
 
 type NavLinksType = {
   user: UserProfile | undefined;
@@ -55,20 +55,12 @@ const Navlinks: FC<NavLinksType> = ({ user, isLoading, error }) => {
             </Link>
           </div>
           <Link href="/new" passHref>
-            <NavLink
-              className={classes.createPost_mobile}
-              color="primary"
-              outlined
-            >
+            <NavLink className={classes.createPost_mobile} color="primary" outlined>
               Create Post
             </NavLink>
           </Link>
           <Link href="/notifications" passHref>
-            <NavLink
-              className={classes.NotificationsNoneRoundedIcon}
-              color="secondary"
-              textPrimary
-            >
+            <NavLink className={classes.NotificationsNoneRoundedIcon} color="secondary" textPrimary>
               <NotificationsNoneRoundedIcon></NotificationsNoneRoundedIcon>
             </NavLink>
           </Link>
