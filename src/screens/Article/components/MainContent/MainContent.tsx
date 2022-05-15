@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import CodeBlock from '../../../ArticleForm/component/MDEditor/codeBlock';
@@ -12,6 +10,7 @@ import tagsProps from '../../../../components/interface/Tags';
 import {
   MainContentStyled,
   ArticleHeader,
+  StyledImage,
   Article,
   ArticleTitle,
   ArticleHeaderMeta,
@@ -34,7 +33,7 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
     <MainContentStyled>
       <Article>
         <ArticleHeader>
-          <Image
+          <StyledImage
             src={cover_image}
             alt="cover image"
             width="100"

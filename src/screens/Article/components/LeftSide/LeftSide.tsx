@@ -1,9 +1,18 @@
 import { FC } from 'react';
 
-import { LeftSideStyled } from './styles';
+import { LeftSideStyled, StyledArticleAction } from './styles';
 
 const LeftSide: FC = () => {
-  return <LeftSideStyled>Left Side</LeftSideStyled>;
+  return (
+    <LeftSideStyled>
+      <StyledArticleAction>
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+      </StyledArticleAction>
+    </LeftSideStyled>
+  );
 };
 
 export default LeftSide;
