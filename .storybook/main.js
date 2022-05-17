@@ -4,6 +4,8 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-addon-material-ui',
+    'postcss-flexbugs-fixes',
   ],
   framework: '@storybook/react',
   core: {
