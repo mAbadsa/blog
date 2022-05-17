@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Link from 'next/link';
 
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
@@ -34,7 +35,11 @@ const AuthorPreview: FC<{ userdata: any }> = ({ userdata }) => {
       <StyledHeader>
         <Link href={`/${username}`} passHref>
           <StyledLink color="secondary" underline="none">
-            <StyledImage src={avatar} alt={name} width="48" height="48" layout="fixed" />
+            {avatar ? (
+              <StyledImage src={avatar} alt={name} width="48" height="48" layout="fixed" />
+            ) : (
+              <Avatar aria-label="user-avatar">{!avatar && username[0].toUpperCase()}</Avatar>
+            )}
             <StyledUsername>{name}</StyledUsername>
           </StyledLink>
         </Link>

@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
-import { useRouter } from "next/router";
+import React, { Fragment } from 'react';
+import { useRouter } from 'next/router';
 
-import Header from "../Header/Header";
-import useStyles from "./styles";
+import Header from '../Header/Header';
+import Footer from '../Footer';
+import useStyles from './styles';
 
 interface Props {
   children: React.ReactNode;
@@ -13,8 +14,9 @@ const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Header display={router.pathname === "/new" ? true : false} />
+      <Header display={router.pathname === '/new' ? true : false} />
       {children}
+      <Footer />
     </div>
   );
 };
