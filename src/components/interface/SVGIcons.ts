@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 export default interface SVGIcons {
   Home: FC;
@@ -24,4 +24,7 @@ export default interface SVGIcons {
   Github: FC;
   Lens: FC;
   Close: FC;
+  Like: FC;
+  Unicorn: FC;
+  Bookmark: FC;
 }

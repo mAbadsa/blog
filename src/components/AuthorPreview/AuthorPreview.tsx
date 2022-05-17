@@ -1,0 +1,88 @@
+import { FC } from 'react';
+import Link from 'next/link';
+
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
+import {
+  StyledAuthorPreview,
+  StyledHeader,
+  StyledImage,
+  StyledLink,
+  StyledUsername,
+  StyledButton,
+  StyledList,
+  StyledListItemText,
+} from './styles';
+
+const AuthorPreview: FC<{ userdata: any }> = ({ userdata }) => {
+  const {
+    name,
+    username,
+    avatar,
+    bio,
+    email,
+    githubAccount,
+    websiteUrl,
+    location,
+    education,
+    joined,
+  } = userdata;
+  return (
+    <StyledAuthorPreview style={{ borderTopColor: '#66a566' }}>
+      <StyledHeader>
+        <Link href={`/${username}`} passHref>
+          <StyledLink color="secondary" underline="none">
+            <StyledImage src={avatar} alt={name} width="48" height="48" layout="fixed" />
+            <StyledUsername>{name}</StyledUsername>
+          </StyledLink>
+        </Link>
+      </StyledHeader>
+      <StyledButton variant="contained" color="primary" size="large">
+        Follow
+      </StyledButton>
+      {bio ? (
+        <Typography>{bio}</Typography>
+      ) : (
+        <StyledButton href="/settings" variant="outlined" color="primary" size="large">
+          Add your Bio
+        </StyledButton>
+      )}
+      <StyledList>
+        {location && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Location" secondary={location} />
+          </ListItem>
+        )}
+        {email && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Email" secondary={email} />
+          </ListItem>
+        )}
+        {education && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Education" secondary={education} />
+          </ListItem>
+        )}
+        {githubAccount && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Github" secondary={githubAccount} />
+          </ListItem>
+        )}
+        {websiteUrl && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Github" secondary={websiteUrl} />
+          </ListItem>
+        )}
+        {joined && (
+          <ListItem style={{ padding: '0' }}>
+            <StyledListItemText primary="Joined" secondary={joined} />
+          </ListItem>
+        )}
+      </StyledList>
+    </StyledAuthorPreview>
+  );
+};
+
+export default AuthorPreview;
