@@ -1,6 +1,4 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import CodeBlock from '../../../ArticleForm/component/MDEditor/codeBlock';
@@ -12,6 +10,7 @@ import tagsProps from '../../../../components/interface/Tags';
 import {
   MainContentStyled,
   ArticleHeader,
+  StyledImage,
   Article,
   ArticleTitle,
   ArticleHeaderMeta,
@@ -20,7 +19,7 @@ import {
 } from './styles';
 
 const MainContent: FC<{ article: any }> = ({ article }) => {
-  const { tags, cover_image, name, created_at, slug, profile_image, title, content } = article;
+  const { tags, cover_image, username, created_at, slug, profile_image, title, content } = article;
 
   const _tags: tagsProps[] = tags.split(', ').map((tag: string, idx: number): tagsProps => {
     const t: tagsProps = {
@@ -34,7 +33,7 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
     <MainContentStyled>
       <Article>
         <ArticleHeader>
-          <Image
+          <StyledImage
             src={cover_image}
             alt="cover image"
             width="100"
@@ -43,7 +42,7 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
             objectFit="cover"
           />
           <ArticleHeaderMeta>
-            <UserAvatar username={name} date={created_at} slug={slug} avatar={profile_image} />
+            <UserAvatar username={username} date={created_at} slug={slug} avatar={profile_image} />
             <ArticleTitle variant="h1">{title}</ArticleTitle>
             <Tags tags={_tags} />
           </ArticleHeaderMeta>

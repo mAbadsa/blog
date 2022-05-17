@@ -12,7 +12,24 @@ const Article: FC<{ article: any }> = ({ article }) => {
       <ArticleLayout>
         <LeftSide />
         <MainContent article={article} />
-        <RightSide />
+        <RightSide
+          userData={{
+            name: article.name,
+            username: article.username,
+            bio: article.bio,
+            avatar: article.profile_image,
+            websiteUrl: article.website_url,
+            githubAccount: article.github_account,
+            email: article?.email,
+            location: article?.location,
+            education: article?.education,
+            joined: article?.user_created_at,
+          }}
+          article={{
+            title: article.title,
+            tags: article.tags,
+          }}
+        />
       </ArticleLayout>
     </StyledContainer>
   );
