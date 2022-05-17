@@ -25,6 +25,7 @@ export const StyledAuthorPreview = styled('div')(({ theme }) => ({
 
 export const StyledHeader = styled('div')(({ theme }) => ({
   position: 'relative',
+  marginTop: `-${theme.spacing(4)}px`,
 }));
 
 export const StyledLink = styled(NavLink)(({ theme }) => ({
