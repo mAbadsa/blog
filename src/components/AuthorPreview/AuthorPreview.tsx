@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import dayjs from 'dayjs';
 
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
@@ -38,7 +39,7 @@ const AuthorPreview: FC<{ userdata: any }> = ({ userdata }) => {
             {avatar ? (
               <StyledImage src={avatar} alt={name} width="48" height="48" layout="fixed" />
             ) : (
-              <Avatar aria-label="user-avatar">{!avatar && username[0].toUpperCase()}</Avatar>
+              <Avatar aria-label="user-avatar">{username[0].toUpperCase()}</Avatar>
             )}
             <StyledUsername>{name}</StyledUsername>
           </StyledLink>
@@ -82,7 +83,7 @@ const AuthorPreview: FC<{ userdata: any }> = ({ userdata }) => {
         )}
         {joined && (
           <ListItem style={{ padding: '0' }}>
-            <StyledListItemText primary="Joined" secondary={joined} />
+            <StyledListItemText primary="Joined" secondary={dayjs(joined).format('DD MMM YYYY')} />
           </ListItem>
         )}
       </StyledList>
