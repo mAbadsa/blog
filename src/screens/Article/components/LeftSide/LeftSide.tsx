@@ -1,6 +1,9 @@
 import { FC } from 'react';
-import Button from '../../../../components/Button';
+import axios from 'axios';
+
 import SVGIcons from '../../../../components/SVG/SVGIcons';
+
+import { addReaction } from '../../../../services';
 
 import {
   LeftSideStyled,
@@ -11,12 +14,25 @@ import {
   StyledReactCount,
 } from './styles';
 
-const LeftSide: FC = () => {
+const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
+  const handleReaction = async () => {
+    console.log('handlereaction');
+    console.log({ articleId });
+
+    const addReactionReq = addReaction({ axios });
+    const res = await addReactionReq({
+      reactableId: articleId,
+      category: 'Like',
+      reactableType: 'Article',
+    });
+    console.log(res);
+  };
+
   return (
     <LeftSideStyled>
       <StyledArticleAction>
         <StyledActionInner>
-          <StyledButton variant="text" color="secondary">
+          <StyledButton variant="text" color="secondary" onClick={handleReaction}>
             <StyledIconContainer>
               <SVGIcons.Like />
             </StyledIconContainer>
