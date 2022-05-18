@@ -1,16 +1,29 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import router from 'next/router';
 
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 import MainContent from './components/MainContent/MainContent';
+import { getReactions } from '../../services';
 
 import { ArticleLayout, StyledContainer } from './styles';
 
 const Article: FC<{ article: any }> = ({ article }) => {
+  const { isLoading, isError, data, error } = useQuery(
+    'reactions',
+    async () => await getReactions({ axios })({ articleId: article.id }),
+  );
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
   return (
     <StyledContainer maxWidth={'xl'}>
       <ArticleLayout>
-        <LeftSide />
+        <LeftSide articleId={article.id} />
         <MainContent article={article} />
         <RightSide
           userData={{
