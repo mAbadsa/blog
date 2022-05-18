@@ -1,21 +1,15 @@
-import { FC, ReactElement } from "react";
-import { useQuery } from "react-query";
-import Axios, { AxiosResponse } from "axios";
+import { FC, ReactElement } from 'react';
+import { useQuery } from 'react-query';
+import Axios, { AxiosResponse } from 'axios';
 
-import PostCard from "../PostCard";
+import PostCard from '../PostCard';
 
-import Articles from "../interface/Articles";
-import tagsProps from "../interface/Tags";
+import Articles from '../interface/Articles';
+import tagsProps from '../interface/Tags';
 
-const getArticles = async ({
-  limit,
-  offset,
-}: {
-  limit: number;
-  offset: number;
-}) => {
+const getArticles = async ({ limit, offset }: { limit: number; offset: number }) => {
   const res: AxiosResponse = await Axios.get(
-    `/api/articles/get-articles?limit=${limit}&offset=${offset}`
+    `/api/articles/get-articles?limit=${limit}&offset=${offset}`,
   );
   return res;
 };
@@ -43,8 +37,8 @@ interface dbData {
 }
 
 const PostsContainer: FC = () => {
-  const { data, isLoading, error } = useQuery("articles", () =>
-    getArticles({ limit: 15, offset: 0 })
+  const { data, isLoading, error } = useQuery('articles', () =>
+    getArticles({ limit: 15, offset: 0 }),
   );
 
   const articles: Articles[] =
@@ -71,15 +65,13 @@ const PostsContainer: FC = () => {
         website_url,
         user_created_at,
       }: dbData): Articles => {
-        const _tags: tagsProps[] = tags
-          .split(", ")
-          .map((tag, idx): tagsProps => {
-            const t: tagsProps = {
-              id: "t" + idx,
-              tag,
-            };
-            return t;
-          });
+        const _tags: tagsProps[] = tags.split(', ').map((tag, idx): tagsProps => {
+          const t: tagsProps = {
+            id: 't' + idx,
+            tag,
+          };
+          return t;
+        });
         const article: Articles = {
           id,
           title,
@@ -106,13 +98,13 @@ const PostsContainer: FC = () => {
           },
         };
         return article;
-      }
+      },
     );
 
   const postsElm: ReactElement[] | boolean =
     !isLoading &&
-    articles.map((article) => {
-      return <PostCard key={article.id} article={article} />;
+    articles.map((article, idx) => {
+      return <PostCard key={article.id} article={article} showCoverImage={idx === 0} />;
     });
 
   return <div>{!isLoading && postsElm}</div>;
