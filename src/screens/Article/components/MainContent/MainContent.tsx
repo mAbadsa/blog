@@ -40,6 +40,7 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
             height="42"
             sizes="100vw"
             objectFit="cover"
+            priority
           />
           <ArticleHeaderMeta>
             <UserAvatar username={username} date={created_at} slug={slug} avatar={profile_image} />
