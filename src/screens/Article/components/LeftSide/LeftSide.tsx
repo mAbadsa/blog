@@ -3,8 +3,6 @@ import axios from 'axios';
 
 import SVGIcons from '../../../../components/SVG/SVGIcons';
 
-import { addReaction } from '../../../../services';
-
 import {
   LeftSideStyled,
   StyledArticleAction,
@@ -14,29 +12,26 @@ import {
   StyledReactCount,
 } from './styles';
 
-const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
-  const handleReaction = async () => {
-    console.log('handlereaction');
-    console.log({ articleId });
-
-    const addReactionReq = addReaction({ axios });
-    const res = await addReactionReq({
-      reactableId: articleId,
-      category: 'Like',
-      reactableType: 'Article',
-    });
-    console.log(res);
+const LeftSide: FC<{ likes: number; handleClikReaction: Function; isLiked: boolean }> = ({
+  likes,
+  handleClikReaction,
+  isLiked,
+}) => {
+  const handleReaction = async (category: string) => {
+    handleClikReaction(category);
   };
+
+  console.log({ isLiked });
 
   return (
     <LeftSideStyled>
       <StyledArticleAction>
         <StyledActionInner>
-          <StyledButton variant="text" color="secondary" onClick={handleReaction}>
-            <StyledIconContainer>
+          <StyledButton variant="text" color="secondary" onClick={() => handleReaction('Like')}>
+            <StyledIconContainer isLiked={isLiked}>
               <SVGIcons.Like />
             </StyledIconContainer>
-            <StyledReactCount>{' 56 '}</StyledReactCount>
+            <StyledReactCount isLiked={isLiked}>{likes}</StyledReactCount>
           </StyledButton>
           <StyledButton variant="text" color="secondary">
             <StyledIconContainer>

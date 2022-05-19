@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Button from '../../../../components/Button';
-import SVGIcons from '../../../../components/SVG/SVGIcons';
+
+interface Props {
+  isLiked?: boolean;
+}
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',
@@ -111,11 +114,12 @@ export const StyledButton = styled(Button)`
   `}
 `;
 
-export const StyledIconContainer = styled('span')`
-  ${({ theme }) => `
+export const StyledIconContainer = styled('span')<Props>`
+  ${({ isLiked }) => `
       width: 40px;
       height: 40px;
       border-radius: 50%;
+      border: ${isLiked ? '3px solid #dc2626' : '0 solid transparent'};
       transition: all 0.25s;
       svg {
         width: 24px;
@@ -141,9 +145,9 @@ export const StyledIconContainer = styled('span')`
     `}
 `;
 
-export const StyledReactCount = styled('span')`
-  ${({ theme }) => `
-      color: #575757;
+export const StyledReactCount = styled('span')<Props>`
+  ${({ theme, isLiked }) => `
+      color: ${isLiked ? '#dc2626' : '#575757'};
       font-size: 0.875rem;
       line-height: 21px;
       font-weight: 400;
