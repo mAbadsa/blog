@@ -1,29 +1,102 @@
-import { FC, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { FC, useState } from 'react';
+import { useQuery, useMutation } from 'react-query';
 import axios from 'axios';
-import router from 'next/router';
+
+import Modal from '../../components/Modal';
 
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 import MainContent from './components/MainContent/MainContent';
-import { getReactions } from '../../services';
+import { getReactions, addReaction, getLogedinUser } from '../../services';
 
 import { ArticleLayout, StyledContainer } from './styles';
+import { Box, Typography } from '@material-ui/core';
 
 const Article: FC<{ article: any }> = ({ article }) => {
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [err, setErr] = useState<string>('');
   const { isLoading, isError, data, error } = useQuery(
     'reactions',
     async () => await getReactions({ axios })({ articleId: article.id }),
+    {
+      onSuccess: () => {
+        console.log('article.user_id', article.user_id);
+        setIsLiked(handleIsLiked(article.user_id));
+      },
+    },
+  );
+  const { mutate, error: mutateErr } = useMutation(
+    'add_likes',
+    async ({ category, reactableId }: { category: string; reactableId: number }) => {
+      const res = await addReaction({ axios })({
+        reactableId,
+        category,
+        reactableType: 'Article',
+      });
+      console.log('Mutation', res);
+    },
+    {
+      onSuccess: () => {
+        console.log('success');
+      },
+      onError: (error: any) => {
+        console.log('ON_ERROR');
+        console.log({ error });
+        if (error.response.status === 401) {
+          setErr(error.response.data.description);
+          setOpen(true);
+          console.log(error.response.data.description);
+        }
+      },
+    },
   );
 
-  useEffect(() => {
-    return () => {};
-  }, []);
+  const handleClickReaction = (category: string) => {
+    mutate({ category, reactableId: article.id });
+  };
+
+  !isLoading && console.log({ data });
+  const handleIsLiked = (userId: number): boolean => {
+    console.log({ userId });
+    let isLike = data?.data.likes.some(({ user_id }: any) => userId === user_id);
+    console.log({ isLike });
+    console.log({ uID: article.user_id });
+    return isLike;
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
+  };
 
   return (
     <StyledContainer maxWidth={'xl'}>
+      <Modal
+        open={open}
+        handleClose={handleModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          style={{
+            position: 'absolute' as 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            border: '2px solid #000',
+            background: '#f5f5f5',
+          }}
+        >
+          <Typography>{err}</Typography>
+        </Box>
+      </Modal>
       <ArticleLayout>
-        <LeftSide articleId={article.id} />
+        <LeftSide
+          likes={data?.data.likes.length}
+          handleClikReaction={handleClickReaction}
+          isLiked={isLiked}
+        />
         <MainContent article={article} />
         <RightSide
           userData={{
