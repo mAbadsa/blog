@@ -105,10 +105,10 @@ const theme = createTheme({
         },
       },
       textPrimary: {
-        color: '#262626',
+        color: '#3b49df',
         backgroundColor: '#00000000',
         '&:hover': {
-          color: '#3b49df',
+          color: '#2f3ab2',
           backgroundColor: '#3b49df1a',
         },
       },
