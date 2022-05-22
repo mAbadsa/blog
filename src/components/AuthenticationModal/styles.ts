@@ -27,8 +27,8 @@ export const StyledHeader = styled('header')`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: ${theme.spacing(4)}px ${theme.spacing(4)}px ${theme.spacing(4)}px ${theme.spacing(
-    16,
+    padding: ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(
+    8,
   )}px;
     border-bottom: 1px solid rgb(229, 229, 299);
 `}
@@ -41,6 +41,10 @@ export const StyledCloseButton = styled(Button)`
     padding: 8px;
     min-width: 40px;
     transition: all 0.25s;
+    svg {
+      fill: #242424;
+      transition: all 0.25s;
+    }
     :hover {
       svg {
         fill: #2f3ab2;
@@ -70,19 +74,25 @@ export const StyledImageContainer = styled('figure')`
     width: 80px;
     height: 80px;
     margin: 0;
+    transform: rotate(-10deg);
   `}
 `;
 
 export const StyledImage = styled(Image)`
   ${({ theme }) => `
-    border-radius: 0.375rem;
-    transform: rotate(-10deg);
+    && {
+      border-radius: 0.375rem;
+      span {
+        overflow: hidden !important;
+      }
+    }
   `}
 `;
 
-export const StyledModalDescription = styled('p')`
+export const StyledModalDescription = styled(Typography)`
   ${({ theme }) => `
     color: #404040;
+    line-height: 24px;
   `}
 `;
 
@@ -91,7 +101,7 @@ export const StyledModalActions = styled('div')`
     display: grid;
     margin: 0 auto;
     align-items: center;
-    padding: 0px 1rem 1rem;
+    padding: 0px 3rem 1rem;
     grid-gap: 0.25rem;
     width: 100%;
     ${[theme.breakpoints.down('sm')]} {
@@ -99,8 +109,8 @@ export const StyledModalActions = styled('div')`
       flex-direction: column;
       justify-content: center;
       margin: 0 auto;
+      padding: 0px 1rem 1rem;
       align-items: center;
-      padding: 0px 3rem 1rem;
     }
   `}
 `;
