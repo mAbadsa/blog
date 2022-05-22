@@ -49,6 +49,7 @@ export default auth0.withApiAuthRequired(
         userId: user[0].id,
         articleId: reactable_id,
       });
+
       if (likeDeleted < 1) {
         throw new Error('something went wrong');
       }
