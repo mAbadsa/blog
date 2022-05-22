@@ -16,14 +16,14 @@ import {
 
 import SVGIcons from '../SVG/SVGIcons';
 
-const AuthenticationModal: FC<{ closeModel: ((evt: any) => void) | undefined }> = ({
-  closeModel,
+const AuthenticationModal: FC<{ closeModal: ((evt: any) => void) | undefined }> = ({
+  closeModal,
 }) => {
   return (
     <StyledAuthenticationModal>
       <StyledHeader>
         <Typography variant="h2">Log in to continue</Typography>
-        <StyledCloseButton color="secondary" variant="text" onClick={closeModel}>
+        <StyledCloseButton color="secondary" variant="text" onClick={closeModal}>
           <SVGIcons.Close />
         </StyledCloseButton>
       </StyledHeader>

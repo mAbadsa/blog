@@ -3,6 +3,7 @@ import { useQuery, useMutation } from 'react-query';
 import axios from 'axios';
 
 import Modal from '../../components/Modal';
+import AuthenticationModal from '../../components/AuthenticationModal';
 
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
@@ -15,7 +16,6 @@ import { Box, Typography } from '@material-ui/core';
 const Article: FC<{ article: any }> = ({ article }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
-  const [err, setErr] = useState<string>('');
   const { isLoading, isError, data, error } = useQuery(
     'reactions',
     async () => await getReactions({ axios })({ articleId: article.id }),
@@ -44,7 +44,6 @@ const Article: FC<{ article: any }> = ({ article }) => {
         console.log('ON_ERROR');
         console.log({ error });
         if (error.response.status === 401) {
-          setErr(error.response.data.description);
           setOpen(true);
           console.log(error.response.data.description);
         }
@@ -77,19 +76,7 @@ const Article: FC<{ article: any }> = ({ article }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
-          style={{
-            position: 'absolute' as 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            border: '2px solid #000',
-            background: '#f5f5f5',
-          }}
-        >
-          <Typography>{err}</Typography>
-        </Box>
+        <AuthenticationModal closeModal={handleModalClose} />
       </Modal>
       <ArticleLayout>
         <LeftSide
