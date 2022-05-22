@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import auth0 from '../../../lib/auth0';
 import {
   addLike,
-  getLikeReactions,
   getLikeByUserAndArticleId,
   deleteLikeReaction,
 } from '../models/queries/reactions';
@@ -29,46 +28,32 @@ export default auth0.withApiAuthRequired(
       if (resultCount < 1) {
         throw new Error('something went wrong');
       }
-      if (req.method === 'POST') {
-        if (reactable_type === 'Article' && category === 'Like') {
-          const { rowCount: isLiked } = await getLikeByUserAndArticleId({
-            userId: user[0].id,
-            articleId: reactable_id,
-          });
-
-          if (isLiked < 1) {
-            const { rowCount, rows } = await addLike({
-              userId: user[0].id,
-              articleId: reactable_id,
-            });
-            if (rowCount < 1) {
-              throw new Error('something went wrong');
-            }
-            return res.status(201).json({ success: true, result: 'create', category: 'like' });
-          }
-        }
-        const { rowCount: likeDeleted } = await deleteLikeReaction({
+      if (reactable_type === 'Article' && category === 'Like') {
+        const { rowCount: isLiked } = await getLikeByUserAndArticleId({
           userId: user[0].id,
           articleId: reactable_id,
         });
-        if (likeDeleted < 1) {
-          throw new Error('something went wrong');
+
+        if (isLiked < 1) {
+          const { rowCount, rows } = await addLike({
+            userId: user[0].id,
+            articleId: reactable_id,
+          });
+          if (rowCount < 1) {
+            throw new Error('something went wrong');
+          }
+          return res.status(201).json({ success: true, result: 'create', category: 'like' });
         }
-
-        return res.status(200).json({ success: true, result: 'destroty', category: 'like' });
-      } else if (req.method === 'GET') {
-        const { article_id } = req.query;
-        console.log({ article_id });
-
-        const { rowCount, rows } = await getLikeReactions({
-          articleId: +article_id,
-        });
-
-        console.log(rowCount);
-        console.log(rows.length);
-
-        return res.status(200).json({ success: true, likes: rows });
       }
+      const { rowCount: likeDeleted } = await deleteLikeReaction({
+        userId: user[0].id,
+        articleId: reactable_id,
+      });
+      if (likeDeleted < 1) {
+        throw new Error('something went wrong');
+      }
+
+      return res.status(200).json({ success: true, result: 'destroty', category: 'like' });
     } catch (error: any) {
       return res.status(error.status || 500).json({ success: false, error: error.message });
     }
