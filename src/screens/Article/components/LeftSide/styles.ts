@@ -119,28 +119,19 @@ export const StyledIconContainer = styled('span')<Props>`
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: ${isLiked ? '3px solid #dc2626' : '0 solid transparent'};
+      box-shadow: ${isLiked ? 'inset 0 0 0 2px #dc2626' : '0 solid transparent'};
+      background-color: ${isLiked ? '#dc26261a' : 'transparent'};
       transition: all 0.25s;
       svg {
         width: 24px;
         height: 24px;
-        fill: #3d3d3d;
         transition: all 0.25s;
+      }
+      svg.filledlike-icon {
+        fill: #dc2626;
       }
       &:hover {
         background-color: #dc26261a;
-        svg:nth-child(1) {
-          fill: #dc2626;
-          transition: all 0.25s;
-        }
-        svg:nth-child(2) {
-          fill: #059669;
-          transition: all 0.25s;
-        }
-        svg:nth-child(3) {
-          fill: #4f46e5;
-          transition: all 0.25s;
-        }
       }
     `}
 `;
