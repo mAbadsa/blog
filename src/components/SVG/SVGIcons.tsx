@@ -26,6 +26,7 @@ import Close from './Close';
 import Bookmark from './Bookmark';
 import Unicorn from './Unicorn';
 import Like from './Like';
+import FilledLike from './FilledLike';
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -54,6 +55,7 @@ const SVGIcons: SVGIconsInterface = {
   Like,
   Unicorn,
   Bookmark,
+  FilledLike,
 };
 
 export default SVGIcons;
