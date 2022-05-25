@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import axios from 'axios';
 
 import SVGIcons from '../../../../components/SVG/SVGIcons';
 
@@ -29,7 +28,7 @@ const LeftSide: FC<{ likes: number; handleClikReaction: Function; isLiked: boole
         <StyledActionInner>
           <StyledButton variant="text" color="secondary" onClick={() => handleReaction('Like')}>
             <StyledIconContainer isLiked={isLiked}>
-              <SVGIcons.Like />
+              {isLiked ? <SVGIcons.FilledLike /> : <SVGIcons.Like />}
             </StyledIconContainer>
             <StyledReactCount isLiked={isLiked}>{likes}</StyledReactCount>
           </StyledButton>
