@@ -4,6 +4,7 @@ import {
   addLike,
   getLikeByUserAndArticleId,
   deleteLikeReaction,
+  getLikeReactions,
 } from '../models/queries/reactions';
 import { getUserByEmail } from '../models/queries/users';
 
@@ -14,6 +15,7 @@ type Data = {
   error?: string;
   result?: string;
   category?: string;
+  count?: number;
 };
 
 export default auth0.withApiAuthRequired(
@@ -39,12 +41,26 @@ export default auth0.withApiAuthRequired(
             userId: user[0].id,
             articleId: reactable_id,
           });
+
           if (rowCount < 1) {
             throw new Error('something went wrong');
           }
-          return res.status(201).json({ success: true, result: 'create', category: 'like' });
+
+          const likes = await getLikeReactions({ articleId: reactable_id });
+
+          if (likes.rowCount < 1) {
+            throw new Error('something went wrong');
+          }
+
+          return res.status(201).json({
+            success: true,
+            result: 'create',
+            category: 'like',
+            count: likes.rows[0].length,
+          });
         }
       }
+
       const { rowCount: likeDeleted } = await deleteLikeReaction({
         userId: user[0].id,
         articleId: reactable_id,
@@ -54,7 +70,15 @@ export default auth0.withApiAuthRequired(
         throw new Error('something went wrong');
       }
 
-      return res.status(200).json({ success: true, result: 'destroty', category: 'like' });
+      const likes = await getLikeReactions({ articleId: reactable_id });
+
+      if (likes.rowCount < 1) {
+        throw new Error('something went wrong');
+      }
+
+      return res
+        .status(200)
+        .json({ success: true, result: 'destroty', category: 'like', count: likes.rows[0].length });
     } catch (error: any) {
       return res.status(error.status || 500).json({ success: false, error: error.message });
     }
