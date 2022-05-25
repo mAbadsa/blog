@@ -15,15 +15,21 @@ import { Box, Typography } from '@material-ui/core';
 
 const Article: FC<{ article: any }> = ({ article }) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
+  const [numOfLikes, setNumOfLikes] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
   const { isLoading, isError, data, error } = useQuery(
-    'reactions',
+    ['reactions', { articleId: article.id }],
     async () => await getReactions({ axios })({ articleId: article.id }),
     {
-      onSuccess: () => {
-        console.log('article.user_id', article.user_id);
-        setIsLiked(handleIsLiked(article.user_id));
+      staleTime: 0,
+      onSuccess: _data => {
+        console.log('data', data);
+        console.log('_data', _data);
+        setNumOfLikes(_data?.data.likes.length);
+        // handleIsLiked(data.data.likes, article.user_id);
+        setIsLiked(_data.data.likes.some(({ user_id }: any) => article.userId === user_id));
       },
+      cacheTime: 0,
     },
   );
   const { mutate, error: mutateErr } = useMutation(
@@ -38,14 +44,13 @@ const Article: FC<{ article: any }> = ({ article }) => {
     },
     {
       onSuccess: () => {
-        console.log('success');
+        // handleIsLiked(article.user_id);
+        console.log('mutate');
+        setIsLiked(!isLiked);
       },
       onError: (error: any) => {
-        console.log('ON_ERROR');
-        console.log({ error });
         if (error.response.status === 401) {
           setOpen(true);
-          console.log(error.response.data.description);
         }
       },
     },
@@ -55,13 +60,13 @@ const Article: FC<{ article: any }> = ({ article }) => {
     mutate({ category, reactableId: article.id });
   };
 
-  !isLoading && console.log({ data });
-  const handleIsLiked = (userId: number): boolean => {
-    console.log({ userId });
-    let isLike = data?.data.likes.some(({ user_id }: any) => userId === user_id);
-    console.log({ isLike });
-    console.log({ uID: article.user_id });
-    return isLike;
+  const handleIsLiked = (likes: any, userId: number): void => {
+    console.log('userId:: %d', userId);
+    console.log('likes:: %d', likes);
+    !isLoading && console.log('likes:: %d', data);
+    let isLike = likes.some(({ user_id }: any) => userId === user_id);
+    console.log('isLiked:: %d', isLike);
+    setIsLiked(isLike);
   };
 
   const handleModalClose = () => {
@@ -79,11 +84,7 @@ const Article: FC<{ article: any }> = ({ article }) => {
         <AuthenticationModal closeModal={handleModalClose} />
       </Modal>
       <ArticleLayout>
-        <LeftSide
-          likes={data?.data.likes.length}
-          handleClikReaction={handleClickReaction}
-          isLiked={isLiked}
-        />
+        <LeftSide likes={numOfLikes} handleClikReaction={handleClickReaction} isLiked={isLiked} />
         <MainContent article={article} />
         <RightSide
           userData={{
