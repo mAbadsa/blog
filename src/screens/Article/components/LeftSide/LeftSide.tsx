@@ -21,6 +21,7 @@ const LeftSide: FC<{ likes: number; handleClikReaction: Function; isLiked: boole
   };
 
   console.log({ isLiked });
+  console.log({ likes });
 
   return (
     <LeftSideStyled>

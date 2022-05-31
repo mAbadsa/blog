@@ -1,20 +1,12 @@
-import React, { FC, JSXElementConstructor, ReactElement } from "react";
+import React, { FC, JSXElementConstructor, ReactElement, ReactNode } from 'react';
 
-import {
-  Modal as MuiModal,
-  ModalProps,
-  useTheme,
-  Backdrop,
-} from "@material-ui/core";
-import useStyles from "./styles";
+import { Modal as MuiModal, ModalProps, useTheme, Backdrop } from '@material-ui/core';
+import useStyles from './styles';
 
-type HandleEventFunction = (
-  event: {},
-  reason: "backdropClick" | "escapeKeyDown"
-) => void;
+type HandleEventFunction = (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
 
 const MModal: FC<{
-  children: ReactElement<any, string | JSXElementConstructor<any>>;
+  children: ReactElement<any, string | JSXElementConstructor<any>> & ReactNode;
   props?: ModalProps;
   open: boolean;
   handleClose: HandleEventFunction;

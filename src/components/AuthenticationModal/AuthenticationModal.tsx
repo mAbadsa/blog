@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import {
@@ -16,7 +16,7 @@ import {
 
 import SVGIcons from '../SVG/SVGIcons';
 
-const AuthenticationModal: FC<{ closeModal: ((evt: any) => void) | undefined }> = ({
+const AuthenticationModal: FC<{ closeModal: MouseEventHandler<HTMLAnchorElement> }> = ({
   closeModal,
 }) => {
   return (

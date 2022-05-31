@@ -23,12 +23,14 @@ export default auth0.withApiAuthRequired(
     const { reactable_type, reactable_id, category } = req.body;
     try {
       const me = auth0.getSession(req, res);
+      console.log({ me });
       const { rowCount: resultCount, rows: user } = await getUserByEmail({
         email: me?.user?.email,
       });
+      console.log({ user });
 
       if (resultCount < 1) {
-        throw new Error('something went wrong');
+        throw new Error('User does not exist!');
       }
       if (reactable_type === 'Article' && category === 'Like') {
         const { rowCount: isLiked } = await getLikeByUserAndArticleId({
@@ -56,29 +58,28 @@ export default auth0.withApiAuthRequired(
             success: true,
             result: 'create',
             category: 'like',
-            count: likes.rows[0].length,
+            count: likes.rows.length,
           });
         }
+
+        const { rowCount: likeDeleted } = await deleteLikeReaction({
+          userId: user[0].id,
+          articleId: reactable_id,
+        });
+
+        if (likeDeleted < 1) {
+          throw new Error('something went wrong');
+        }
+
+        const likes = await getLikeReactions({ articleId: reactable_id });
+
+        return res.status(200).json({
+          success: true,
+          result: 'destroty',
+          category: 'like',
+          count: likes.rows.length,
+        });
       }
-
-      const { rowCount: likeDeleted } = await deleteLikeReaction({
-        userId: user[0].id,
-        articleId: reactable_id,
-      });
-
-      if (likeDeleted < 1) {
-        throw new Error('something went wrong');
-      }
-
-      const likes = await getLikeReactions({ articleId: reactable_id });
-
-      if (likes.rowCount < 1) {
-        throw new Error('something went wrong');
-      }
-
-      return res
-        .status(200)
-        .json({ success: true, result: 'destroty', category: 'like', count: likes.rows[0].length });
     } catch (error: any) {
       return res.status(error.status || 500).json({ success: false, error: error.message });
     }

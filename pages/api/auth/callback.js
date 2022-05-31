@@ -1,9 +1,9 @@
-import auth0 from "../../../lib/auth0";
-import { insertNewUser, getUserByEmail } from "../models/queries/users";
+import auth0 from '../../../lib/auth0';
+import { insertNewUser, getUserByEmail } from '../models/queries/users';
 
 export default async function callback(req, res) {
   try {
-    await auth0.handleCallback(req, res, { redirectTo: "/" });
+    await auth0.handleCallback(req, res, { redirectTo: '/' });
     // get use session
     const { user } = auth0.getSession(req, res);
 
@@ -19,7 +19,7 @@ export default async function callback(req, res) {
         profileImage: user.picture,
       });
       if (rowCount < 1) {
-        throw new Error("Something went wrong");
+        throw new Error('Something went wrong');
       }
     }
   } catch (error) {

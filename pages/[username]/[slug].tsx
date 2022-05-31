@@ -11,7 +11,7 @@ import ArticleScreen from '../../src/screens/Article';
 
 import auth0 from '../../lib/auth0';
 
-const Article: NextPage<any, any> = ({ data }) => {
+const Article: NextPage<any, any> = ({ data, count }) => {
   console.log({ data });
   return <ArticleScreen article={data?.article} />;
 };
@@ -39,6 +39,7 @@ export const getServerSideProps: GetServerSideProps<
     return {
       props: {
         data: res.data,
+        count: res.data.count,
       },
     };
   } catch (error) {

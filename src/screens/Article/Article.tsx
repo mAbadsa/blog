@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
+import { FC, useState, MouseEvent } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import axios from 'axios';
+import { useUser } from '@auth0/nextjs-auth0';
 
 import Modal from '../../components/Modal';
 import AuthenticationModal from '../../components/AuthenticationModal';
@@ -11,28 +12,54 @@ import MainContent from './components/MainContent/MainContent';
 import { getReactions, addReaction, getLogedinUser } from '../../services';
 
 import { ArticleLayout, StyledContainer } from './styles';
-import { Box, Typography } from '@material-ui/core';
 
 const Article: FC<{ article: any }> = ({ article }) => {
-  const [isLiked, setIsLiked] = useState<boolean>(false);
-  const [numOfLikes, setNumOfLikes] = useState<number>(0);
+  console.log({ likes: article.likes });
+  const [loggedinUserId, setLoggedinUserId] = useState<number | null>(null);
+  const [isLiked, setIsLiked] = useState<boolean>(
+    article.likes.some(({ user_id }: { user_id: number }) => loggedinUserId === user_id),
+  );
+  const [likes, setLikes] = useState<Array<any>>(article.likes);
   const [open, setOpen] = useState<boolean>(false);
-  const { isLoading, isError, data, error } = useQuery(
-    ['reactions', { articleId: article.id }],
+  const { user, isLoading: isFecthUserLoading, error: userErr } = useUser();
+  const articleLikes = useQuery(
+    'likes',
     async () => await getReactions({ axios })({ articleId: article.id }),
     {
-      staleTime: 0,
-      onSuccess: _data => {
-        console.log('data', data);
-        console.log('_data', _data);
-        setNumOfLikes(_data?.data.likes.length);
-        // handleIsLiked(data.data.likes, article.user_id);
-        setIsLiked(_data.data.likes.some(({ user_id }: any) => article.userId === user_id));
+      onSuccess: data => {
+        console.log({ likes: data });
+        setLikes(data.data.likes);
+        console.log({ likes: likes });
       },
-      cacheTime: 0,
     },
   );
-  const { mutate, error: mutateErr } = useMutation(
+
+  const authUser = useQuery(
+    'auth_user',
+    async () => {
+      if (user) return await getLogedinUser({ axios })({ email: user?.email as string });
+    },
+    {
+      onSuccess: data => {
+        console.log({ data });
+        setLoggedinUserId(data?.data.id);
+        setIsLiked(likes.some(({ user_id }: { user_id: number }) => data?.data.id === user_id));
+      },
+    },
+  );
+
+  // (async () => {
+  //   if (user) {
+  //     const res = await getLogedinUser({ axios })({ email: user?.email as string });
+  //     console.log({ res });
+  //     setLoggedinUserId(res?.data.data.id);
+  //     setIsLiked(
+  //       article.likes.some(({ user_id }: { user_id: number }) => loggedinUserId === user_id),
+  //     );
+  //   }
+  // })();
+
+  const { data, isLoading, mutate, error } = useMutation(
     'add_likes',
     async ({ category, reactableId }: { category: string; reactableId: number }) => {
       const res = await addReaction({ axios })({
@@ -40,14 +67,9 @@ const Article: FC<{ article: any }> = ({ article }) => {
         category,
         reactableType: 'Article',
       });
-      console.log('Mutation', res);
+      return res;
     },
     {
-      onSuccess: () => {
-        // handleIsLiked(article.user_id);
-        console.log('mutate');
-        setIsLiked(!isLiked);
-      },
       onError: (error: any) => {
         if (error.response.status === 401) {
           setOpen(true);
@@ -57,15 +79,23 @@ const Article: FC<{ article: any }> = ({ article }) => {
   );
 
   const handleClickReaction = (category: string) => {
-    mutate({ category, reactableId: article.id });
+    mutate(
+      { category, reactableId: article.id },
+      {
+        onSuccess: ({ data }) => {
+          console.log({ isLiked });
+          console.log({ mutation: data });
+          if (data.result === 'destroty') setIsLiked(false);
+          if (data.result === 'create') setIsLiked(true);
+          console.log({ isLiked });
+        },
+      },
+    );
   };
 
   const handleIsLiked = (likes: any, userId: number): void => {
-    console.log('userId:: %d', userId);
-    console.log('likes:: %d', likes);
     !isLoading && console.log('likes:: %d', data);
     let isLike = likes.some(({ user_id }: any) => userId === user_id);
-    console.log('isLiked:: %d', isLike);
     setIsLiked(isLike);
   };
 
@@ -84,7 +114,7 @@ const Article: FC<{ article: any }> = ({ article }) => {
         <AuthenticationModal closeModal={handleModalClose} />
       </Modal>
       <ArticleLayout>
-        <LeftSide likes={numOfLikes} handleClikReaction={handleClickReaction} isLiked={isLiked} />
+        <LeftSide likes={likes.length} handleClikReaction={handleClickReaction} isLiked={isLiked} />
         <MainContent article={article} />
         <RightSide
           userData={{
