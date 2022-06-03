@@ -1,49 +1,87 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import ListItem from '@material-ui/core/ListItem';
 import SVGIcons from '../SVG/SVGIcons';
 
 import { StyledStatsSideBar, StyledList, StyledNavLink, StyledBadge } from './styles';
 
 const StatisticsSidebar: FC = () => {
+  const { pathname } = useRouter();
+  const pathNameArr = pathname.split('/');
+  console.log({ pathNameArr });
+
   return (
     <StyledStatsSideBar>
       <StyledList>
         <ListItem style={{ padding: 0 }} ContainerComponent={(<li />).type}>
           <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary color="secondary">
+            <StyledNavLink
+              current={pathNameArr.length === 2 ? true : false}
+              underline="none"
+              textPrimary
+              color="secondary"
+            >
               Posts
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/series" passHref>
+            <StyledNavLink
+              current={pathNameArr[0] === 'series' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Series '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/user_followers" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'user_followers' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Followers '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/following_tags" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'following_tags' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Following tags '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/following_users" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'following_users' ? true : false}
+              underline="none"
+              textPrimary
+            >
+              {' Following users '}
+              <StyledBadge>0</StyledBadge>
+            </StyledNavLink>
+          </Link>
+        </ListItem>
+        <ListItem style={{ padding: 0 }}>
+          <Link href="/dashboard/following_organizations" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'following_organizations' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Following users '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
@@ -51,31 +89,47 @@ const StatisticsSidebar: FC = () => {
         </ListItem>
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+            <StyledNavLink
+              current={pathNameArr.length === 2 ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Following organizations '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/following_podcasts" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'following_podcasts' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Following podcasts '}
               <StyledBadge>0</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/listings" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'listings' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Listings '}
               <SVGIcons.Maximize />
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
-            <StyledNavLink underline="none" textPrimary>
+          <Link href="/dashboard/analytics" passHref>
+            <StyledNavLink
+              current={pathNameArr[2] === 'analytics' ? true : false}
+              underline="none"
+              textPrimary
+            >
               {' Analytics '}
             </StyledNavLink>
           </Link>

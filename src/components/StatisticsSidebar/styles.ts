@@ -26,8 +26,8 @@ export const StyledList = Styled(List)`
   `}
 `;
 
-export const StyledNavLink = Styled(NavLink)`
-  ${({ theme }) => `
+export const StyledNavLink = Styled(NavLink)<{ current?: boolean }>`
+  ${({ theme, current }) => `
     display: flex;
     color: #040404;
     font-size: 16px;
@@ -36,6 +36,7 @@ export const StyledNavLink = Styled(NavLink)`
     border-radius: 0.375rem;
     padding: ${theme.spacing(2)}px;
     transition: background cubic-bezier(0.17, 0.67, 0.5, 0.71) 100ms, color cubic-bezier(0.17, 0.67, 0.5, 0.71) 100ms;
+    background-color: ${current ? '#fff' : 'transparent'};
     ${[theme.breakpoints.down('sm')]} {
     }
   `}
