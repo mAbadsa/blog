@@ -10,8 +10,8 @@
     "lint": "next lint",
     "precommit": "pretty-quick --staged",
     "prepare": "husky install",
-    "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -s ./public -p 6006 -c src/.storybook",
+    "build-storybook": "build-storybook -c src/.storybook"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.5.0",

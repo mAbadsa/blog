@@ -1,6 +1,6 @@
 import { muiTheme } from 'storybook-addon-material-ui';
 import * as nextImage from 'next/image';
-import theme from '../styles/theme';
+import theme from '../../styles/theme';
 
 // import '../styles/globals.css';
 
