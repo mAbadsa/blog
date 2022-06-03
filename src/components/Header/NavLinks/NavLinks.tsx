@@ -94,7 +94,13 @@ const Navlinks: FC<NavLinksType> = ({ user, isLoading, error }) => {
               </Link>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleClose}>Dashboard</MenuItem>
+            <MenuItem onClick={handleClose}>
+              <Link href={`/dashboard`} passHref>
+                <MUILink className={classes.profileLink} underline="none">
+                  Dashboard
+                </MUILink>
+              </Link>
+            </MenuItem>
             <MenuItem onClick={handleClose}>Create Post</MenuItem>
             <MenuItem onClick={handleClose}>Reading List</MenuItem>
             <MenuItem onClick={handleClose}>
