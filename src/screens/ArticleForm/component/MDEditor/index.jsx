@@ -7,15 +7,17 @@ const MDEditor = ({ handleMDText, mdText }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
-    <div className={classes.MDEditor}>
+    <div className={classes.root}>
       <ToolPanel></ToolPanel>
-      <textarea
-        className={classes.textArea}
-        aria-label="Post Content"
-        onChange={handleMDText}
-        placeholder="Write your post content here..."
-        value={mdText}
-      ></textarea>
+      <div className={classes.MDEditor}>
+        <textarea
+          className={classes.textArea}
+          aria-label="Post Content"
+          onChange={handleMDText}
+          placeholder="Write your post content here..."
+          value={mdText}
+        ></textarea>
+      </div>
     </div>
   );
 };

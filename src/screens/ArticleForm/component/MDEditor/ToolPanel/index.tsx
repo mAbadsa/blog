@@ -3,6 +3,7 @@ import { useTheme } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
 import MoreVert from '@material-ui/icons/MoreVert';
+import { useMediaQuery } from '@material-ui/core';
 
 import useStyles from './styles';
 import Bold from './components/Bold';
@@ -23,6 +24,8 @@ import LineDivider from './components/LineDivider';
 const ToolPanel: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const matches = useMediaQuery('(min-width:768px)');
+  console.log(matches);
   // const [open, setOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const body = useRef();
@@ -47,11 +50,21 @@ const ToolPanel: FC = () => {
         <Code></Code>
         <CodeBlock></CodeBlock>
         <UploadImage></UploadImage>
+        {matches && (
+          <IconButton className={classes.moreBtn} aria-describedby={id} onClick={handleClick}>
+            <MoreVert />
+          </IconButton>
+        )}
+        {!matches && (
+          <>
+            <Underline></Underline>
+            <StrikeThrough></StrikeThrough>
+            <LineDivider></LineDivider>
+            <Guide></Guide>
+          </>
+        )}
       </div>
       <div className={classes.extraItem}>
-        <IconButton className={classes.moreBtn} aria-describedby={id} onClick={handleClick}>
-          <MoreVert />
-        </IconButton>
         <Popover
           id={id}
           open={open}

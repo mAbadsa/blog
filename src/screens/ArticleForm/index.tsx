@@ -117,7 +117,6 @@ const ArticleForm: FC = () => {
             defaultTitle={title}
             defaultCoverImage={coverImage}
           />
-          <Footer handlePublishArticle={handlePublishArticle} handleSaveDraft={handleSaveDraft} />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Preview
@@ -127,6 +126,7 @@ const ArticleForm: FC = () => {
             tags={tags || []}
           />
         </TabPanel>
+        <Footer handlePublishArticle={handlePublishArticle} handleSaveDraft={handleSaveDraft} />
       </div>
     </div>
   );

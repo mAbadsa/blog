@@ -4,13 +4,21 @@ const useStyles = makeStyles((theme: Theme) => ({
   Header: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     gridColumnEnd: 'span 2',
     height: '56px',
   },
   logo: {
-    marginRight: '0.5rem',
-    lineHeight: '0',
+    marginRight: theme.spacing(2),
+    lineHeight: '24px',
+    '& a': {
+      display: 'flex',
+      maxWidth: '175px',
+      lineHeight: '18px',
+      alignSelf: 'center',
+      alignItems: 'center',
+      padding: '0',
+    },
     '& svg': {
       '& rect': {
         fill: '#090909',
@@ -20,18 +28,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-  headerTitle: {
+  title: {
     display: 'flex',
-    alignItems: 'center',
+    flex: '1 1 0% !important',
+    alignItems: 'center !important',
   },
   headerTaps: {
     display: 'flex',
     alignItems: 'center',
-  },
-  closeForm: {
-    position: 'absolute',
-    top: '0.5rem',
-    right: '0.5rem',
   },
   [theme.breakpoints.between('xs', 'sm')]: {
     Header: {
@@ -44,14 +48,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       position: 'static',
     },
   },
-  // [`@media (min-width: 640px)`]: {
-  //   title: {
-  //     display: "none",
-  //   },
-  // },
   [`@media (max-width: 639px)`]: {
     title: {
-      display: 'none',
+      visibility: 'hidden',
+    },
+  },
+  [`@media (min-width: 1024px)`]: {
+    closeForm: {
+      position: 'absolute',
+      top: '0.5rem',
+      right: '0.5rem',
     },
   },
 }));

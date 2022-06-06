@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: '0rem 0.5rem',
     },
   },
+  [theme.breakpoints.down('xs')]: {
+    ArticleForm: {
+      // gridTemplateColumns: '100%',
+    },
+  },
 }));
 
 export default useStyles;

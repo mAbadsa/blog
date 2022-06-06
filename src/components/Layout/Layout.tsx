@@ -16,7 +16,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     <div className={classes.root}>
       <Header display={router.pathname === '/new' ? true : false} />
       {children}
-      <Footer />
+      <Footer display={router.pathname === '/new' ? true : false} />
     </div>
   );
 };

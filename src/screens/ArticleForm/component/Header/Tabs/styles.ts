@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none !important',
     '& button': {
       margin: '0 0.25rem',
+      borderRadius: '0.375rem',
       '&:first-of-type': {
         width: '50px',
       },
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& span[class^=PrivateTabIndicator]': {
       backgroundColor: '#3b49df',
+      display: 'none',
     },
     '& button[class^=MuiButtonBase]': {
       minWidth: '20px',
