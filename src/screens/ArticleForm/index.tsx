@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useLayoutEffect, useState, useRef, useEffect } from 'react';
 import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import { useMutation } from 'react-query';
@@ -46,11 +46,14 @@ const ArticleForm: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
+  const [toolPanelValue, setToolPanelValue] = useState<string>('');
+  const [cursorPostion, setCursorPostion] = useState(0);
   const [textareaValue, setTextareaValue] = useState('');
   const [tags, setTags] = useState<string[]>();
   const [title, setTitle] = useState('');
   const [coverImage, setCoverImage] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { mutate, isLoading, isError, isSuccess } = useMutation(
     (article: Object) => postArticle(article),
     {
@@ -63,8 +66,27 @@ const ArticleForm: FC = () => {
   };
 
   function handleChangeMD(evt: React.ChangeEvent<HTMLTextAreaElement>) {
+    setCursorPostion(evt.target.selectionEnd);
+    evt.target.selectionEnd = evt.target.selectionEnd + toolPanelValue.length;
     setTextareaValue(evt.target.value);
+    setToolPanelValue('');
   }
+
+  function addToolPanelValue() {
+    let leftText = textareaValue.slice(0, cursorPostion);
+    let rightText = textareaValue.slice(cursorPostion);
+    let textValue = leftText + toolPanelValue + rightText;
+    setTextareaValue(textValue);
+  }
+
+  function setRef(ref: React.RefObject<HTMLTextAreaElement>) {
+    ref.current?.focus();
+  }
+
+  useEffect(() => {
+    addToolPanelValue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toolPanelValue]);
 
   function passSelectedTags(t: Array<string>) {
     setTags(t);
@@ -116,6 +138,9 @@ const ArticleForm: FC = () => {
             handleChangeTitle={handleChangeTitle}
             defaultTitle={title}
             defaultCoverImage={coverImage}
+            setCursorPostion={setCursorPostion}
+            setPanelValue={setToolPanelValue}
+            setRef={setRef}
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -126,8 +151,8 @@ const ArticleForm: FC = () => {
             tags={tags || []}
           />
         </TabPanel>
-        <Footer handlePublishArticle={handlePublishArticle} handleSaveDraft={handleSaveDraft} />
       </div>
+      <Footer handlePublishArticle={handlePublishArticle} handleSaveDraft={handleSaveDraft} />
     </div>
   );
 };
