@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     gap: '10px',
     height: '72px',
+    gridRowEnd: '4',
+    gridColumnStart: '2',
+    gridColumnEnd: 'span 2',
     // "& button": {
     //   whiteSpace: "nowrap",
     //   fontWeight: 500,
