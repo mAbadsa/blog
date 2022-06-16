@@ -15,13 +15,14 @@ export const StyledMain = Styled('main')`
 ${({ theme }) => `
   display: grid;
   column-gap: ${theme.spacing(4)}px;
+  row-gap: ${theme.spacing(4)}px;
   grid-template-columns: 240px 1fr;
   grid-template-rows: min-content 1fr;
   line-height: 24px;
   padding: ${theme.spacing(4)}px;
   ${[theme.breakpoints.down('md')]} {
     padding: ${theme.spacing(2)}px;
-    grid-template-columns: 1fr;
+    gap: ${theme.spacing(2)}px;
   }
   ${[theme.breakpoints.down('sm')]} {
     padding: ${theme.spacing(0)}px;
@@ -79,6 +80,7 @@ export const StyledBody = Styled('div')`
     flex-direction: column;
     justify-content: center;
     background-color: rgb(250, 250, 250);
+    width: 100%;
     ${[theme.breakpoints.down('sm')]} {
       border-radius: 0;
     }
