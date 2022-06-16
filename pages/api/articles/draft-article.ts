@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import slugify from 'slugify';
 import cryptoRandomString from 'crypto-random-string';
 import auth0 from '../../../lib/auth0';
-import { insertNewArticle, getAllArticle } from '../models/queries/articles';
+import { insertNewArticle } from '../models/queries/articles';
 import { getUserByEmail } from '../models/queries/users';
 import connection from '../models/connection';
 
@@ -22,17 +22,18 @@ export default auth0.withApiAuthRequired(
         // get the looged user session
         const me = auth0.getSession(req, res);
         const cryptoString = cryptoRandomString({ length: 4, type: 'base64' });
+        const cryptoNumber = cryptoRandomString({ length: 7, type: 'numeric' });
         const titleWithCryptoString = data.title + ' ' + cryptoString;
-        const slug = slugify(titleWithCryptoString);
+        const slug = slugify(titleWithCryptoString) + '-temp-slug-' + cryptoNumber;
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
+
         const { rowCount, rows: dbResult } = await insertNewArticle({ connection })({
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
           slug,
-          status: 'published',
           tags: data.tags.join(', '),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
