@@ -4,6 +4,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Badge from '@material-ui/core/Badge';
 
 import NavLink from '../NavLink';
+import { ComponentType } from 'react';
 
 export const StyledStatsSideBar = Styled('div')`
   ${({ theme }) => `
@@ -26,7 +27,7 @@ export const StyledList = Styled(List)`
   `}
 `;
 
-export const StyledNavLink = Styled(NavLink)<{ current?: boolean }>`
+export const StyledNavLink: ComponentType<any> = Styled(NavLink)<{ current?: boolean }>`
   ${({ theme, current }) => `
     display: flex;
     color: #040404;
@@ -53,7 +54,8 @@ export const StyledBadge = Styled(Badge)`
   ${({ theme }) => `
     display: inline-block;
     min-width: ${theme.spacing(2)}px;
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 0.875rem;
     margin-left: auto;
     background-color: #d4d4d4;
     color: #404040;
