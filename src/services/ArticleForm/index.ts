@@ -1,3 +1,4 @@
 import uploadImage from './uploadArticleImage';
+import uploadDraftArticle from './draftArticle';
 
-export { uploadImage };
+export { uploadImage, uploadDraftArticle };
