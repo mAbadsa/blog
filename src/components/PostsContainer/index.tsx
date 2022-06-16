@@ -107,7 +107,7 @@ const PostsContainer: FC = () => {
       return <PostCard key={article.id} article={article} showCoverImage={idx === 0} />;
     });
 
-  return <div>{!isLoading && postsElm}</div>;
+  return <>{!isLoading && postsElm}</>;
 };
 
 export default PostsContainer;

@@ -9,7 +9,7 @@ import { ParsedUrlQuery } from 'querystring';
 import axios, { AxiosResponse, AxiosRequestHeaders } from 'axios';
 import auth0 from '../lib/auth0';
 import UserProfile from '../src/screens/UserProfile';
-import { withPageAuthRequired, Session } from '@auth0/nextjs-auth0';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
 
 const Settings: NextPage<any, any> = ({ data: userData }) => {

@@ -1,6 +1,8 @@
 BEGIN;
 DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags;
 
+CREATE TYPE statuses AS ENUM ('published', 'draft');
+
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(50),
@@ -17,6 +19,22 @@ CREATE TABLE users (
 );
 
 CREATE TABLE articles (
+	id SERIAL PRIMARY KEY,
+	title TEXT NOT NULL,
+	slug TEXT NOT NULL,
+	temp_slug TEXT NOT NULL,
+	content TEXT NOT NULL,
+	cover_image TEXT,
+	status statuses DEFAULT 'draft',
+	tags VARCHAR(255) NOT NULL,
+	last_reading TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE draft_articles (
 	id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
 	slug TEXT NOT NULL,

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Statistics from '../../components/Statistics';
 import StatisticsSidebar from '../../components/StatisticsSidebar';
+import PostCardContainer from './Components/PostCard';
 
 import {
   StyledDashBoard,
@@ -17,7 +18,18 @@ import {
   StyledNavLink,
 } from './styles';
 
-const Dashboard: FC = () => {
+const Dashboard: FC<{
+  posts: Array<{
+    id: number;
+    title: string;
+    slug: string;
+    temp_slug: string;
+    status: string;
+    temp_preview_link: string;
+  }>;
+}> = ({ posts }) => {
+  console.log({ posts });
+
   return (
     <StyledDashBoard>
       <StyledMain>
@@ -25,33 +37,37 @@ const Dashboard: FC = () => {
           <StyledTitle variant="h1">Dashboard</StyledTitle>
           <Statistics reactions={0} postViews={0} listings={0} credits={0} />
         </StyledHeader>
-        <StatisticsSidebar />
+        <StatisticsSidebar postsCount={posts.length} />
         <StyledPosts>
           <StyledPostsHeader>
             <Typography variant="h2">Posts</Typography>
           </StyledPostsHeader>
-          <StyledBody>
-            <Image
-              src="https://res.cloudinary.com/practicaldev/image/fetch/s--XHE_XeFn--/c_imagga_scale,f_auto,fl_progressive,q_auto,w_300/https://dev-to-uploads.s3.amazonaws.com/i/y5767q6brm62skiyywvc.png"
-              width="300"
-              height="300"
-              objectFit="contain"
-              alt="sloth"
-            />
-            <Typography align="center" css={{ marginBlock: '1.5rem' }}>
-              This is where you can manage your posts, but you haven&apos;t written anything yet.
-            </Typography>
-            <Typography
-              align="center"
-              css={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            >
-              <Link href="/new" passHref>
-                <StyledNavLink color="primary" underline="none">
-                  Write your first post now
-                </StyledNavLink>
-              </Link>
-            </Typography>
-          </StyledBody>
+          {posts.length > 0 ? (
+            <PostCardContainer posts={posts} />
+          ) : (
+            <StyledBody>
+              <Image
+                src="https://res.cloudinary.com/practicaldev/image/fetch/s--XHE_XeFn--/c_imagga_scale,f_auto,fl_progressive,q_auto,w_300/https://dev-to-uploads.s3.amazonaws.com/i/y5767q6brm62skiyywvc.png"
+                width="300"
+                height="300"
+                objectFit="contain"
+                alt="sloth"
+              />
+              <Typography align="center" css={{ marginBlock: '1.5rem' }}>
+                This is where you can manage your posts, but you haven&apos;t written anything yet.
+              </Typography>
+              <Typography
+                align="center"
+                css={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              >
+                <Link href="/new" passHref>
+                  <StyledNavLink color="primary" underline="none">
+                    Write your first post now
+                  </StyledNavLink>
+                </Link>
+              </Typography>
+            </StyledBody>
+          )}
         </StyledPosts>
       </StyledMain>
     </StyledDashBoard>

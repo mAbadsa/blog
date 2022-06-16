@@ -7,9 +7,9 @@ import type {
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import Axios, { AxiosResponse } from 'axios';
-import ArticleScreen from '../../src/screens/Article';
+import ArticleScreen from '../../../src/screens/Article';
 
-import auth0 from '../../lib/auth0';
+import auth0 from '../../../lib/auth0';
 
 const Article: NextPage<any, any> = ({ data }) => {
   console.log({ data });
@@ -31,6 +31,8 @@ export const getServerSideProps: GetServerSideProps<
     const res: AxiosResponse = await Axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/${slug}`,
     );
+
+    console.log({ res2: res });
 
     if (!res) {
       throw new Error('Something went wrong!');

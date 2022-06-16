@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 import CodeBlock from '../MDEditor/codeBlock';
 import Tags from '../../../../components/PostCard/Tags';
+import { toBase64, shimmer } from '../../../../helpers/image/shimmer';
 import useStyles from './styles';
 
 const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
@@ -31,6 +32,9 @@ const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
                 layout="fill"
                 objectFit="cover"
                 alt={'Post cover'}
+                priority
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(250, 105))}`}
               />
             )}
           </div>

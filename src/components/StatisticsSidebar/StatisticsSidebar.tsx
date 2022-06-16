@@ -6,7 +6,7 @@ import SVGIcons from '../SVG/SVGIcons';
 
 import { StyledStatsSideBar, StyledList, StyledNavLink, StyledBadge } from './styles';
 
-const StatisticsSidebar: FC = () => {
+const StatisticsSidebar: FC<{ postsCount: number }> = ({ postsCount }) => {
   const { pathname } = useRouter();
   const pathNameArr = pathname.split('/');
   console.log({ pathNameArr });
@@ -17,20 +17,20 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }} ContainerComponent={(<li />).type}>
           <Link href="/dashboard" passHref>
             <StyledNavLink
-              current={pathNameArr.length === 2 ? true : false}
+              current={pathNameArr.length === 2 ? true.toString() : false.toString()}
               underline="none"
               textPrimary
               color="secondary"
             >
               Posts
-              <StyledBadge>0</StyledBadge>
+              <StyledBadge>{postsCount ? postsCount : 0}</StyledBadge>
             </StyledNavLink>
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/series" passHref>
             <StyledNavLink
-              current={pathNameArr[0] === 'series' ? true : false}
+              current={pathNameArr[0] === 'series' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -42,7 +42,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/user_followers" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'user_followers' ? true : false}
+              current={pathNameArr[2] === 'user_followers' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -54,7 +54,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/following_tags" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'following_tags' ? true : false}
+              current={pathNameArr[2] === 'following_tags' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -66,7 +66,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/following_users" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'following_users' ? true : false}
+              current={pathNameArr[2] === 'following_users' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -78,7 +78,9 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/following_organizations" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'following_organizations' ? true : false}
+              current={
+                pathNameArr[2] === 'following_organizations' ? true.toString() : false.toString()
+              }
               underline="none"
               textPrimary
             >
@@ -88,9 +90,11 @@ const StatisticsSidebar: FC = () => {
           </Link>
         </ListItem>
         <ListItem style={{ padding: 0 }}>
-          <Link href="/dashboard" passHref>
+          <Link href="/dashboard/following_organizations" passHref>
             <StyledNavLink
-              current={pathNameArr.length === 2 ? true : false}
+              current={
+                pathNameArr[2] === 'following_organizations' ? true.toString() : false.toString()
+              }
               underline="none"
               textPrimary
             >
@@ -102,7 +106,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/following_podcasts" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'following_podcasts' ? true : false}
+              current={pathNameArr[2] === 'following_podcasts' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -114,7 +118,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/listings" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'listings' ? true : false}
+              current={pathNameArr[2] === 'listings' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >
@@ -126,7 +130,7 @@ const StatisticsSidebar: FC = () => {
         <ListItem style={{ padding: 0 }}>
           <Link href="/dashboard/analytics" passHref>
             <StyledNavLink
-              current={pathNameArr[2] === 'analytics' ? true : false}
+              current={pathNameArr[2] === 'analytics' ? true.toString() : false.toString()}
               underline="none"
               textPrimary
             >

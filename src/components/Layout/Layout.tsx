@@ -12,9 +12,12 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
-      <Header display={router.pathname === '/new' ? true : false} />
+      <Header
+        display={router.pathname === '/new' || router.pathname.slice(-4) === 'edit' ? true : false}
+      />
       {children}
       <Footer display={router.pathname === '/new' ? true : false} />
     </div>

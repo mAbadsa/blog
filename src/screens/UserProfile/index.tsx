@@ -14,8 +14,6 @@ const UserProfile: FC<{ userData: any }> = ({ userData }) => {
   const classes = useStyles({ theme });
   const { error, isLoading, user } = useUser();
 
-  console.log({ userData });
-
   if (userData.error) return <div>{userData.message}</div>;
 
   return (

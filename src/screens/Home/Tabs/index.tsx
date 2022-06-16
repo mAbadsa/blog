@@ -3,7 +3,6 @@ import { useTheme } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import PostsContainer from '../../../components/PostsContainer';
@@ -26,7 +25,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`home-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={0}>{children}</Box>}
+      {value === index && <>{children}</>}
     </div>
   );
 }

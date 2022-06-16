@@ -18,7 +18,6 @@ const PostCardAvatar: FC<{
   const theme = useTheme();
   const classes = useStyles({ theme });
 
-  console.log(avatar);
   return (
     <div className={classes.PostCardAvatar}>
       <Link href={`/${username}`} passHref>

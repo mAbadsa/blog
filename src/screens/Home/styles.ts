@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: '1280px',
     paddingRight: '1rem !important',
     paddingLeft: '1rem !important',
+    paddingTop: '56px',
   },
   mainGrid: {
     display: 'flex',
