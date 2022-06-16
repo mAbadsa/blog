@@ -3,6 +3,7 @@ import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
+import { uploadDraftArticle } from '../../services/ArticleForm';
 
 import Form from './component/Form';
 import Header from './component/Header';
@@ -10,7 +11,7 @@ import Preview from './component/preview';
 import tagsProps from '../../components/interface/Tags';
 import useStyles from './styles';
 import Modal from '../../components/Modal';
-import CloseDialog from './component/CloseDialog';
+import CloseDialog from '../../components/CloseFormDialog';
 import Footer from './component/Footer';
 
 interface TabPanelProps {
@@ -53,9 +54,18 @@ const ArticleForm: FC = () => {
   const [title, setTitle] = useState('');
   const [coverImage, setCoverImage] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { mutate, isLoading, isError, isSuccess } = useMutation(
-    (article: Object) => postArticle(article),
+
+  const articleMutate = useMutation((article: Object) => postArticle(article), {
+    onSuccess: async (data: AxiosResponse) => {},
+  });
+
+  const draftArticleMutate = useMutation(
+    (article: {
+      coverImage: string | undefined;
+      title: string;
+      tags: string[] | undefined;
+      textareaValue: string | undefined;
+    }) => uploadDraftArticle({ axios })(article),
     {
       onSuccess: async (data: AxiosResponse) => {},
     },
@@ -116,10 +126,17 @@ const ArticleForm: FC = () => {
       textareaValue,
     };
     console.log({ articlePayload });
-    mutate(articlePayload);
+    articleMutate.mutate(articlePayload);
   }
 
-  function handleSaveDraft() {}
+  function handleSaveDraft() {
+    draftArticleMutate.mutate({
+      coverImage,
+      title,
+      tags,
+      textareaValue,
+    });
+  }
 
   return (
     <div className={classes.ArticleForm}>

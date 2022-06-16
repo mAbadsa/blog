@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 const getTime = (date: string) => {
   const createdAtInSecond: number = Math.abs(dayjs(date).diff(Date.now(), 'second'));
   let createdAt: string;
-  console.log(createdAtInSecond);
 
   if (createdAtInSecond < 60) {
     createdAt = `${Math.floor(createdAtInSecond).toString()} ${
