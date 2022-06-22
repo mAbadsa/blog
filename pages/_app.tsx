@@ -10,6 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
 
 import Layout from '../src/components/Layout/Layout';
+import '../styles/globals.css';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
