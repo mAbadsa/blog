@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& span[class^=PrivateTabIndicator]': {
       backgroundColor: 'transparent',
     },
-    '& span[class^=indicator]': {
+    '& span[class$=indicator]': {
       display: 'none',
     },
     '& button[class^=MuiButtonBase]': {
