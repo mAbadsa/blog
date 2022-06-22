@@ -50,9 +50,9 @@ const FeedTabs: FC = () => {
     <div className={classes.Taps}>
       <AppBar className={classes.appBar_bg} position="static">
         <Tabs value={value} onChange={handleChange} aria-label="home tabs">
-          <Tab label="Feed" {...a11yProps(0)} />
-          <Tab label="Latest" {...a11yProps(1)} />
-          <Tab label="Top" {...a11yProps(2)} />
+          <Tab label="Relevant" {...a11yProps(0)} disableRipple />
+          <Tab label="Latest" {...a11yProps(1)} disableRipple />
+          <Tab label="Top" {...a11yProps(2)} disableRipple />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
