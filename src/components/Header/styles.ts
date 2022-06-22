@@ -3,7 +3,6 @@ import { alpha, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) => ({
   Header: {
     flexGrow: 1,
-    position: 'fixed',
     zIndex: 10000,
     width: '100%',
   },
@@ -15,6 +14,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     backgroundColor: '#fff',
     height: '56px',
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   toobar: {
     padding: '0 0.5rem',
