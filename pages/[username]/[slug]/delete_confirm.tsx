@@ -14,7 +14,6 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import auth0 from '../../../lib/auth0';
 
 const DeleteConfirm: NextPage<any, any> = ({ data }) => {
-  console.log({ data });
   return <ConfirmDeleteScreen article={data.article} />;
 };
 
@@ -42,7 +41,6 @@ export const getServerSideProps: GetServerSideProps<
       },
     };
   } catch (error) {
-    // console.log({ error });
     return {
       props: {
         error: 'Error!!!',
