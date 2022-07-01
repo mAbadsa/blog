@@ -1,5 +1,9 @@
 import { FC, MouseEventHandler } from 'react';
+import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMutation } from 'react-query';
+import { deleteArticle } from '../../services/Articles';
 
 import {
   StyledDeleteConfirm,
@@ -11,6 +15,21 @@ import {
 } from './styles';
 
 const DeleteConfirm: FC<{ slug: string; username: string }> = ({ slug, username }) => {
+  const router = useRouter();
+  const { mutate } = useMutation(
+    'delete-article',
+    (slug: string) => deleteArticle({ axios })({ slug }),
+    {
+      onSuccess: () => {
+        router.push('/dashboard');
+      },
+    },
+  );
+
+  const handleDelete = (_slug: string) => {
+    mutate(_slug);
+  };
+
   return (
     <StyledDeleteConfirm>
       <StyledHeader variant="h2" component="div">
@@ -25,7 +44,12 @@ const DeleteConfirm: FC<{ slug: string; username: string }> = ({ slug, username 
           {' instead? '}
         </StyledDescBody>
         <StyledDialogActions>
-          <StyledButton variant="contained" size="medium" disableElevation>
+          <StyledButton
+            variant="contained"
+            size="medium"
+            onClick={() => handleDelete(slug)}
+            disableElevation
+          >
             Delete
           </StyledButton>
           <Link href={`/${username}/${slug}/edit`} passHref>

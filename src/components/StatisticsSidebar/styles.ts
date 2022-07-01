@@ -30,7 +30,7 @@ export const StyledList = Styled(List)`
 export const StyledNavLink: ComponentType<any> = Styled(NavLink)<{ current?: boolean }>`
   ${({ theme, current }) => `
     display: flex;
-    color: #040404;
+    color: #404040;
     font-size: 16px;
     align-items: center;
     flex-grow: 1;
