@@ -43,7 +43,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const ArticleForm: FC = () => {
+const ArticleForm: FC<{ mode: string; defaultData?: any }> = ({ mode = 'new', defaultData }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
@@ -54,6 +54,8 @@ const ArticleForm: FC = () => {
   const [title, setTitle] = useState('');
   const [coverImage, setCoverImage] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
+
+  console.log({ defaultData });
 
   const articleMutate = useMutation((article: Object) => postArticle(article), {
     onSuccess: async (data: AxiosResponse) => {},

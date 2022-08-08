@@ -2,7 +2,12 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'res.cloudinary.com', 'lh3.googleusercontent.com'],
+    domains: [
+      'localhost',
+      'res.cloudinary.com',
+      'lh3.googleusercontent.com',
+      'https://lh3.googleusercontent.com',
+    ],
   },
   compiler: {
     styledComponents: true,

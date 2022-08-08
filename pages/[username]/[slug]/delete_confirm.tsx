@@ -11,8 +11,6 @@ import { CircularProgress, Container, Snackbar } from '@material-ui/core';
 import ConfirmDeleteScreen from '../../../src/screens/ConfirmDeleteScreen';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-import auth0 from '../../../lib/auth0';
-
 const DeleteConfirm: NextPage<any, any> = ({ data }) => {
   return <ConfirmDeleteScreen article={data.article} />;
 };
