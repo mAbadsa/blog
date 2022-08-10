@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'visible',
     flexShrink: 0,
     margin: '-2rem -4rem 2rem -4rem',
-    zIndex: 1000,
+    zIndex: 100,
     [theme.breakpoints.down('md')]: {
       margin: '-2rem -3rem 1.5rem -3rem',
     },
