@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useTheme } from '@material-ui/core';
 import ToolPanel from './ToolPanel';
 import useStyles from './styles';
@@ -9,9 +9,16 @@ const MDEditor = ({ handleMDText, mdText, setCursorPostion, setPanelValue, setRe
   const textareaRef = useRef();
 
   function handleFocus(evt) {
-    console.log({ sPostion: evt.target.selectionEnd });
     setCursorPostion(evt.target.selectionEnd);
+    evt.target.style.height = 'auto';
+    evt.target.style.height = evt.target.scrollHeight + 'px';
   }
+
+  function handleChangeHeight(evt) {
+    evt.target.style.height = 'auto';
+    evt.target.style.height = evt.target.scrollHeight + 'px';
+  }
+
   return (
     <div className={classes.root}>
       <ToolPanel
@@ -28,6 +35,7 @@ const MDEditor = ({ handleMDText, mdText, setCursorPostion, setPanelValue, setRe
           value={mdText}
           onClick={handleFocus}
           onKeyDown={handleFocus}
+          onKeyPress={handleChangeHeight}
           ref={textareaRef}
         ></textarea>
       </div>
