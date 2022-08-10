@@ -12,7 +12,7 @@ import useStyles from './styles';
 import { useTheme } from '@material-ui/styles';
 
 const uploadImage = async (imgData: string | ArrayBuffer | null) => {
-  let response: AxiosResponse = await axios.post('api/articles/cover-image', {
+  let response: AxiosResponse = await axios.post('/api/articles/cover-image', {
     data: imgData,
   });
 
