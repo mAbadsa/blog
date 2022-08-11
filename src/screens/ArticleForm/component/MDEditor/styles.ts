@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '0 0 0.375rem 0.375rem',
   },
   textArea: {
-    minHeight: '100px',
+    minHeight: '100%',
     whiteSpace: 'pre-wrap',
     fontSize: '1.125rem',
     background: 'transparent',
