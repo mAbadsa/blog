@@ -15,17 +15,14 @@ const uploadDraftArticle =
     tags,
     textareaValue,
   }: T): Promise<AxiosResponse<any>> => {
-    const res: AxiosResponse = await axios.post(
-      'http://localhost:3000/api/articles/draft-article',
-      {
-        data: {
-          coverImage,
-          title,
-          tags,
-          textareaValue,
-        },
+    const res: AxiosResponse = await axios.post('/api/articles/draft-article', {
+      data: {
+        coverImage,
+        title,
+        tags,
+        textareaValue,
       },
-    );
+    });
     return res;
   };
 
