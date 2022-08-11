@@ -4,6 +4,7 @@ import getArticleById from './getArticleById';
 import getArticleBySlug from './getArticleBySlug';
 import insertDraftArticle from './insertDraftArticle';
 import deleteArticle from './deleteArticle';
+import updateArticle from './updateArticle';
 
 export {
   insertNewArticle,
@@ -12,4 +13,5 @@ export {
   getArticleBySlug,
   insertDraftArticle,
   deleteArticle,
+  updateArticle,
 };
