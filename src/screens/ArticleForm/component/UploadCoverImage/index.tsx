@@ -175,7 +175,7 @@ const UploadCoverImage: FC<{
             width={250}
             height={105}
             layout="intrinsic"
-            objectFit="cover"
+            objectFit="scale-down"
             alt={'Post cover'}
           />
         </div>
