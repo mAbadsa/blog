@@ -30,7 +30,7 @@ const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
                 width={250}
                 height={105}
                 layout="fill"
-                objectFit="cover"
+                objectFit="scale-down"
                 alt={'Post cover'}
                 priority
                 placeholder="blur"

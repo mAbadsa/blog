@@ -1,24 +1,27 @@
 import axios, { AxiosResponse, AxiosStatic } from 'axios';
 
-const uploadDraftArticle =
+const updateArticle =
   ({ axios }: { axios: AxiosStatic }) =>
   async <
     T extends {
       coverImage: string | undefined;
       title: string;
+      slug: string;
       tags: string[] | undefined;
       textareaValue: string | undefined;
     },
   >({
     coverImage,
     title,
+    slug,
     tags,
     textareaValue,
   }: T): Promise<AxiosResponse<any>> => {
-    const res: AxiosResponse = await axios.post('/api/articles/draft-article', {
+    const res: AxiosResponse = await axios.put('/api/articles', {
       data: {
         coverImage,
         title,
+        slug,
         tags,
         textareaValue,
       },
@@ -26,4 +29,4 @@ const uploadDraftArticle =
     return res;
   };
 
-export default uploadDraftArticle;
+export default updateArticle;

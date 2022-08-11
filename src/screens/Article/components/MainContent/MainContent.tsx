@@ -33,14 +33,16 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
     <MainContentStyled>
       <Article>
         <ArticleHeader>
-          <StyledImage
-            src={cover_image}
-            alt="cover image"
-            width="100"
-            height="42"
-            sizes="100vw"
-            objectFit="cover"
-          />
+          {cover_image && (
+            <StyledImage
+              src={cover_image}
+              alt="cover image"
+              width="100"
+              height="42"
+              sizes="100vw"
+              objectFit="cover"
+            />
+          )}
           <ArticleHeaderMeta>
             <UserAvatar username={username} date={created_at} slug={slug} avatar={profile_image} />
             <ArticleTitle variant="h1">{title}</ArticleTitle>

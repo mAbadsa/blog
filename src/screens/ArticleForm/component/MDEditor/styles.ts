@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   MDEditor: {
-    minHeight: '500px',
+    minHeight: '150px',
     flex: '1 0 auto',
     position: 'relative',
     outline: 'none',
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '0 0 0.375rem 0.375rem',
   },
   textArea: {
-    minHeight: '500px',
+    minHeight: '100%',
     whiteSpace: 'pre-wrap',
     fontSize: '1.125rem',
     background: 'transparent',
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     boxShadow: 'none',
     resize: 'none',
+    overflow: 'hidden',
     transition: 'none',
   },
 }));
