@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  basePath: '',
+  poweredByHeader: false,
   images: {
     domains: [
       'localhost',

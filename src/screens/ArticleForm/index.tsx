@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
-import { uploadDraftArticle } from '../../services/ArticleForm';
+import { uploadDraftArticle, updateArticle } from '../../services/ArticleForm';
 
 import Form from './component/Form';
 import Header from './component/Header';
@@ -21,7 +21,7 @@ interface TabPanelProps {
 }
 
 async function postArticle<T extends Object>(article: T) {
-  const res: AxiosResponse = await axios.post('api/articles', {
+  const res: AxiosResponse = await axios.post('/api/articles', {
     data: article,
   });
   return res;
@@ -43,16 +43,21 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const ArticleForm: FC<{ mode: string; defaultData?: any }> = ({ mode = 'new', defaultData }) => {
+const ArticleForm: FC<{ mode?: string; defaultData?: any }> = ({
+  mode = 'new',
+  defaultData = { cover_image: '', content: '', tags: '', title: '', slug: '' },
+}) => {
+  const { cover_image, content, tags: tagsList, title: defaultTitle, slug } = defaultData;
+
   const theme = useTheme();
   const classes = useStyles({ theme });
   const [value, setValue] = useState(0);
   const [toolPanelValue, setToolPanelValue] = useState<string>('');
   const [cursorPostion, setCursorPostion] = useState(0);
-  const [textareaValue, setTextareaValue] = useState('');
-  const [tags, setTags] = useState<string[]>();
-  const [title, setTitle] = useState('');
-  const [coverImage, setCoverImage] = useState<string>('');
+  const [textareaValue, setTextareaValue] = useState(content || '');
+  const [tags, setTags] = useState<string[]>(tagsList?.split(',') || []);
+  const [title, setTitle] = useState(defaultTitle || '');
+  const [coverImage, setCoverImage] = useState<string>(cover_image || '');
   const [open, setOpen] = useState<boolean>(false);
 
   console.log({ defaultData });
@@ -60,6 +65,19 @@ const ArticleForm: FC<{ mode: string; defaultData?: any }> = ({ mode = 'new', de
   const articleMutate = useMutation((article: Object) => postArticle(article), {
     onSuccess: async (data: AxiosResponse) => {},
   });
+
+  const updateArticleMutate = useMutation(
+    (article: {
+      coverImage: string | undefined;
+      title: string;
+      slug: string;
+      tags: string[] | undefined;
+      textareaValue: string | undefined;
+    }) => updateArticle({ axios })(article),
+    {
+      onSuccess: async (data: AxiosResponse) => {},
+    },
+  );
 
   const draftArticleMutate = useMutation(
     (article: {
@@ -131,6 +149,18 @@ const ArticleForm: FC<{ mode: string; defaultData?: any }> = ({ mode = 'new', de
     articleMutate.mutate(articlePayload);
   }
 
+  function handleUpdateArticle() {
+    const articlePayload = {
+      coverImage,
+      title,
+      slug,
+      tags,
+      textareaValue,
+    };
+    console.log({ articlePayload });
+    updateArticleMutate.mutate(articlePayload);
+  }
+
   function handleSaveDraft() {
     draftArticleMutate.mutate({
       coverImage,
@@ -171,7 +201,12 @@ const ArticleForm: FC<{ mode: string; defaultData?: any }> = ({ mode = 'new', de
           />
         </TabPanel>
       </div>
-      <Footer handlePublishArticle={handlePublishArticle} handleSaveDraft={handleSaveDraft} />
+      <Footer
+        handlePublishArticle={handlePublishArticle}
+        handleSaveDraft={handleSaveDraft}
+        handleUpdateArticle={handleUpdateArticle}
+        mode={mode}
+      />
     </div>
   );
 };
