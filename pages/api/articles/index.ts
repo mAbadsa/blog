@@ -1,9 +1,11 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import slugify from "slugify";
-import cryptoRandomString from "crypto-random-string";
-import auth0 from "../../../lib/auth0";
-import { insertNewArticle, getAllArticle } from "../models/queries/articles";
-import { getUserByEmail } from "../models/queries/users";
+import { NextApiRequest, NextApiResponse } from 'next';
+import slugify from 'slugify';
+import cryptoRandomString from 'crypto-random-string';
+import auth0 from '../../../lib/auth0';
+import { insertNewArticle, updateArticle } from '../models/queries/articles';
+import { getUserByEmail } from '../models/queries/users';
+import { deleteArticle } from '../models/queries/articles';
+import connection from '../models/connection';
 
 type Data = {
   statusCode?: Number;
@@ -16,52 +18,61 @@ type Data = {
 export default auth0.withApiAuthRequired(
   async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     try {
-      if (req.method === "POST") {
+      if (req.method === 'POST') {
         const { data } = req.body;
         // get the looged user session
-        const me = await auth0.getSession(req, res);
-        const cryptoString = cryptoRandomString({ length: 4, type: "base64" });
-        const titleWithCryptoString = data.title + " " + cryptoString;
+        const me = auth0.getSession(req, res);
+        const cryptoString = cryptoRandomString({ length: 4, type: 'base64' });
+        const titleWithCryptoString = data.title + ' ' + cryptoString;
         const slug = slugify(titleWithCryptoString);
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
-        console.log({ user: rows[0] });
-        const { rowCount, rows: dbResult } = await insertNewArticle({
+        const { rowCount, rows: dbResult } = await insertNewArticle({ connection })({
           coverImage: data.coverImage,
           title: data.title,
           content: data.textareaValue,
           slug,
-          tags: data.tags.join(", "),
+          status: 'published',
+          tags: data.tags.join(', '),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
         });
 
         if (rowCount < 1) {
-          throw new Error("something went wrong");
+          throw new Error('something went wrong');
         }
 
-        return res
-          .status(201)
-          .json({ statusCode: 201, success: true, article: dbResult[0] });
-      } else if (req.method === "GET") {
-        const { limit, offset } = req.query;
-        console.log({ limit, offset });
-        const { rows, rowCount } = await getAllArticle({
-          limit: +limit,
-          offset: +offset,
+        return res.status(201).json({ statusCode: 201, success: true, article: dbResult[0] });
+      } else if (req.method === 'PUT') {
+        const { data } = req.body;
+        console.log({ data });
+        const { rowCount, rows: dbResult } = await updateArticle({ connection })({
+          title: data.title,
+          slug: data.slug,
+          tags: data.tags.join(', '),
+          content: data.textareaValue,
+          coverImage: data.coverImage,
         });
-        console.log({ rows });
-        console.log({ rowCount });
-        return res
-          .status(201)
-          .json({ statusCode: 200, success: true, articles: rows });
+
+        if (rowCount < 1) {
+          throw new Error('something went wrong');
+        }
+
+        return res.status(200).json({ statusCode: 200, success: true, article: dbResult[0] });
+      } else if (req.method === 'DELETE') {
+        const { slug } = req.body;
+
+        const { rowCount, rows } = await deleteArticle({ connection })({ slug });
+
+        if (rowCount < 1) {
+          throw new Error('something went wrong');
+        }
+        return res.status(200).json({ statusCode: 200, success: true });
       }
     } catch (error: any) {
       console.log(error);
-      return res
-        .status(error.status || 500)
-        .json({ success: false, error: error.message });
+      return res.status(error.status || 500).json({ success: false, error: error.message });
     }
-  }
+  },
 );

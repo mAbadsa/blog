@@ -14,5 +14,4 @@ const addUser = () => {
   return connection.query(sql);
 };
 
-
-export {getUserData, addUser};
+export { getUserData, addUser };

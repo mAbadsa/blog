@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import auth0 from "../../../lib/auth0";
-import { getUserByEmail } from "../models/queries/users";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import auth0 from '../../../lib/auth0';
+import { getUserByEmail } from '../models/queries/users';
 
 type Data = {
   success: Boolean;
@@ -18,9 +18,7 @@ export default auth0.withApiAuthRequired(
         data: user,
       });
     } catch (error: any) {
-      res
-        .status(error.status || 500)
-        .json({ success: false, error: error.message });
+      res.status(error.status || 500).json({ success: false, error: error.message });
     }
-  }
+  },
 );
