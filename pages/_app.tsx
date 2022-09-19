@@ -9,7 +9,6 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
 
-import Layout from '../src/components/Layout/Layout';
 import '../styles/globals.css';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
@@ -23,13 +22,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <StyledThemeProvider theme={theme}>
           <CssBaseline />
           <UserProvider>
-            <Layout>
-              <QueryClientProvider client={queryClient}>
-                <Hydrate state={pageProps.dehydratedState}>
-                  <Component {...pageProps} />
-                </Hydrate>
-              </QueryClientProvider>
-            </Layout>
+            <QueryClientProvider client={queryClient}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <Component {...pageProps} />
+              </Hydrate>
+            </QueryClientProvider>
           </UserProvider>
         </StyledThemeProvider>
       </ThemeProvider>
