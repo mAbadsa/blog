@@ -10,6 +10,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import auth0 from '../../lib/auth0';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
+import Layout from '../../src/components/Layout/Layout';
 
 import Dashboard from '../../src/screens/Dashboard';
 
@@ -26,7 +27,11 @@ const DashboardPage: NextPage<any, any> = ({
   }>;
 }) => {
   console.log({ data });
-  return <Dashboard posts={data} />;
+  return (
+    <Layout>
+      <Dashboard posts={data} />
+    </Layout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<
