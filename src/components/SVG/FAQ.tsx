@@ -1,14 +1,9 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 // https://dev.to/
 const FAQ: FC = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 44 44"
-      width="24"
-      height="24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="24" height="24">
       <g>
         <path
           fill="#FFD983"
@@ -22,10 +17,7 @@ const FAQ: FC = () => {
           fill="#FFCC4D"
           d="M26.707 14.293a.999.999 0 00-1.414 0L22 17.586l-3.293-3.293a1 1 0 10-1.414 1.414L21 19.414V30a1 1 0 102 0V19.414l3.707-3.707a.999.999 0 000-1.414z"
         ></path>
-        <path
-          fill="#99AAB5"
-          d="M28 35a2 2 0 01-2 2h-8a2 2 0 01-2-2v-6h12v6z"
-        ></path>
+        <path fill="#99AAB5" d="M28 35a2 2 0 01-2 2h-8a2 2 0 01-2-2v-6h12v6z"></path>
         <path
           fill="#CCD6DD"
           d="M15.999 36a1 1 0 01-.163-1.986l12-2a.994.994 0 011.15.822.999.999 0 01-.822 1.15l-12 2a.927.927 0 01-.165.014zm0-4a1 1 0 01-.163-1.986l12-2a.995.995 0 011.15.822.999.999 0 01-.822 1.15l-12 2a.927.927 0 01-.165.014z"

@@ -1,4 +1,4 @@
-import hashTagCardProps from "./HashTagCard";
+import hashTagCardProps from './HashTagCard';
 
 export default interface hashTagsListProps {
   title: string;

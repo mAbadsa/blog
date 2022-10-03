@@ -3,11 +3,13 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { UserProvider } from '@auth0/nextjs-auth0';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
 
 import { ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
+import { store } from '../src/redux/store';
 
 import '../styles/globals.css';
 
@@ -22,11 +24,13 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
         <StyledThemeProvider theme={theme}>
           <CssBaseline />
           <UserProvider>
-            <QueryClientProvider client={queryClient}>
-              <Hydrate state={pageProps.dehydratedState}>
-                <Component {...pageProps} />
-              </Hydrate>
-            </QueryClientProvider>
+            <Provider store={store}>
+              <QueryClientProvider client={queryClient}>
+                <Hydrate state={pageProps.dehydratedState}>
+                  <Component {...pageProps} />
+                </Hydrate>
+              </QueryClientProvider>
+            </Provider>
           </UserProvider>
         </StyledThemeProvider>
       </ThemeProvider>

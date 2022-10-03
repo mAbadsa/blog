@@ -1,15 +1,15 @@
-import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { UserProvider } from "@auth0/nextjs-auth0";
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { UserProvider } from '@auth0/nextjs-auth0';
 
-import Header from "./";
+import Header from './';
 
 export default {
-  title: "Components/Header",
+  title: 'Components/Header',
   component: Header,
 } as ComponentMeta<typeof Header>;
 
-const Template: ComponentStory<typeof Header> = (args) => (
+const Template: ComponentStory<typeof Header> = args => (
   <UserProvider>
     <Header {...args} />
   </UserProvider>

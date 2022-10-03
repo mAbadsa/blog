@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheets } from "@material-ui/core/styles";
-import { ServerStyleSheet } from "styled-components";
-import theme from "../styles/theme";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheet } from 'styled-components';
+import theme from '../styles/theme';
 
 class MyDocument extends Document {
   render() {
@@ -29,7 +29,7 @@ class MyDocument extends Document {
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with server-side generation (SSG).
-MyDocument.getInitialProps = async (ctx) => {
+MyDocument.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
@@ -59,7 +59,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceApp: App => props => sheets.collect(<App {...props} />),
     });
 
   const initialProps = await Document.getInitialProps(ctx);

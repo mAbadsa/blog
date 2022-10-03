@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 // https://dev.to/
 const Home: FC = () => {
@@ -27,10 +27,7 @@ const Home: FC = () => {
           d="M22 21a.999.999 0 01-.707-1.707l6.5-6.5a1 1 0 111.414 1.414l-6.5 6.5A.997.997 0 0122 21z"
         ></path>
         <path fill="#C1694F" d="M14 30h4v6h-4z"></path>
-        <path
-          fill="#55ACEE"
-          d="M14 21h4v4h-4zm12.5 0h4v4h-4zm0 9h4v4h-4z"
-        ></path>
+        <path fill="#55ACEE" d="M14 21h4v4h-4zm12.5 0h4v4h-4zm0 9h4v4h-4z"></path>
         <path
           fill="#5C913B"
           d="M37.5 37.5A1.5 1.5 0 0136 39H8a1.5 1.5 0 010-3h28a1.5 1.5 0 011.5 1.5z"

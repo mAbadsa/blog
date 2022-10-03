@@ -1,11 +1,11 @@
-import { FC, ReactElement } from "react";
-import Link from "next/link";
-import { useTheme, Link as MUILink } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { FC, ReactElement } from 'react';
+import Link from 'next/link';
+import { useTheme, Link as MUILink } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
-import HashTagCard from "./HashTagCard";
-import HashTagsListProps from "../../interface/HashTagsList";
-import useStyles from "./styles";
+import HashTagCard from './HashTagCard';
+import HashTagsListProps from '../../interface/HashTagsList';
+import useStyles from './styles';
 
 const HashTagsList: FC<HashTagsListProps> = ({ title, articles }) => {
   const theme = useTheme();
@@ -14,7 +14,7 @@ const HashTagsList: FC<HashTagsListProps> = ({ title, articles }) => {
   const HashTagCards: Array<ReactElement> = articles.map(
     ({ id, title: _title, commentsNo, url }) => (
       <HashTagCard key={id} title={_title} commentsNo={commentsNo} url={url} />
-    )
+    ),
   );
 
   return (

@@ -1,5 +1,5 @@
-import UserData from "./UserData";
-import tagsType from "./Tags";
+import UserData from './UserData';
+import tagsType from './Tags';
 
 export default interface Articles {
   id: number;

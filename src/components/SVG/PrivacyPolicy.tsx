@@ -1,14 +1,9 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 // https://dev.to/
 const PrivacyPolicy: FC = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 44 44"
-      width="24"
-      height="24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="24" height="24">
       <g transform="translate(4 4)">
         <circle fill="#FFCC4D" cx="18" cy="18" r="18"></circle>
         <path

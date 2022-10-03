@@ -1,18 +1,18 @@
-import React, { FC, KeyboardEvent, MouseEvent } from "react";
-import Link from "next/link";
-import { useUser } from "@auth0/nextjs-auth0";
+import React, { FC, KeyboardEvent, MouseEvent } from 'react';
+import Link from 'next/link';
+import { useUser } from '@auth0/nextjs-auth0';
 
-import { Typography, useTheme } from "@material-ui/core";
-import List from "@material-ui/core/List";
-import Button from "../Button";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import SVGIcons from "../SVG/SVGIcons";
-import Promotion from "../Promotion";
+import { Typography, useTheme } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import Button from '../Button';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import SVGIcons from '../SVG/SVGIcons';
+import Promotion from '../Promotion';
 
-import SidebareListProps from "../interface/SidebarList";
-import useStyles from "./styles";
+import SidebareListProps from '../interface/SidebarList';
+import useStyles from './styles';
 
 const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
   const theme = useTheme();
@@ -45,28 +45,19 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
           <Link href="/api/auth/sign" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.Signin />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Sign In/Up"
-              />
+              <ListItemText className={classes.listItemText} primary="Sign In/Up" />
             </ListItem>
           </Link>
           <Link href="/listings" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.Listing />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Listings"
-              />
+              <ListItemText className={classes.listItemText} primary="Listings" />
             </ListItem>
           </Link>
           <Link href="/podcasts" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.Podcasts />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Podcasts"
-              />
+              <ListItemText className={classes.listItemText} primary="Podcasts" />
             </ListItem>
           </Link>
           <Link href="/videos" passHref>
@@ -90,19 +81,13 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
           <Link href="/devshop" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.DEVShop />
-              <ListItemText
-                className={classes.listItemText}
-                primary="DEVShop"
-              />
+              <ListItemText className={classes.listItemText} primary="DEVShop" />
             </ListItem>
           </Link>
           <Link href="/sponser" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.Sponser />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Sponser"
-              />
+              <ListItemText className={classes.listItemText} primary="Sponser" />
             </ListItem>
           </Link>
           <Link href="/about" passHref>
@@ -114,10 +99,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
           <Link href="/contact" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.Contact />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Contact"
-              />
+              <ListItemText className={classes.listItemText} primary="Contact" />
             </ListItem>
           </Link>
         </List>
@@ -129,28 +111,19 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
           <Link href="/code-of-conduct" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.CodeOfConduct />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Code of Conduct"
-              />
+              <ListItemText className={classes.listItemText} primary="Code of Conduct" />
             </ListItem>
           </Link>
           <Link href="/privacy" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.PrivacyPolicy />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Privacy Policy"
-              />
+              <ListItemText className={classes.listItemText} primary="Privacy Policy" />
             </ListItem>
           </Link>
           <Link href="/terms" passHref>
             <ListItem className={classes.ListItem} button>
               <SVGIcons.TermsOfUse />
-              <ListItemText
-                className={classes.listItemText}
-                primary="Terms of use"
-              />
+              <ListItemText className={classes.listItemText} primary="Terms of use" />
             </ListItem>
           </Link>
         </List>

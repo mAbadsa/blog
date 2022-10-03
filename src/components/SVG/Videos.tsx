@@ -1,14 +1,9 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 // https://dev.to/
 const Videos: FC = () => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 44 44"
-      width="24"
-      height="24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="24" height="24">
       <g transform="translate(4 4)">
         <path
           fill="#31373D"

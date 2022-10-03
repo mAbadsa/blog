@@ -1,10 +1,10 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC } from 'react';
+import Link from 'next/link';
 
-import { Link as MUILink, useTheme } from "@material-ui/core";
+import { Link as MUILink, useTheme } from '@material-ui/core';
 
-import hashTagCardProps from "../../../interface/HashTagCard";
-import useStyles from "./styles";
+import hashTagCardProps from '../../../interface/HashTagCard';
+import useStyles from './styles';
 
 const HashTagCard: FC<hashTagCardProps> = ({ url, title, commentsNo }) => {
   const theme = useTheme();
@@ -15,7 +15,7 @@ const HashTagCard: FC<hashTagCardProps> = ({ url, title, commentsNo }) => {
         <MUILink>
           {title}
           <div className={classes.comment}>
-            {commentsNo} {commentsNo === 1 ? "comment" : "comments"}
+            {commentsNo} {commentsNo === 1 ? 'comment' : 'comments'}
           </div>
         </MUILink>
       </Link>
