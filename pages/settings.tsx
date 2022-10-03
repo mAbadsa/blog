@@ -11,10 +11,15 @@ import auth0 from '../lib/auth0';
 import UserProfile from '../src/screens/UserProfile';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
+import Layout from '../src/components/Layout/Layout';
 
 const Settings: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);
-  return <UserProfile userData={userData} />;
+  return (
+    <Layout>
+      <UserProfile userData={userData} />
+    </Layout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<
