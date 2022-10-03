@@ -19,15 +19,25 @@ const Home: FC = () => {
   const { user, isLoading: _isLoading, error } = useUser();
   const { isLoading, data } = useGetUserProfileQuery(user?.nickname as String);
   const dispacth = useDispatch();
-  if (!isLoading) {
-    console.log({ user });
-    console.log({ data });
+  if (!isLoading && user && data.data) {
     dispacth(
       getUserAuth({
         isAuth: true,
         userData: {
           user_id: data.id,
           username: data.username,
+        },
+      }),
+    );
+  }
+
+  if (!isLoading && !user) {
+    dispacth(
+      getUserAuth({
+        isAuth: false,
+        userData: {
+          user_id: undefined,
+          username: undefined,
         },
       }),
     );
