@@ -10,9 +10,14 @@ import Axios, { AxiosResponse } from 'axios';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
 import ConfirmDeleteScreen from '../../../src/screens/ConfirmDeleteScreen';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import Layout from '../../../src/components/Layout/Layout';
 
 const DeleteConfirm: NextPage<any, any> = ({ data }) => {
-  return <ConfirmDeleteScreen article={data.article} />;
+  return (
+    <Layout>
+      <ConfirmDeleteScreen article={data.article} />
+    </Layout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<

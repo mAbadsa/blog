@@ -11,7 +11,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
 import { store } from '../src/redux/store';
 
-import Layout from '../src/components/Layout/Layout';
 import '../styles/globals.css';
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
@@ -26,13 +25,11 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           <CssBaseline />
           <UserProvider>
             <Provider store={store}>
-              <Layout>
-                <QueryClientProvider client={queryClient}>
-                  <Hydrate state={pageProps.dehydratedState}>
-                    <Component {...pageProps} />
-                  </Hydrate>
-                </QueryClientProvider>
-              </Layout>
+              <QueryClientProvider client={queryClient}>
+                <Hydrate state={pageProps.dehydratedState}>
+                  <Component {...pageProps} />
+                </Hydrate>
+              </QueryClientProvider>
             </Provider>
           </UserProvider>
         </StyledThemeProvider>

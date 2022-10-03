@@ -5,9 +5,14 @@ import Axios, { AxiosResponse } from 'axios';
 import ArticleForm from '../../../src/screens/ArticleForm';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
+import Layout from '../../../src/components/Layout/Layout';
 
 const Edit: NextPage<any, any> = ({ data }) => {
-  return <ArticleForm mode="edit" defaultData={data.article} />;
+  return (
+    <Layout>
+      <ArticleForm mode="edit" defaultData={data.article} />
+    </Layout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps<
