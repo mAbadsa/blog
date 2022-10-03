@@ -3,11 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   isAuth: boolean;
-  user_id: Number;
-  username: String;
+  user_id: Number | undefined;
+  username: String | undefined;
 }
 
-const initialState: AuthState = { isAuth: false, user_id: 0, username: '' };
+const initialState: AuthState = { isAuth: false, user_id: undefined, username: '' };
 
 const authSlice = createSlice({
   name: 'general',
