@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ListItem from '@material-ui/core/ListItem';
-import SVGIcons from '../SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 
 import { StyledStatsSideBar, StyledList, StyledNavLink, StyledBadge } from './styles';
 

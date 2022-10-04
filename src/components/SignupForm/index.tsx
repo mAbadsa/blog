@@ -3,12 +3,7 @@ import Link from 'next/link';
 
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Button from '@material-ui/core/Button';
 import { useTheme } from '@material-ui/core';
-import { Link as MUILink } from '@material-ui/core';
 
 import LoginWithGoogle from './LoginWithGoogle';
 import useStyles from './styles';

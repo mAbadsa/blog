@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTheme } from '@material-ui/core';
 
-import HashTagsList from './HashTagsList';
-import hashTagCardProps from '../interface/HashTagCard';
-import useStyles from './styles';
+import HashTagsList from '@components/Additional/HashTagsList';
+import hashTagCardProps from '@components/interface/HashTagCard';
+import useStyles from '@components/Additional/styles';
 
 const fakeData: hashTagCardProps[] = [
   { id: 'news-1', title: 'Some title', commentsNo: 5, url: '/t/news' },

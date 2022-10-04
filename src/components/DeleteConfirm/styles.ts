@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import Styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import NavLink from '../NavLink';
+import NavLink from '@components/NavLink';
 
 export const StyledDeleteConfirm = Styled('div')`
   ${({ theme }) => `

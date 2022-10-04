@@ -3,15 +3,14 @@ import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
-import { uploadDraftArticle, updateArticle } from '../../services/ArticleForm';
+import { uploadDraftArticle, updateArticle } from '@services/ArticleForm';
 
 import Form from './component/Form';
 import Header from './component/Header';
 import Preview from './component/preview';
-import tagsProps from '../../components/interface/Tags';
 import useStyles from './styles';
-import Modal from '../../components/Modal';
-import CloseDialog from '../../components/CloseFormDialog';
+import Modal from '@components/Modal';
+import CloseDialog from '@components/CloseFormDialog';
 import Footer from './component/Footer';
 
 interface TabPanelProps {

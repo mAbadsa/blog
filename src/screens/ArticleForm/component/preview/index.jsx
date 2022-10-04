@@ -4,8 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import CodeBlock from '../MDEditor/codeBlock';
-import Tags from '../../../../components/PostCard/Tags';
-import { toBase64, shimmer } from '../../../../helpers/image/shimmer';
+import Tags from '@components/PostCard/Tags';
+import { toBase64, shimmer } from '@helpers/image/shimmer';
 import useStyles from './styles';
 
 const Preview = ({ mdText, articleTitle, tags, coverImage }) => {

@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeProvider } from '@material-ui/core';
-import Theme from '../../../../../styles/theme';
+import Theme from '@styles/theme';
 import Header from '.';
 
 export default {

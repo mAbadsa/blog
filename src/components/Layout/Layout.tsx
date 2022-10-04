@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
-import Header from '../Header/Header';
-import Footer from '../Footer';
+import Header from '@components/Header/Header';
+import Footer from '@components/Footer';
 import useStyles from './styles';
 
 interface Props {

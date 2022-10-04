@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { useTheme, Link as MUILink } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import NavLink from '../../NavLink';
+import NavLink from '@components/NavLink';
 
 import useStyles from './styles';
 

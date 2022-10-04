@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Link as MUILink, useTheme } from '@material-ui/core';
 
-import hashTagCardProps from '../../../interface/HashTagCard';
+import hashTagCardProps from '@components/interface/HashTagCard';
 import useStyles from './styles';
 
 const HashTagCard: FC<hashTagCardProps> = ({ url, title, commentsNo }) => {

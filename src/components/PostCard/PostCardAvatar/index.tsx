@@ -5,7 +5,7 @@ import { useTheme, Link as MUILink } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 
-import getTime from '../../../helpers/getTime';
+import getTime from '@helpers/getTime';
 
 import useStyles from './styles';
 

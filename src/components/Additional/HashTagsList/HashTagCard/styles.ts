@@ -1,5 +1,4 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
-import transitions from '@material-ui/core/styles/transitions';
 
 const useStyles = makeStyles((theme: Theme) => ({
   HashTagCard: {

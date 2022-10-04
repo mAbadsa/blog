@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useTheme } from '@material-ui/core';
-import SidebarList from '../../components/SidebarList';
+import SidebarList from '@components/SidebarList';
 import FeedTabs from './Tabs';
-import Additional from '../../components/Additional';
+import Additional from '@components/Additional';
 import { useUser } from '@auth0/nextjs-auth0';
+import { useGetUserProfileQuery, useGetArtcilesQuery } from '@redux/slices/api';
+import { getUserAuth } from '@redux/slices/authSlice';
 
 import useStyles from './styles';
-import { useGetUserProfileQuery, useGetArtcilesQuery } from '../../redux/slices/api';
-import { getUserAuth } from '../../redux/slices/authSlice';
 
 const Home: FC = () => {
   const [drawer, setDrawer] = useState(false);

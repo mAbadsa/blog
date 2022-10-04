@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { RightSideStyled, StyledAuthorContainer } from './styles';
-import AuthorPreview from '../../../../components/AuthorPreview';
-import MoreArticles from '../../../../components/MoreArticles';
+import AuthorPreview from '@components/AuthorPreview';
+import MoreArticles from '@components/MoreArticles';
 
 const RightSide: FC<{ userData: any; article: { title: string; tags: string } }> = ({
   userData,

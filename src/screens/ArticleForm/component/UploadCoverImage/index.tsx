@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
 
 import MUIButton from '@material-ui/core/Button';
-import Button from '../../../../components/Button';
+import Button from '@components/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 

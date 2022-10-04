@@ -10,11 +10,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputBase from '@material-ui/core/InputBase';
 
-import Navlinks from './NavLinks/NavLinks';
-import Button from '../Button';
-import SidebarList from '../SidebarList';
+import Navlinks from '@components/Header/NavLinks/NavLinks';
+import Button from '@components/Button';
+import SidebarList from '@components/SidebarList';
+import SVGIcons from '@components/SVG/SVGIcons';
 import useStyles from './styles';
-import SVGIcons from '../SVG/SVGIcons';
 
 const Header: FC<{ display: Boolean }> = ({ display }) => {
   const theme = useTheme();

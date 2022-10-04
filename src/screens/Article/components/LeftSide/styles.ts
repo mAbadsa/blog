@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../../../components/Button';
-import SVGIcons from '../../../../components/SVG/SVGIcons';
+import Button from '@components/Button';
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',

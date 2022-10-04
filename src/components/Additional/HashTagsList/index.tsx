@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useTheme, Link as MUILink } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import HashTagCard from './HashTagCard';
-import HashTagsListProps from '../../interface/HashTagsList';
+import HashTagCard from '@components/Additional/HashTagsList/HashTagCard';
+import HashTagsListProps from '@components/interface/HashTagsList';
 import useStyles from './styles';
 
 const HashTagsList: FC<HashTagsListProps> = ({ title, articles }) => {

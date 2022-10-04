@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 
-import NavLink from '../NavLink';
+import NavLink from '@components/NavLink';
 
 export const StyledFooter = styled('footer')`
   ${({ theme }) => `
