@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import slugify from 'slugify';
 import cryptoRandomString from 'crypto-random-string';
-import auth0 from '../../../lib/auth0';
-import { insertNewArticle } from '../models/queries/articles';
-import { getUserByEmail } from '../models/queries/users';
-import connection from '../models/connection';
+import auth0 from '@lib/auth0';
+import { insertNewArticle } from '@pages/api/models/queries/articles';
+import { getUserByEmail } from '@pages/api/models/queries/users';
+import connection from '@pages/api/models/connection';
 
 type Data = {
   statusCode?: Number;

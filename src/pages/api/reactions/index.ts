@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import auth0 from '../../../lib/auth0';
+import auth0 from '@lib/auth0';
 import {
   addLike,
   getLikeByUserAndArticleId,
   deleteLikeReaction,
-} from '../models/queries/reactions';
-import { getUserByEmail } from '../models/queries/users';
+} from '@pages/api/models/queries/reactions';
+import { getUserByEmail } from '@pages/api/models/queries/users';
 
 type Data = {
   success: Boolean;

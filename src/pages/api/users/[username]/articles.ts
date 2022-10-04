@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import connection from '../../models/connection';
-import { getUserArticles } from '../../models/queries/users';
-import { getUserDraftArticles } from '../../models/queries/users';
-import auth0 from '../../../../lib/auth0';
+import connection from '@pages/api/models/connection';
+import { getUserArticles } from '@pages/api/models/queries/users';
+import auth0 from '@lib/auth0';
 
 type Data = {
   success: boolean;

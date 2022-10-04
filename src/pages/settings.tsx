@@ -7,11 +7,11 @@ import type {
 } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import axios, { AxiosResponse, AxiosRequestHeaders } from 'axios';
-import auth0 from '../lib/auth0';
-import UserProfile from '../screens/UserProfile';
+import auth0 from '@lib/auth0';
+import UserProfile from '@screens/UserProfile';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { CircularProgress, Container, Snackbar } from '@material-ui/core';
-import Layout from '../components/Layout/Layout';
+import Layout from '@components/Layout/Layout';
 
 const Settings: NextPage<any, any> = ({ data: userData }) => {
   console.log(userData);

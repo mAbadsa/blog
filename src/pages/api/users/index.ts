@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import auth0 from '../../../lib/auth0';
-import { getUserByEmail } from '../models/queries/users';
+import auth0 from '@lib/auth0';
+import { getUserByEmail } from '@pages/api/models/queries/users';
 
 type Data = {
   success: Boolean;

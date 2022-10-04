@@ -8,11 +8,11 @@ import type {
 import axios, { AxiosResponse, AxiosRequestHeaders } from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import auth0 from '../../lib/auth0';
-import { CircularProgress, Container, Snackbar } from '@material-ui/core';
-import Layout from '../../components/Layout/Layout';
 
-import Dashboard from '../../screens/Dashboard';
+import auth0 from '@lib/auth0';
+import { CircularProgress, Container, Snackbar } from '@material-ui/core';
+import Layout from '@components/Layout/Layout';
+import Dashboard from '@screens/Dashboard';
 
 const DashboardPage: NextPage<any, any> = ({
   data,

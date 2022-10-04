@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import auth0 from '../../../lib/auth0';
-import { getArticleBySlug } from '../models/queries/articles';
+import { getArticleBySlug } from '@pages/api/models/queries/articles';
 
 type Data = {
   success: boolean;

@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { withApiAuthRequired } from '@auth0/nextjs-auth0';
-import cloudinary from '../../../utils/cloudinary';
-import auth0 from '../../../lib/auth0';
+import cloudinary from '@utils/cloudinary';
+import auth0 from '@lib/auth0';
 
 type Data = {
   statusCode?: Number;
