@@ -14,7 +14,7 @@ import {
   StyledButton,
 } from './styles';
 
-import SVGIcons from '../SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 
 const LoginModal: FC = () => {
   return (

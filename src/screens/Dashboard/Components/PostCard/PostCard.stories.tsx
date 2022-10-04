@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import PostCard from '.';
-import theme from '../../../../../styles/theme';
+import theme from '@styles/theme';
 
 export default {
   title: 'Screens/Dashboard/Components',

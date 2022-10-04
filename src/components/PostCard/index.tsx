@@ -10,13 +10,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import getTime from '../../helpers/getTime';
+import getTime from '@helpers/getTime';
 
-import SVGIcons from '../SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 import PostCardAvatar from './PostCardAvatar';
 import Tags from './Tags';
-import ArticlesType from '../interface/Articles';
-import { shimmer, toBase64 } from '../../helpers/image/shimmer';
+import ArticlesType from '@components/interface/Articles';
+import { shimmer, toBase64 } from '@helpers/image/shimmer';
 
 import useStyles from './styles';
 

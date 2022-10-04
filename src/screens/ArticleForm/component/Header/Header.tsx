@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Close from '@material-ui/icons/Close';
 import useStyles from './styles';
 import { Typography } from '@material-ui/core';
-import SVGIcons from '../../../../components/SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 import FormTabs from './Tabs';
 
 const Header: FC<{

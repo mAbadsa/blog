@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import theme from '../../../styles/theme';
+import theme from '@styles/theme';
 import DeleteConfirm from '.';
 
 export default {

@@ -5,7 +5,7 @@ import { useTheme, Link as MUILink } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { useUser } from '@auth0/nextjs-auth0';
-import SVGIcons from '../../components/SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 
 import useStyles from './styles';
 

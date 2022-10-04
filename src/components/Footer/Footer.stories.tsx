@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Footer from '.';
-import theme from '../../../styles/theme';
+import theme from '@styles/theme';
 
 export default {
   title: 'Components/Footer',

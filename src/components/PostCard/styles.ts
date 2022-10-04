@@ -1,6 +1,4 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
-import { NoEncryption } from '@material-ui/icons';
+import { makeStyles, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
   Article: {

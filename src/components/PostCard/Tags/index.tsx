@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useTheme } from '@material-ui/core';
 import { Link as MUILink } from '@material-ui/core';
 
+import tagsType from '@components/interface/Tags';
 import useStyles from './styles';
-import tagsType from '../../interface/Tags';
 
 const Tags: FC<{ tags: tagsType[] }> = ({ tags }) => {
   const theme = useTheme();

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import NavLink from '../NavLink';
+import NavLink from '@components/NavLink';
 
 export const StyledMoreArticles = styled('div')`
   ${({ theme }) => `

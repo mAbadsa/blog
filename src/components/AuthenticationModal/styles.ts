@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
-import Button from '../Button';
+import Button from '@components/Button';
 
 export const StyledAuthenticationModal = styled('div')`
   ${({ theme }) => `

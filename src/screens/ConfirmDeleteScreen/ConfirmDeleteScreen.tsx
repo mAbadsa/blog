@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import DeleteConfirm from '../../components/DeleteConfirm';
+import DeleteConfirm from '@components/DeleteConfirm';
 
 import { StyledConfirmScreen, StyledTitle } from './styles';
 

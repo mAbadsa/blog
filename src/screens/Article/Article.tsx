@@ -1,12 +1,11 @@
 import { FC, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import router from 'next/router';
 
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 import MainContent from './components/MainContent/MainContent';
-import { getReactions } from '../../services';
+import { getReactions } from '@services/index';
 
 import { ArticleLayout, StyledContainer } from './styles';
 

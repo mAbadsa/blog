@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
-import NavLink from '../../components/NavLink';
+import NavLink from '@components/NavLink';
 
 export const StyledDashBoard = Styled('div')`
   ${({ theme }) => `

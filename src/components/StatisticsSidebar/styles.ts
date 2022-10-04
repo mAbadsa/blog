@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import Badge from '@material-ui/core/Badge';
 
-import NavLink from '../NavLink';
+import NavLink from '@components/NavLink';
 import { ComponentType } from 'react';
 
 export const StyledStatsSideBar = Styled('div')`

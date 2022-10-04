@@ -8,10 +8,10 @@ import Button from '../Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import SVGIcons from '../SVG/SVGIcons';
-import Promotion from '../Promotion';
+import SVGIcons from '@components/SVG/SVGIcons';
+import Promotion from '@components/Promotion';
 
-import SidebareListProps from '../interface/SidebarList';
+import SidebareListProps from '@components/interface/SidebarList';
 import useStyles from './styles';
 
 const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {

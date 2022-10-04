@@ -9,7 +9,7 @@ const deleteArticle =
   >({
     slug,
   }: T): Promise<AxiosResponse<any>> => {
-    const res: AxiosResponse = await axios.delete('http://localhost:3000/api/articles', {
+    const res: AxiosResponse = await axios.delete('/api/articles', {
       data: {
         slug,
       },

@@ -2,8 +2,8 @@ import { ComponentType } from 'react';
 import Styles from 'styled-components';
 import { Typography } from '@material-ui/core';
 import Chip, { ChipProps } from '@material-ui/core/Chip';
-import NavLink from '../../../../components/NavLink';
-import Button from '../../../../components/Button';
+import NavLink from '@components/NavLink';
+import Button from '@components/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 export const StyledPostCardContainer = Styles('div')`

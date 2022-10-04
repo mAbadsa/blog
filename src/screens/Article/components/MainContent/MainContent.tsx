@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import remarkGfm from 'remark-gfm';
 
-import CodeBlock from '../../../ArticleForm/component/MDEditor/codeBlock';
-import Tags from '../../../../components/PostCard/Tags';
-import UserAvatar from '../../../../components/PostCard/PostCardAvatar';
+import CodeBlock from '@screens/ArticleForm/component/MDEditor/codeBlock';
+import Tags from '@components/PostCard/Tags';
+import UserAvatar from '@components/PostCard/PostCardAvatar';
 
-import tagsProps from '../../../../components/interface/Tags';
+import tagsProps from '@components/interface/Tags';
 
 import {
   MainContentStyled,

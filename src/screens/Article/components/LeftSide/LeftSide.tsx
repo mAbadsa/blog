@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import axios from 'axios';
 
-import SVGIcons from '../../../../components/SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 
-import { addReaction } from '../../../../services';
+import { addReaction } from '@services/index';
 
 import {
   LeftSideStyled,

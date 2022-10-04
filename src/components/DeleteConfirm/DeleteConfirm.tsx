@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMutation } from 'react-query';
-import { deleteArticle } from '../../services/Articles';
+import { deleteArticle } from '@services/Articles';
 
 import {
   StyledDeleteConfirm,

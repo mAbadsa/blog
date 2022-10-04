@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
 import Article from './Article';
-import theme from '../../../styles/theme';
+import theme from '@styles/theme';
 
 export default {
   title: 'Screens/Article',

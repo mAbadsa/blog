@@ -7,7 +7,7 @@ const addReaction =
     category,
     reactableType,
   }: T): Promise<AxiosResponse<any>> => {
-    const res: AxiosResponse = await axios.post(`http://localhost:3000/api/reactions`, {
+    const res: AxiosResponse = await axios.post(`/api/reactions`, {
       reactable_id: reactableId,
       category,
       reactable_type: reactableType,
