@@ -35,6 +35,8 @@
     "src/pages/api/auth/logout.js",
     "src/pages/api/auth/login.js",
     "src/pages/api/models/connection.js",
+    "src/lib/auth0.js",
+    "src/lib/user.js",
     "components/ArticleForm/component/preview/index.jsx",
     "components/ArticleForm/component/MDEditor/codeBlock.jsx",
     "components/ArticleForm/component/Form/index.jsx",
