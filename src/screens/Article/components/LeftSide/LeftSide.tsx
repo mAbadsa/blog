@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 import SVGIcons from '@components/SVG/SVGIcons';
 
@@ -15,6 +16,8 @@ import {
 } from './styles';
 
 const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
+  const state = useSelector(state => state);
+
   const handleReaction = async () => {
     console.log('handlereaction');
     console.log({ articleId });

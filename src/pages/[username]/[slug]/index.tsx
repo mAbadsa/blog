@@ -20,14 +20,14 @@ const Article: NextPage<any, any> = ({ data }) => {
         <meta name="description" content={`${data.article.title}`} />
         <link
           rel="canonical"
-          href={`http://localhost:3000/data.article.username/${data.article.slug}`}
+          href={`http://localhost:3000/${data.article.username}/${data.article.slug}`}
         />
         <meta property="og:title" content={`${data.article.title}`} />
         <meta property="og:description" content={`${data.article.title}`} />
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content={`http://localhost:3000/data.article.username/${data.article.slug}`}
+          content={`http://localhost:3000/${data.article.username}/${data.article.slug}`}
         />
         <meta property="og:site_name" content={`DEV Community 👩‍💻👨‍💻`} />
         <meta property="og:image" content={`${data.article.cover_image}`} />

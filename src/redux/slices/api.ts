@@ -8,7 +8,7 @@ export const apiSlice = createApi({
       query: () => 'api/articles',
     }),
     getUserProfile: builder.query({
-      query: (username: String) => username && `api/users/${username}`,
+      query: (username: String) => `api/users/${username}`,
     }),
   }),
 });
