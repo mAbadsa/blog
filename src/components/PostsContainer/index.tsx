@@ -2,10 +2,10 @@ import { FC, ReactElement } from 'react';
 import { useQuery } from 'react-query';
 import Axios, { AxiosResponse } from 'axios';
 
-import PostCard from '../PostCard';
+import PostCard from '@components/PostCard';
 
-import Articles from '../interface/Articles';
-import tagsProps from '../interface/Tags';
+import Articles from '@components/interface/Articles';
+import tagsProps from '@components/interface/Tags';
 
 const getArticles = async ({ limit, offset }: { limit: number; offset: number }) => {
   const res: AxiosResponse = await Axios.get(
@@ -107,7 +107,7 @@ const PostsContainer: FC = () => {
       return <PostCard key={article.id} article={article} showCoverImage={idx === 0} />;
     });
 
-  return <div>{!isLoading && postsElm}</div>;
+  return <>{!isLoading && postsElm}</>;
 };
 
 export default PostsContainer;

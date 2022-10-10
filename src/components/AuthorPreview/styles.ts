@@ -4,8 +4,8 @@ import Image from 'next/image';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import NavLink from '../NavLink';
-import Button from '../Button';
+import NavLink from '@components/NavLink';
+import Button from '@components/Button';
 
 export const StyledAuthorPreview = styled('div')(({ theme }) => ({
   display: 'grid',

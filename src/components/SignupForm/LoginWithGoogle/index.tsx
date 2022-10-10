@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { GoogleLogin } from "react-google-login";
+import { FC } from 'react';
+import { GoogleLogin } from 'react-google-login';
 
-import { useTheme } from "@material-ui/core";
-import useStyles from "./styles";
+import { useTheme } from '@material-ui/core';
+import useStyles from './styles';
 
 const LoginWithGoogle: FC = () => {
   const theme = useTheme();
@@ -10,7 +10,7 @@ const LoginWithGoogle: FC = () => {
   return (
     <GoogleLogin
       className={classes.root}
-      clientId={""}
+      clientId={''}
       buttonText="Login with google"
       onSuccess={() => {}}
       onFailure={() => {}}

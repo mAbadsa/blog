@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import remarkGfm from 'remark-gfm';
 
-import CodeBlock from '../../../ArticleForm/component/MDEditor/codeBlock';
-import Tags from '../../../../components/PostCard/Tags';
-import UserAvatar from '../../../../components/PostCard/PostCardAvatar';
+import CodeBlock from '@screens/ArticleForm/component/MDEditor/codeBlock';
+import Tags from '@components/PostCard/Tags';
+import UserAvatar from '@components/PostCard/PostCardAvatar';
 
-import tagsProps from '../../../../components/interface/Tags';
+import tagsProps from '@components/interface/Tags';
 
 import {
   MainContentStyled,
@@ -33,15 +33,16 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
     <MainContentStyled>
       <Article>
         <ArticleHeader>
-          <StyledImage
-            src={cover_image}
-            alt="cover image"
-            width="100"
-            height="42"
-            sizes="100vw"
-            objectFit="cover"
-            priority
-          />
+          {cover_image && (
+            <StyledImage
+              src={cover_image}
+              alt="cover image"
+              width="100"
+              height="42"
+              sizes="100vw"
+              objectFit="cover"
+            />
+          )}
           <ArticleHeaderMeta>
             <UserAvatar username={username} date={created_at} slug={slug} avatar={profile_image} />
             <ArticleTitle variant="h1">{title}</ArticleTitle>

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../../../components/Button';
-
-interface Props {
-  isLiked?: boolean;
-}
+import Button from '@components/Button';
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',
@@ -114,31 +110,39 @@ export const StyledButton = styled(Button)`
   `}
 `;
 
-export const StyledIconContainer = styled('span')<Props>`
-  ${({ isLiked }) => `
+export const StyledIconContainer = styled('span')`
+  ${({ theme }) => `
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      box-shadow: ${isLiked ? 'inset 0 0 0 2px #dc2626' : '0 solid transparent'};
-      background-color: ${isLiked ? '#dc26261a' : 'transparent'};
       transition: all 0.25s;
       svg {
         width: 24px;
         height: 24px;
+        fill: #3d3d3d;
         transition: all 0.25s;
-      }
-      svg.filledlike-icon {
-        fill: #dc2626;
       }
       &:hover {
         background-color: #dc26261a;
+        svg:nth-child(1) {
+          fill: #dc2626;
+          transition: all 0.25s;
+        }
+        svg:nth-child(2) {
+          fill: #059669;
+          transition: all 0.25s;
+        }
+        svg:nth-child(3) {
+          fill: #4f46e5;
+          transition: all 0.25s;
+        }
       }
     `}
 `;
 
-export const StyledReactCount = styled('span')<Props>`
-  ${({ theme, isLiked }) => `
-      color: ${isLiked ? '#dc2626' : '#575757'};
+export const StyledReactCount = styled('span')`
+  ${({ theme }) => `
+      color: #575757;
       font-size: 0.875rem;
       line-height: 21px;
       font-weight: 400;

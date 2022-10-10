@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 
-import Header from '../Header/Header';
-import Footer from '../Footer';
+import Header from '@components/Header/Header';
+import Footer from '@components/Footer';
 import useStyles from './styles';
 
 interface Props {
@@ -12,11 +12,21 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   const classes = useStyles();
+
   return (
-    <div className={classes.root}>
-      <Header display={router.pathname === '/new' ? true : false} />
+    <div
+      className={classes.root}
+      style={{
+        paddingTop: router.pathname === '/new' || router.pathname.slice(-4) === 'edit' ? 0 : '56px',
+      }}
+    >
+      <Header
+        display={router.pathname === '/new' || router.pathname.slice(-4) === 'edit' ? true : false}
+      />
       {children}
-      <Footer />
+      <Footer
+        display={router.pathname === '/new' || router.pathname.slice(-4) === 'edit' ? true : false}
+      />
     </div>
   );
 };

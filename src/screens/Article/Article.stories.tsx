@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
 import Article from './Article';
+import theme from '@styles/theme';
 
 export default {
   title: 'Screens/Article',
   component: Article,
 } as ComponentMeta<typeof Article>;
 
-const Template: ComponentStory<typeof Article> = args => <Article {...args} />;
+const Template: ComponentStory<typeof Article> = args => {
+  const [queryClient] = useState(() => new QueryClient());
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Article {...args} />
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
-const ArticlePage = Template.bind({});
+export const ArticlePage = Template.bind({});
 ArticlePage.args = {
   article: {
     id: 11,
     title: '',
     slug: 'a7WQ',
     content: '',
-    cover_image: '',
+    cover_image: 'https://sourcelevel.io/wp-content/uploads/golang_lint.jpeg',
     tags: '',
     last_reading: '2022-02-13T13:50:15.150Z',
     user_id: 1,

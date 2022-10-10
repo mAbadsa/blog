@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import theme from '../../../styles/theme';
+import theme from '@styles/theme';
 import MoreArticles from '.';
 
 export default {

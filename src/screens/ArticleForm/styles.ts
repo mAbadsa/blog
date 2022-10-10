@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '0.375rem 0.375rem 0 0',
     boxShadow: '0 0 0 1px #0909091a',
     overflowWrap: 'anywhere',
-    // overflow: "auto",
+    overflow: 'auto',
     height: 'calc(100vh - 56px - 72px)',
   },
   [theme.breakpoints.between('xs', 'sm')]: {
@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       gridTemplateColumns: '64px 7fr 3fr',
       gap: '0rem 0rem',
       padding: '0rem 0.5rem',
+    },
+  },
+  [theme.breakpoints.down('xs')]: {
+    ArticleForm: {
+      // gridTemplateColumns: '100%',
     },
   },
 }));

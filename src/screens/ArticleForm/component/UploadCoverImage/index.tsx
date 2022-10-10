@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
 
 import MUIButton from '@material-ui/core/Button';
-import Button from '../../../../components/Button';
+import Button from '@components/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -12,7 +12,7 @@ import useStyles from './styles';
 import { useTheme } from '@material-ui/styles';
 
 const uploadImage = async (imgData: string | ArrayBuffer | null) => {
-  let response: AxiosResponse = await axios.post('api/articles/cover-image', {
+  let response: AxiosResponse = await axios.post('/api/articles/cover-image', {
     data: imgData,
   });
 
@@ -175,7 +175,7 @@ const UploadCoverImage: FC<{
             width={250}
             height={105}
             layout="intrinsic"
-            objectFit="cover"
+            objectFit="scale-down"
             alt={'Post cover'}
           />
         </div>

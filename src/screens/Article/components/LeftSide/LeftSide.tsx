@@ -1,6 +1,10 @@
 import { FC } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-import SVGIcons from '../../../../components/SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
+
+import { addReaction } from '@services/index';
 
 import {
   LeftSideStyled,
@@ -11,27 +15,31 @@ import {
   StyledReactCount,
 } from './styles';
 
-const LeftSide: FC<{ likes: number; handleClikReaction: Function; isLiked: boolean }> = ({
-  likes,
-  handleClikReaction,
-  isLiked,
-}) => {
-  const handleReaction = async (category: string) => {
-    handleClikReaction(category);
-  };
+const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
+  const state = useSelector(state => state);
 
-  console.log({ isLiked });
-  console.log({ likes });
+  const handleReaction = async () => {
+    console.log('handlereaction');
+    console.log({ articleId });
+
+    const addReactionReq = addReaction({ axios });
+    const res = await addReactionReq({
+      reactableId: articleId,
+      category: 'Like',
+      reactableType: 'Article',
+    });
+    console.log(res);
+  };
 
   return (
     <LeftSideStyled>
       <StyledArticleAction>
         <StyledActionInner>
-          <StyledButton variant="text" color="secondary" onClick={() => handleReaction('Like')}>
-            <StyledIconContainer isLiked={isLiked}>
-              {isLiked ? <SVGIcons.FilledLike /> : <SVGIcons.Like />}
+          <StyledButton variant="text" color="secondary" onClick={handleReaction}>
+            <StyledIconContainer>
+              <SVGIcons.Like />
             </StyledIconContainer>
-            <StyledReactCount isLiked={isLiked}>{likes}</StyledReactCount>
+            <StyledReactCount>{' 56 '}</StyledReactCount>
           </StyledButton>
           <StyledButton variant="text" color="secondary">
             <StyledIconContainer>

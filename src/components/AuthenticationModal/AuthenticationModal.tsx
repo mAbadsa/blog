@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import {
@@ -14,31 +14,23 @@ import {
   StyledButton,
 } from './styles';
 
-import SVGIcons from '../SVG/SVGIcons';
+import SVGIcons from '@components/SVG/SVGIcons';
 
-const AuthenticationModal: FC<{ closeModal: MouseEventHandler<HTMLAnchorElement> }> = ({
-  closeModal,
-}) => {
+const LoginModal: FC = () => {
   return (
     <StyledAuthenticationModal>
       <StyledHeader>
         <Typography variant="h2">Log in to continue</Typography>
-        <StyledCloseButton color="secondary" variant="text" onClick={closeModal}>
+        <StyledCloseButton color="secondary" variant="text">
           <SVGIcons.Close />
         </StyledCloseButton>
       </StyledHeader>
       <StyledModalBody>
         <StyledModalContainer>
           <StyledImageContainer>
-            <StyledImage
-              src="/assets/images/dev_logo.webp"
-              alt="DEV-logo"
-              width="80"
-              height="80"
-              layout="fixed"
-            />
+            <StyledImage src="/assets/images/dev_logo.webp" alt="DEV-logo" width="80" height="80" />
           </StyledImageContainer>
-          <StyledModalDescription variant="body1">
+          <StyledModalDescription>
             {" We're a place where coders share, stay up-to-date and grow their careers. "}
           </StyledModalDescription>
           <StyledModalActions>
@@ -55,4 +47,4 @@ const AuthenticationModal: FC<{ closeModal: MouseEventHandler<HTMLAnchorElement>
   );
 };
 
-export default AuthenticationModal;
+export default LoginModal;

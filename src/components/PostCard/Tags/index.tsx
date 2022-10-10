@@ -1,10 +1,10 @@
-import React, { FC, ReactElement } from "react";
-import Link from "next/link";
-import { useTheme } from "@material-ui/core";
-import { Link as MUILink } from "@material-ui/core";
+import React, { FC, ReactElement } from 'react';
+import Link from 'next/link';
+import { useTheme } from '@material-ui/core';
+import { Link as MUILink } from '@material-ui/core';
 
-import useStyles from "./styles";
-import tagsType from "../../interface/Tags";
+import tagsType from '@components/interface/Tags';
+import useStyles from './styles';
 
 const Tags: FC<{ tags: tagsType[] }> = ({ tags }) => {
   const theme = useTheme();

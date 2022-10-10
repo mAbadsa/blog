@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     gap: '10px',
     height: '72px',
+    gridRowEnd: '4',
+    gridColumnStart: '2',
+    gridColumnEnd: 'span 2',
     // "& button": {
     //   whiteSpace: "nowrap",
     //   fontWeight: 500,
@@ -25,13 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     // },
   },
   saveDraft: {
-    marginRight: '0.5rem',
-    backgroundColor: 'transparent',
-    color: '#3d3d3d',
-    '&:hover': {
-      backgroundColor: 'rgba(59, 73, 223, 0.10)',
-      color: '#323ebe',
-    },
+    padding: '0.5rem 1rem',
   },
 }));
 

@@ -1,14 +1,14 @@
-import { makeStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({
   MUIButton: {},
   withButton: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    "&:hover": {
-      "& svg": {
-        fill: "#323ebe",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    '&:hover': {
+      '& svg': {
+        fill: '#323ebe',
       },
     },
   },
