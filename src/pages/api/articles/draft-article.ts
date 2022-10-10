@@ -34,7 +34,6 @@ export default auth0.withApiAuthRequired(
           title: data.title,
           content: data.textareaValue,
           slug,
-          status: 'draft',
           tags: data.tags.join(', '),
           lastReading: new Date().toISOString(),
           userId: rows[0].id,
