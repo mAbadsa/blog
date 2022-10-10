@@ -1,14 +1,9 @@
-import type { NextPage, GetServerSideProps, GetServerSidePropsResult, PreviewData } from 'next';
-// import { ParsedUrlQuery } from 'querystring';
-import { useUser } from '@auth0/nextjs-auth0';
+import type { NextPage } from 'next';
 import Head from 'next/head';
-import PublicHome from '@screens/PublicHome';
-import PrivateHome from '@screens/PrivateHome';
+import HomeComponent from '@screens/Home';
 import Layout from '@components/Layout/Layout';
 
 const Home: NextPage = () => {
-  const { user, isLoading } = useUser();
-
   const head = () => {
     return (
       <Head>
@@ -42,40 +37,14 @@ const Home: NextPage = () => {
       </Head>
     );
   };
-
-  if (!isLoading || user || user !== undefined) {
-    return (
-      <>
-        {head()}
-        <Layout>
-          <PrivateHome username={user?.nickname as string} />
-        </Layout>
-      </>
-    );
-  }
-
   return (
     <>
       {head()}
       <Layout>
-        <PublicHome />
+        <HomeComponent />
       </Layout>
     </>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps<
-//   { [key: string]: any },
-//   PreviewData,
-//   ParsedUrlQuery
-// > = async (
-//   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
-// ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
-//   try {
-//     const res =
-//   } catch (error) {
-
-//   }
-// };
 
 export default Home;
