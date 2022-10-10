@@ -1,9 +1,14 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps, GetServerSidePropsResult, PreviewData } from 'next';
+// import { ParsedUrlQuery } from 'querystring';
+import { useUser } from '@auth0/nextjs-auth0';
 import Head from 'next/head';
-import HomeComponent from '@screens/Home';
+import PublicHome from '@screens/PublicHome';
+import PrivateHome from '@screens/PrivateHome';
 import Layout from '@components/Layout/Layout';
 
 const Home: NextPage = () => {
+  const { user, isLoading } = useUser();
+
   const head = () => {
     return (
       <Head>
@@ -37,11 +42,23 @@ const Home: NextPage = () => {
       </Head>
     );
   };
+
+  if (!isLoading || user || user !== undefined) {
+    return (
+      <>
+        {head()}
+        <Layout>
+          <PrivateHome username={user?.nickname as string} />
+        </Layout>
+      </>
+    );
+  }
+
   return (
     <>
       {head()}
       <Layout>
-        <HomeComponent />
+        <PublicHome />
       </Layout>
     </>
   );
