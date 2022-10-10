@@ -64,18 +64,4 @@ const Home: NextPage = () => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps<
-//   { [key: string]: any },
-//   PreviewData,
-//   ParsedUrlQuery
-// > = async (
-//   context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>,
-// ): Promise<GetServerSidePropsResult<{ [key: string]: any }>> => {
-//   try {
-//     const res =
-//   } catch (error) {
-
-//   }
-// };
-
 export default Home;
