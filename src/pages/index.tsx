@@ -7,7 +7,7 @@ import PrivateHome from '@screens/PrivateHome';
 import Layout from '@components/Layout/Layout';
 
 const Home: NextPage = () => {
-  const { user, isLoading, error } = useUser();
+  const { user, isLoading } = useUser();
 
   const head = () => {
     return (
@@ -42,9 +42,8 @@ const Home: NextPage = () => {
       </Head>
     );
   };
-  console.log({ user });
 
-  if (user || user !== undefined) {
+  if (!isLoading || user || user !== undefined) {
     return (
       <>
         {head()}
