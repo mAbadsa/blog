@@ -9,7 +9,8 @@ import { ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '@styles/theme';
-import { store } from '@redux/store';
+import { store, persistor } from '@redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import '@styles/globals.css';
 
@@ -25,11 +26,13 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
           <CssBaseline />
           <UserProvider>
             <Provider store={store}>
-              <QueryClientProvider client={queryClient}>
-                <Hydrate state={pageProps.dehydratedState}>
-                  <Component {...pageProps} />
-                </Hydrate>
-              </QueryClientProvider>
+              <PersistGate persistor={persistor}>
+                <QueryClientProvider client={queryClient}>
+                  <Hydrate state={pageProps.dehydratedState}>
+                    <Component {...pageProps} />
+                  </Hydrate>
+                </QueryClientProvider>
+              </PersistGate>
             </Provider>
           </UserProvider>
         </StyledThemeProvider>
