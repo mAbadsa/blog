@@ -26,6 +26,7 @@ import Close from './Close';
 import Bookmark from './Bookmark';
 import Unicorn from './Unicorn';
 import Like from './Like';
+import FilledLike from './FilledLike';
 import Maximize from './Maximize';
 
 const SVGIcons: SVGIconsInterface = {
@@ -53,6 +54,7 @@ const SVGIcons: SVGIconsInterface = {
   Lens,
   Close,
   Like,
+  FilledLike,
   Unicorn,
   Bookmark,
   Maximize,

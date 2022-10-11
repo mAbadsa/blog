@@ -25,6 +25,7 @@ export default interface SVGIcons {
   Lens: FC;
   Close: FC;
   Like: FC;
+  FilledLike: FC;
   Unicorn: FC;
   Bookmark: FC;
   Maximize: FC;
