@@ -62,4 +62,6 @@ const NavLink: FC<NavLinkType> = React.forwardRef(
   },
 );
 
+NavLink.displayName = 'NavLink';
+
 export default NavLink;
