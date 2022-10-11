@@ -70,30 +70,11 @@ export const StyledImageContainer = styled('figure')`
     width: 80px;
     height: 80px;
     margin: 0;
-<<<<<<< HEAD
-    transform: rotate(-10deg);
-=======
->>>>>>> c5e131511cceaff136a26249c3b33a3e4bbfc45c
   `}
 `;
 
 export const StyledImage = styled(Image)`
   ${({ theme }) => `
-<<<<<<< HEAD
-    && {
-      border-radius: 0.375rem;
-      span {
-        overflow: hidden !important;
-      }
-    }
-  `}
-`;
-
-export const StyledModalDescription = styled(Typography)`
-  ${({ theme }) => `
-    color: #404040;
-    line-height: 24px;
-=======
     border-radius: 0.375rem;
     transform: rotate(-10deg);
   `}
@@ -102,7 +83,6 @@ export const StyledModalDescription = styled(Typography)`
 export const StyledModalDescription = styled('p')`
   ${({ theme }) => `
     color: #404040;
->>>>>>> c5e131511cceaff136a26249c3b33a3e4bbfc45c
   `}
 `;
 
@@ -111,11 +91,7 @@ export const StyledModalActions = styled('div')`
     display: grid;
     margin: 0 auto;
     align-items: center;
-<<<<<<< HEAD
-    padding: 0px 3rem 1rem;
-=======
     padding: 0px 1rem 1rem;
->>>>>>> c5e131511cceaff136a26249c3b33a3e4bbfc45c
     grid-gap: 0.25rem;
     width: 100%;
     ${[theme.breakpoints.down('sm')]} {
@@ -123,13 +99,8 @@ export const StyledModalActions = styled('div')`
       flex-direction: column;
       justify-content: center;
       margin: 0 auto;
-<<<<<<< HEAD
-      padding: 0px 1rem 1rem;
-      align-items: center;
-=======
       align-items: center;
       padding: 0px 3rem 1rem;
->>>>>>> c5e131511cceaff136a26249c3b33a3e4bbfc45c
     }
   `}
 `;
