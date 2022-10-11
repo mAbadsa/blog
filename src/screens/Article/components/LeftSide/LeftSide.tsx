@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 
 import SVGIcons from '@components/SVG/SVGIcons';
 
@@ -13,11 +12,16 @@ import {
   StyledButton,
   StyledIconContainer,
   StyledReactCount,
+  StyledFiiledLike,
 } from './styles';
 
-const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
-  const state = useSelector(state => state);
-
+const LeftSide: FC<{
+  articleId: number;
+  likes: number;
+  isLiked: Boolean;
+}> = ({ articleId, likes, isLiked }) => {
+  console.log({ likes });
+  console.log({ isLiked });
   const handleReaction = async () => {
     console.log('handlereaction');
     console.log({ articleId });
@@ -37,9 +41,9 @@ const LeftSide: FC<{ articleId: number }> = ({ articleId }) => {
         <StyledActionInner>
           <StyledButton variant="text" color="secondary" onClick={handleReaction}>
             <StyledIconContainer>
-              <SVGIcons.Like />
+              {isLiked ? <StyledFiiledLike></StyledFiiledLike> : <SVGIcons.Like />}
             </StyledIconContainer>
-            <StyledReactCount>{' 56 '}</StyledReactCount>
+            <StyledReactCount>{likes}</StyledReactCount>
           </StyledButton>
           <StyledButton variant="text" color="secondary">
             <StyledIconContainer>

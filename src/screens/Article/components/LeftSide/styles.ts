@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '@components/Button';
+import SVGIcons from '@components/SVG/SVGIcons';
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',
@@ -53,6 +54,13 @@ export const StyledActionInner = styled('div')`
       align-items: center;
       padding-bottom: env(safe-area-inset-bottom);
     }
+  `}
+`;
+
+export const StyledFiiledLike = styled(SVGIcons.FilledLike)`
+  ${({ theme }) => `
+    fill: #dc2626;
+    background-color: #dc2626;
   `}
 `;
 
