@@ -1,8 +1,10 @@
-import { ComponentType } from 'react';
-import Styled from 'styled-components';
-import { Typography } from '@material-ui/core';
+import { ComponentType, ReactElement } from 'react';
+import Styled, { StyledComponent } from 'styled-components';
+import { Typography, TypographyTypeMap } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import NavLink from '@components/NavLink';
+import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+// import { StyledHeader } from '@components/AuthenticationModal/styles';
 
 export const StyledDeleteConfirm = Styled('div')`
   ${({ theme }) => `
@@ -25,7 +27,12 @@ export const StyledDeleteConfirm = Styled('div')`
   `}
 `;
 
-export const StyledHeader: ComponentType<any> = Styled(Typography)`
+export const StyledHeader: StyledComponent<
+  OverridableComponent<TypographyTypeMap<{}, 'span'>>,
+  any,
+  {},
+  never
+> = Styled(Typography)`
   ${({ theme }) => `
     font-size: 24px;
     line-height: 1.5;
@@ -33,7 +40,7 @@ export const StyledHeader: ComponentType<any> = Styled(Typography)`
   `}
 `;
 
-export const StyledDescBody: ComponentType<any> = Styled(Typography)`
+export const StyledDescBody = Styled(Typography)`
   ${({ theme }) => `
     font-size: 1.125rem;
     line-height: 27px;
