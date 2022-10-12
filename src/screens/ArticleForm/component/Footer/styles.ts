@@ -29,13 +29,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   saveDraft: {
     padding: '0.5rem 1rem',
-    // marginRight: '0.5rem',
-    // backgroundColor: 'transparent',
-    // color: '#3d3d3d',
-    // '&:hover': {
-    //   backgroundColor: 'rgba(59, 73, 223, 0.10)',
-    //   color: '#323ebe',
-    // },
   },
 }));
 

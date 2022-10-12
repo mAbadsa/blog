@@ -1,24 +1,17 @@
-import { FC, useEffect } from 'react';
+import { FC, useState, useCallback, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 import MainContent from './components/MainContent/MainContent';
 import { getReactions } from '@services/index';
+import { RootState } from '@redux/store';
 
 import { ArticleLayout, StyledContainer } from './styles';
 
 const Article: FC<{ article: any }> = ({ article }) => {
-  const { isLoading, isError, data, error } = useQuery(
-    'reactions',
-    async () => await getReactions({ axios })({ articleId: article.id }),
-  );
-
-  useEffect(() => {
-    return () => {};
-  }, []);
-
   return (
     <StyledContainer maxWidth={'xl'}>
       <ArticleLayout>

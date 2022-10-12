@@ -148,4 +148,3 @@ Now the app should be running at [http://localhost:3000](http://localhost:3000)
 - [Cloudinary](https://cloudinary.com/)
 - [Material-UI](https://mui.com/)
 - [moment](https://momentjs.com/)
-

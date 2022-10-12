@@ -1,5 +1,25 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import Button from '@components/Button';
+import SVGIcons from '@components/SVG/SVGIcons';
+
+const pulse = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+`;
+const animation = () =>
+  css`
+    ${pulse} 3s ease 0s 1 normal forwards;
+  `;
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',
@@ -56,19 +76,52 @@ export const StyledActionInner = styled('div')`
   `}
 `;
 
-export const StyledButton = styled(Button)`
-  ${({ theme }) => `
+export const StyledButton = styled(Button)<{
+  isliked?: Boolean;
+  isSelected?: Boolean;
+  clicked?: Boolean;
+}>`
+  ${({ theme, isliked, clicked }) => `
   background-color: transparent;
   padding: 0;
+  .like-container {
+    position: relative;
+    border: ${isliked ? '2px solid #dc2526' : '2px solid transparent'};
+    background-color: ${isliked ? '#dc26261a' : 'transparent'};
+    transition: all 0.25s;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        opacity: 0;
+        transform: scale(2);
+        border: 2px solid transparent;
+        border-radius: 50%;
+        background-color: transparent;
+        z-index: 1000;
+        transition: all 0.25s;
+        ${clicked ? `animation: ${animation}` : ''};
+      }
+    }
   span {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      transition: all 0.25s;
       ${[theme.breakpoints.down('sm')]} {
         flex-direction: row;
         align-items: center;
         justify-content: center;
+      }
+      span:nth-of-type(2) {
+        color: ${isliked ? '#dc2526' : '#3d3d3d'};
+      }
+      svg[class='filledlike-icon'] {
+        fill: #dc2626;
       }
     }
   &:hover:nth-child(1) {
