@@ -5,7 +5,7 @@ const getUserReadingList =
   <U extends { connection: Pool }>({ connection }: U) =>
   <T extends QueryUserDataType>({ user_id }: T) => {
     const sql: QueryConfig<any[]> = {
-      text: `SELECT a.id, a.title, a.slug, a.tags, a.last_reading, a.created_at, r.archive, u.username, u.email, u.profile_image
+      text: `SELECT r.archive, r.id r_id, a.id article_id, a.title, a.slug, a.tags, a.last_reading, a.created_at, u.username, u.email, u.profile_image
       FROM articles AS a 
       INNER JOIN users AS u ON u.id = a.user_id
       INNER JOIN reading_list AS r ON r.article_id = a.id
