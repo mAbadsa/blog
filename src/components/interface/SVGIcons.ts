@@ -29,4 +29,5 @@ export default interface SVGIcons {
   Unicorn: FC;
   Bookmark: FC;
   Maximize: FC;
+  ReadingList: FC;
 }
