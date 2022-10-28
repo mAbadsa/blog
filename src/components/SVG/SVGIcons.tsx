@@ -28,6 +28,7 @@ import Unicorn from './Unicorn';
 import Like from './Like';
 import FilledLike from './FilledLike';
 import Maximize from './Maximize';
+import ReadingList from './ReadingList';
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -58,6 +59,7 @@ const SVGIcons: SVGIconsInterface = {
   Unicorn,
   Bookmark,
   Maximize,
+  ReadingList,
 };
 
 export default SVGIcons;
