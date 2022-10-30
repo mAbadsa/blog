@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     );
   };
 
-  if (!isLoading || user || user !== undefined) {
+  if (!isLoading && user && user !== undefined) {
     return (
       <>
         {head()}
