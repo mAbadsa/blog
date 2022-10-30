@@ -1,69 +1,42 @@
-import { FC } from 'react';
-import { Grid, Hidden, Typography } from '@material-ui/core';
+import { useState, FC } from 'react';
+import { Grid, Hidden } from '@material-ui/core';
 import { StyledGridContainer, StyledSideBar, StyledContent } from './styles';
 import Header from './components/Header';
 import SideBarLeft from './components/SideBarLeft';
 import EmptyListMessage from './components/EmptyListMessage';
 import ReadingListItemsContainer from './components/ReadingListItemsContainer';
+import { useGetReadingListQuery } from '@redux/slices/api';
+import { ReadingListType, TagType } from './type';
 
 const ReadingList: FC<{}> = ({}) => {
-  const ReadingLists = [
-    {
-      id: 1,
-      title: 'Javascript Eventloop',
-      slug: 'javascript-eventloop-a52f',
-      avatarImage: 'https://i.pravatar.cc/32',
-      author: 'Muhammad',
-      createdAt: '2022-01-30 15:58:47.656442+02',
-      lastReading: '2022-01-30 15:58:47.656442+02',
-      isArchived: false,
-      tags: [
-        { id: '1', tag: 'aws' },
-        { id: '2', tag: 'cloud' },
-        { id: '3', tag: 'devops' },
-      ],
-    },
-    {
-      id: 3,
-      title: 'Map vs Filter',
-      slug: 'map-vs-filter-0c92',
-      avatarImage: 'https://i.pravatar.cc/32',
-      author: 'moh223',
-      createdAt: '2022-01-30 15:58:47.656442+02',
-      lastReading: '2022-01-30 15:58:47.656442+02',
-      isArchived: false,
-      tags: [
-        { id: '1', tag: 'aws' },
-        { id: '2', tag: 'cloud' },
-        { id: '3', tag: 'devops' },
-      ],
-    },
-    {
-      id: 7,
-      title: 'Observable vs async/wait',
-      slug: 'observable-vs-async/wait-4b00',
-      avatarImage: 'https://i.pravatar.cc/32',
-      author: 'moh223',
-      createdAt: '2022-01-30 15:58:47.656442+02',
-      lastReading: '2022-01-30 15:58:47.656442+02',
-      isArchived: false,
-      tags: [
-        { id: '1', tag: 'aws' },
-        { id: '2', tag: 'cloud' },
-        { id: '3', tag: 'devops' },
-      ],
-    },
-  ];
+  const { isError, isLoading, data } = useGetReadingListQuery('readinglist');
+
+  let readingLists: ReadingListType[] = [];
+  let tags: Array<string> = [];
+
+  if (!isLoading) {
+    let tagsArr = data.articles
+      .map((item: ReadingListType) => item.tags)
+      .flat(1)
+      .map((item: TagType) => item.tag);
+
+    tags = tagsArr.filter((item: string, id: number) => {
+      return tagsArr.indexOf(item) == id;
+    });
+
+    readingLists = [...data.articles];
+  }
+
   return (
     <StyledGridContainer container>
-      <Header tags={['javascript', 'css', 'react', 'aws']} />
+      <Header tags={tags} />
       <Hidden only={['xs', 'sm']}>
-        <SideBarLeft tags={['javascript', 'css', 'react', 'aws']} />
+        <SideBarLeft tags={tags} />
       </Hidden>
       <Grid className="MainContent-container" item xs={12} sm={12} md={9} lg={9}>
         <StyledContent borderRadius="borderRadius">
-          {ReadingLists.length > 0 ? (
-            <ReadingListItemsContainer lists={ReadingLists} />
+          {readingLists.length > 0 ? (
+            <ReadingListItemsContainer lists={readingLists} />
           ) : (
             <EmptyListMessage />
           )}
