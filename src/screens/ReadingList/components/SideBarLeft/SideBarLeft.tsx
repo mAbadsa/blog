@@ -2,8 +2,10 @@ import { FC, useState, ReactElement, MouseEvent } from 'react';
 import Link from 'next/link';
 import List from '@material-ui/core/List';
 import { StyledSideBar, StyledNavLink, StyledListItem } from './style';
+import { TagType } from '../../type';
+import TagListItem from './TagListItem';
 
-const SideBarLeft: FC<{ tags: string[] }> = ({ tags = ['javascript', 'aws', 'css'] }) => {
+const SideBarLeft: FC<{ tags: Array<string> }> = ({ tags }) => {
   const [activeLink, setActiveLink] = useState<number>(-1);
 
   function handleLinkClick(evt: any, linkIdx: number) {
@@ -11,22 +13,30 @@ const SideBarLeft: FC<{ tags: string[] }> = ({ tags = ['javascript', 'aws', 'css
     setActiveLink(linkIdx);
   }
 
-  const TagsList: ReactElement[] = tags.map((item, idx) => {
+  const TagsList: ReactElement[] = tags.map((tag, id) => {
     return (
-      <StyledListItem key={item + '-' + idx}>
-        <Link href={`/t/${item}`} passHref>
-          <StyledNavLink
-            className={activeLink === idx ? 'current' : ''}
-            textPrimary
-            color="secondary"
-            onClick={(evt: MouseEvent<HTMLAnchorElement>) => handleLinkClick(evt, idx)}
-          >
-            #{item}
-          </StyledNavLink>
-        </Link>
-      </StyledListItem>
+      <TagListItem
+        key={tag + '_' + id}
+        id={id}
+        tag={tag}
+        activeLink={activeLink}
+        handleLinkClick={handleLinkClick}
+      />
+      // <StyledListItem key={tag + '_' + id}>
+      //   <Link href={`/t/${tag}`} passHref>
+      //     <StyledNavLink
+      //       className={activeLink === id ? 'current' : ''}
+      //       textPrimary
+      //       color="secondary"
+      //       onClick={(evt: MouseEvent<HTMLAnchorElement>) => handleLinkClick(evt, id)}
+      //     >
+      //       #{tag}
+      //     </StyledNavLink>
+      //   </Link>
+      // </StyledListItem>
     );
   });
+
   return (
     <StyledSideBar item md={3} lg={3}>
       <List style={{ padding: 0 }}>

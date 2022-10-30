@@ -7,6 +7,7 @@ import getTime from '@helpers/getTime';
 import Button from '@components/Button';
 import Tags from './Tags';
 import { StyledReadingListItem, StyledNavLink, StyledDot } from './style';
+import { ReadingListType } from '../../type';
 
 const ReadingListItem: FC<{
   title: string;
@@ -16,13 +17,13 @@ const ReadingListItem: FC<{
   createdAt: string;
   lastReading: string;
   isArchived: boolean;
-  tags: Array<{ id: string; tag: string }>;
+  tags: Array<{ id: number; tag: string }>;
 }> = ({ title, slug, author, createdAt, lastReading, isArchived, avatarImage, tags }) => {
   return (
     <StyledReadingListItem container justify-content="space-between" direction="row">
       <Grid item lg={1} style={{ maxWidth: '32px', paddingTop: 6 }}>
-        <Link href={`/${author}}`} passHref>
-          <StyledNavLink>
+        <Link href={`/${author}`} passHref>
+          <StyledNavLink underline="none">
             <Avatar alt={'avatar'} src={avatarImage} sizes="32" />
           </StyledNavLink>
         </Link>

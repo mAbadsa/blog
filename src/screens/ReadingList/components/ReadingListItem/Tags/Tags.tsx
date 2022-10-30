@@ -1,9 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import Link from 'next/link';
 import { StyledNavLink } from './styles';
-import tagsType from '@components/interface/Tags';
+import { TagType } from '../../../type';
 
-const Tags: FC<{ tags: tagsType[] }> = ({ tags }) => {
+const Tags: FC<{ tags: TagType[] }> = ({ tags }) => {
   const tagsElmts: ReactElement[] = tags.map(({ id, tag }) => {
     return (
       <Link href={`/t/${tag}`} passHref key={id}>

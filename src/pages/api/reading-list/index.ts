@@ -75,11 +75,43 @@ export default auth0.withApiAuthRequired(
           user_id: user[0].id,
         });
 
+        const readingList: any = rows.map(
+          ({
+            article_id,
+            archive,
+            r_id,
+            username,
+            profile_image,
+            created_at,
+            last_reading,
+            tags,
+            ...reset
+          }) => {
+            console.log({ tags });
+            const tagsArr: Array<string> = tags.split(', ');
+            let tagsList: Array<{ id: number; tag: string }> = tagsArr.map((tag, id) => ({
+              id,
+              tag,
+            }));
+            return {
+              isArchived: archive,
+              id: article_id,
+              readingListId: r_id,
+              author: username,
+              avatarImage: profile_image,
+              tags: tagsList,
+              createdAt: created_at,
+              lastReading: last_reading,
+              ...reset,
+            };
+          },
+        );
+
         if (rowCount < 1) {
           throw new Error('something went wrong');
         }
 
-        return res.status(200).json({ success: true, articles: rows });
+        return res.status(200).json({ success: false, articles: readingList });
       }
     } catch (error) {}
   },
