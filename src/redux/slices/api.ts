@@ -9,6 +9,10 @@ export const apiSlice = createApi({
     getArtciles: builder.query({
       query: () => 'api/articles',
     }),
+    getReadingList: builder.query({
+      query: () => 'api/reading-list',
+      keepUnusedDataFor: 0,
+    }),
     getUserProfile: builder.query({
       query: (username: String) => `api/users/${username}`,
     }),
@@ -27,4 +31,9 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetArtcilesQuery, useGetUserProfileQuery, usePostReactionMutation } = apiSlice;
+export const {
+  useGetArtcilesQuery,
+  useGetUserProfileQuery,
+  usePostReactionMutation,
+  useGetReadingListQuery,
+} = apiSlice;
