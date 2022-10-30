@@ -41,6 +41,8 @@ const PostsContainer: FC = () => {
     getArticles({ limit: 15, offset: 0 }),
   );
 
+  !isLoading && console.log({ data });
+
   const articles: Articles[] =
     !isLoading &&
     data?.data.articles.map(
