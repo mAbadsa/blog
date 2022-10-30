@@ -1,6 +1,6 @@
 BEGIN;
 DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags;
-
+DROP TYPE IF EXISTS statuses; 
 CREATE TYPE statuses AS ENUM ('published', 'draft');
 
 CREATE TABLE users (
