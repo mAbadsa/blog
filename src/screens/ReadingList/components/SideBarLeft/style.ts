@@ -1,4 +1,3 @@
-import { ComponentType } from 'react';
 import Styled, { StyledComponent } from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import ListItem from '@material-ui/core/ListItem';
@@ -10,7 +9,7 @@ export const StyledSideBar: StyledComponent<any, any, any, any> = Styled(Grid)`
   `}
 `;
 
-export const StyledListItem: ComponentType<any> = Styled(ListItem)`
+export const StyledListItem: StyledComponent<any, any, any, any> = Styled(ListItem)`
   ${({ theme }) => `
     padding: 0;
     transition: background cubic-bezier(0.17, 0.67, 0.5, 0.71) 100ms, color cubic-bezier(0.17, 0.67, 0.5, 0.71) 250ms;
@@ -21,7 +20,9 @@ export const StyledListItem: ComponentType<any> = Styled(ListItem)`
   `}
 `;
 
-export const StyledNavLink: ComponentType<any> = Styled(NavLink)<{ current?: boolean }>`
+export const StyledNavLink: StyledComponent<any, any, any, any> = Styled(NavLink)<{
+  current?: boolean;
+}>`
   ${({ theme, current }) => `
     display: flex;
     color: #404040;
