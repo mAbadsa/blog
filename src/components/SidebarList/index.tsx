@@ -59,7 +59,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
               <ListItem className={classes.ListItem} button>
                 <SVGIcons.ReadingList />
                 <ListItemText className={classes.listItemText} primary="Reading List" />
-                <StyledBadge>0</StyledBadge>
+                <StyledBadge overlap="rectangular">0</StyledBadge>
               </ListItem>
             </Link>
           )}
