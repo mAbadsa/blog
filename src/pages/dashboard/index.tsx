@@ -26,7 +26,6 @@ const DashboardPage: NextPage<any, any> = ({
     temp_preview_link: string;
   }>;
 }) => {
-  console.log({ data });
   return (
     <Layout>
       <Dashboard posts={data} />
