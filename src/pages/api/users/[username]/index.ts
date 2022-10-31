@@ -8,8 +8,7 @@ type Data = {
 };
 
 const getUserProfile: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const { username } = req.query;
-  console.log({ username });
+  const username = req.query.username as string | string[];
   try {
     const { rows } = await getUserByUsername({ username });
     if (!rows[0]) {

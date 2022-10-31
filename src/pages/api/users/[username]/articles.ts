@@ -11,7 +11,7 @@ type Data = {
 
 export default auth0.withApiAuthRequired(
   async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    const { username } = req.query;
+    const username = req.query.username as string | string[];
     try {
       const articles = await getUserArticles({ connection })({ username });
       if (articles.rowCount < 1) {
