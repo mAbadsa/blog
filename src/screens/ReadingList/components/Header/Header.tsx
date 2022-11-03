@@ -6,11 +6,11 @@ import { StyledHeader, StyledHeaderTypography } from './style';
 import Search from './Search';
 import TagsSelectedList from './TagsSelectedList';
 
-const Header: FC<{ tags: Array<string> }> = ({ tags }) => {
+const Header: FC<{ tags: Array<string>; listCount: number }> = ({ tags, listCount }) => {
   return (
     <StyledHeader container item justifyContent="space-between">
       <Grid container item xs={12} sm={6} md={9} justifyContent="space-between" alignItems="center">
-        <StyledHeaderTypography variant="h1">Reading List (0)</StyledHeaderTypography>
+        <StyledHeaderTypography variant="h1">Reading List ({listCount})</StyledHeaderTypography>
         <Link href="/readinglist/archive" passHref>
           <NavLink textPrimary color="textPrimary">
             View archive
