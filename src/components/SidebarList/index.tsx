@@ -2,12 +2,12 @@ import React, { FC, KeyboardEvent, MouseEvent } from 'react';
 import Link from 'next/link';
 // import { useUser } from '@auth0/nextjs-auth0';
 import { useSelector } from 'react-redux';
+
 import { Typography, useTheme } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import Button from '../Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-// import { CircularProgress, Container, Snackbar } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import SVGIcons from '@components/SVG/SVGIcons';
@@ -22,6 +22,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
   const classes = useStyles({ theme });
   // const { user, isLoading } = useUser();
   const auth = useSelector<any>(state => state.auth) as any;
+  const readingListCount = useSelector<any>(state => state.readingList) as any;
 
   return (
     <>
@@ -59,7 +60,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
               <ListItem className={classes.ListItem} button>
                 <SVGIcons.ReadingList />
                 <ListItemText className={classes.listItemText} primary="Reading List" />
-                <StyledBadge overlap="rectangular">0</StyledBadge>
+                <StyledBadge overlap="rectangular">{readingListCount.readingListCount}</StyledBadge>
               </ListItem>
             </Link>
           )}
