@@ -1,8 +1,6 @@
-import { FC, useState, ReactElement, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import Link from 'next/link';
-import List from '@material-ui/core/List';
-import { StyledSideBar, StyledNavLink, StyledListItem } from './style';
-import { TagType } from '../../../type';
+import { StyledNavLink, StyledListItem } from './style';
 
 const TagListItem: FC<{
   id: number;
