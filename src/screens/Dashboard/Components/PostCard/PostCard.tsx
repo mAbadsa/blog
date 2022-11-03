@@ -30,7 +30,7 @@ const PostCard: FC<{
         <StyledPostCard>
           <StyledStoryTitleBox>
             <StyledStoryTitle variant="h3">
-              <Link href={`${user?.username}/${slug}-temp-slug-${id}/edit`} passHref>
+              <Link href={`${user?.username || user?.nickname}/${slug}`} passHref>
                 <StyledNavLink>{title}</StyledNavLink>
               </Link>
             </StyledStoryTitle>
