@@ -1,15 +1,22 @@
-import { useState, FC } from 'react';
+import { FC } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { useGetReadingListQuery } from '@redux/slices/api';
+import { setReadingListCount } from '@redux/slices/readingList';
+
 import { Grid, Hidden } from '@material-ui/core';
-import { StyledGridContainer, StyledSideBar, StyledContent } from './styles';
+
 import Header from './components/Header';
 import SideBarLeft from './components/SideBarLeft';
 import EmptyListMessage from './components/EmptyListMessage';
 import ReadingListItemsContainer from './components/ReadingListItemsContainer';
-import { useGetReadingListQuery } from '@redux/slices/api';
+import { StyledGridContainer, StyledContent } from './styles';
+
 import { ReadingListType, TagType } from './type';
 
 const ReadingList: FC<{}> = ({}) => {
-  const { isError, isLoading, data } = useGetReadingListQuery('readinglist');
+  const { isError, isLoading, data } = useGetReadingListQuery('readingList');
+  const dispatch = useDispatch();
 
   let readingLists: ReadingListType[] = [];
   let tags: Array<string> = [];
@@ -25,11 +32,12 @@ const ReadingList: FC<{}> = ({}) => {
     });
 
     readingLists = [...data.articles];
+    dispatch(setReadingListCount(readingLists.length));
   }
 
   return (
     <StyledGridContainer container>
-      <Header tags={tags} />
+      <Header tags={tags} listCount={readingLists.length} />
       <Hidden only={['xs', 'sm']}>
         <SideBarLeft tags={tags} />
       </Hidden>
