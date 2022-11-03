@@ -75,6 +75,8 @@ export default auth0.withApiAuthRequired(
           user_id: user[0].id,
         });
 
+        console.log(rows[0]);
+
         const readingList: any = rows.map(
           ({
             article_id,

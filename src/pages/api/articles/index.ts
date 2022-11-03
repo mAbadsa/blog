@@ -24,7 +24,7 @@ export default auth0.withApiAuthRequired(
         const me = auth0.getSession(req, res);
         const cryptoString = cryptoRandomString({ length: 4, type: 'base64' });
         const titleWithCryptoString = data.title + ' ' + cryptoString;
-        const slug = slugify(titleWithCryptoString);
+        const slug = slugify(titleWithCryptoString.toLowerCase());
 
         // check if use is exist in the database
         const { rows } = await getUserByEmail({ email: me?.user?.email });
@@ -33,6 +33,7 @@ export default auth0.withApiAuthRequired(
           title: data.title,
           content: data.textareaValue,
           slug,
+          tempSlug: `temp_${slug}`,
           status: 'published',
           tags: data.tags.join(', '),
           lastReading: new Date().toISOString(),
@@ -46,7 +47,7 @@ export default auth0.withApiAuthRequired(
         return res.status(201).json({ statusCode: 201, success: true, article: dbResult[0] });
       } else if (req.method === 'PUT') {
         const { data } = req.body;
-        console.log({ data });
+
         const { rowCount, rows: dbResult } = await updateArticle({ connection })({
           title: data.title,
           slug: data.slug,
@@ -71,7 +72,6 @@ export default auth0.withApiAuthRequired(
         return res.status(200).json({ statusCode: 200, success: true });
       }
     } catch (error: any) {
-      console.log(error);
       return res.status(error.status || 500).json({ success: false, error: error.message });
     }
   },
