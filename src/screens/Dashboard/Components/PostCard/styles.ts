@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import Styles from 'styled-components';
+import Styles, { StyledComponent } from 'styled-components';
 import { Typography } from '@material-ui/core';
 import Chip, { ChipProps } from '@material-ui/core/Chip';
 import NavLink from '@components/NavLink';
@@ -60,7 +60,7 @@ ${({ theme }) => `
 `}
 `;
 
-export const StyledChip: ComponentType<any> = Styles(Chip)<{ status: string }>`
+export const StyledChip: StyledComponent<any, any> = Styles(Chip)<{ status: string }>`
 ${({ theme, status }) => `
   background-color: ${status == 'draft' ? '#fcd34d' : '#1ad36c'};
   color:  ${status == 'draft' ? '#78350f' : '#141516'};
@@ -80,7 +80,7 @@ ${({ theme }) => `
 `}
 `;
 
-export const StyledButton: ComponentType<any> = Styles(Button)<{ type: string }>`
+export const StyledButton: StyledComponent<any, any> = Styles(Button)<{ type: string }>`
 ${({ theme, type }) => `
   color: ${type === 'delete' ? '#dc2626' : '#3d3d3d'};
   background-color: #00000000;
@@ -91,7 +91,7 @@ ${({ theme, type }) => `
 `}
 `;
 
-export const StyledIconButton: ComponentType<any> = Styles(IconButton)`
+export const StyledIconButton: StyledComponent<any, any> = Styles(IconButton)`
 ${({ theme, type }) => `
   padding: ${theme.spacing(1)}px;
   border-radius: 0.375rem;
