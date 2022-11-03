@@ -4,14 +4,14 @@ import type { ReactionPayload } from './type';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_URL }),
-  tagTypes: ['Article'],
+  tagTypes: ['Article', 'readingList'],
   endpoints: builder => ({
     getArtciles: builder.query({
       query: () => 'api/articles',
     }),
     getReadingList: builder.query({
       query: () => 'api/reading-list',
-      keepUnusedDataFor: 0,
+      providesTags: ['readingList'],
     }),
     getUserProfile: builder.query({
       query: (username: String) => `api/users/${username}`,

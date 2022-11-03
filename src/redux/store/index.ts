@@ -1,10 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { apiSlice } from '@redux/slices/api';
-import authReducer from '@redux/slices/authSlice';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, PersistConfig, persistStore } from 'redux-persist';
+
+import { apiSlice } from '@redux/slices/api';
+import authReducer from '@redux/slices/authSlice';
+import readingListSlice from '@redux/slices/readingList';
 
 const persistConfig = {
   key: 'root',
@@ -12,6 +14,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  readingList: readingListSlice,
   auth: authReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
