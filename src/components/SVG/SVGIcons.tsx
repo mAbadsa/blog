@@ -29,6 +29,7 @@ import Like from './Like';
 import FilledLike from './FilledLike';
 import Maximize from './Maximize';
 import ReadingList from './ReadingList';
+import FilledBookmark from './FilledBookmark';
 
 const SVGIcons: SVGIconsInterface = {
   Home,
@@ -60,6 +61,7 @@ const SVGIcons: SVGIconsInterface = {
   Bookmark,
   Maximize,
   ReadingList,
+  FilledBookmark,
 };
 
 export default SVGIcons;
