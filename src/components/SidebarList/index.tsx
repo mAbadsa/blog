@@ -2,6 +2,7 @@ import React, { FC, KeyboardEvent, MouseEvent } from 'react';
 import Link from 'next/link';
 // import { useUser } from '@auth0/nextjs-auth0';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Typography, useTheme } from '@material-ui/core';
 import List from '@material-ui/core/List';
@@ -9,6 +10,8 @@ import Button from '../Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { useGetReadingListQuery } from '@redux/slices/api';
+import { setReadingListCount } from '@redux/slices/readingList';
 
 import SVGIcons from '@components/SVG/SVGIcons';
 import Promotion from '@components/Promotion';
@@ -20,9 +23,12 @@ import useStyles from './styles';
 const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
-  // const { user, isLoading } = useUser();
   const auth = useSelector<any>(state => state.auth) as any;
+  const dispatch = useDispatch();
   const readingListCount = useSelector<any>(state => state.readingList) as any;
+  const { data: readingList, isLoading: readingListLoading } = useGetReadingListQuery('');
+
+  !readingListLoading && dispatch(setReadingListCount(readingList.articles.length));
 
   return (
     <>
