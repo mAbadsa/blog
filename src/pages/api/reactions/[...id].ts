@@ -1,16 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import connection from '../models/connection';
 
 import { getLikeReactions } from '@pages/api/models/queries/reactions';
+import { getArticleReadingList } from '@pages/api/models/queries/reading-list';
 
-const getArticleReactions = async (req: NextApiRequest, res: NextApiResponse) => {
+type Data = {
+  success: Boolean;
+  likes?: Object[];
+  error?: string;
+  readingList?: Array<any>;
+};
+
+const getArticleReactions = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    const { id } = req.query;
+    const id: string = req.query.id as string;
 
-    const { rowCount, rows } = await getLikeReactions({
+    const { rows: likes } = await getLikeReactions({
       articleId: +id,
     });
 
-    return res.status(200).json({ success: true, likes: rows });
+    const { rows: readingList } = await getArticleReadingList({ connection })({ article_id: +id });
+
+    return res.status(200).json({ success: true, likes, readingList });
   } catch (error: any) {
     return res.status(error.status || 500).json({ success: false, error: error.message });
   }

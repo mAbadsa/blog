@@ -6,7 +6,7 @@ import { useTheme } from '@material-ui/core';
 import SidebarList from '@components/SidebarList';
 import FeedTabs from './Tabs';
 import Additional from '@components/Additional';
-import { useGetUserProfileQuery, useGetArtcilesQuery } from '@redux/slices/api';
+import { useGetUserProfileQuery } from '@redux/slices/api';
 import { getUserAuth } from '@redux/slices/authSlice';
 
 import useStyles from './styles';
@@ -16,10 +16,10 @@ const Home: FC<{ username: string }> = ({ username }) => {
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { isLoading, data } = useGetUserProfileQuery(username);
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
 
   if (username && !isLoading) {
-    dispacth(
+    dispatch(
       getUserAuth({
         isAuth: true,
         userData: {
@@ -31,7 +31,7 @@ const Home: FC<{ username: string }> = ({ username }) => {
   }
 
   if (isLoading && !username) {
-    dispacth(
+    dispatch(
       getUserAuth({
         isAuth: false,
         userData: {

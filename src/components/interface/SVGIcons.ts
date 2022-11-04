@@ -30,4 +30,5 @@ export default interface SVGIcons {
   Bookmark: FC;
   Maximize: FC;
   ReadingList: FC;
+  FilledBookmark: FC;
 }

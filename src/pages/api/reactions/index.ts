@@ -13,6 +13,7 @@ import {
   getArticleReadingList,
   getReadingListByUserAndArticle,
   insertArticleToReadingList,
+  deleteArticleReadlinList,
 } from '@pages/api/models/queries/reading-list';
 
 type Data = {
@@ -62,6 +63,21 @@ export default auth0.withApiAuthRequired(
             return res
               .status(201)
               .json({ success: true, result: 'create', category: 'like', likes });
+          } else {
+            const { rowCount: likeDeleted } = await deleteLikeReaction({
+              userId: user[0].id,
+              articleId: reactable_id,
+            });
+
+            if (likeDeleted < 1) {
+              throw new Error('something went wrong');
+            }
+
+            const { rows: likes } = await getLikeReactions({ articleId: reactable_id });
+
+            return res
+              .status(200)
+              .json({ success: true, result: 'destroty', category: 'like', likes });
           }
         } else if (reactable_type === ARTICLE_REACTABLE_TYPE && category === READING_LIST) {
           const { rowCount: isInReadingList } = await getReadingListByUserAndArticle({
@@ -76,6 +92,7 @@ export default auth0.withApiAuthRequired(
               user_id: user[0].id,
               article_id: reactable_id,
             });
+
             if (rowCount < 1) {
               throw new Error('something went wrong');
             }
@@ -86,21 +103,29 @@ export default auth0.withApiAuthRequired(
 
             return res
               .status(201)
-              .json({ success: true, result: 'create', category: 'like', readingList });
+              .json({ success: true, result: 'create', category: 'readingList', readingList });
+          } else {
+            const { rowCount: isInReadingList } = await deleteArticleReadlinList({ connection })({
+              user_id: user[0].id,
+              article_id: reactable_id,
+            });
+
+            if (isInReadingList < 1) {
+              throw new Error('something went wrong');
+            }
+
+            const { rows: readingList } = await getArticleReadingList({ connection })({
+              article_id: reactable_id,
+            });
+
+            return res.status(200).json({
+              success: true,
+              result: 'destroty',
+              category: 'readingList',
+              readingList,
+            });
           }
         }
-        const { rowCount: likeDeleted } = await deleteLikeReaction({
-          userId: user[0].id,
-          articleId: reactable_id,
-        });
-
-        if (likeDeleted < 1) {
-          throw new Error('something went wrong');
-        }
-
-        const { rows: likes } = await getLikeReactions({ articleId: reactable_id });
-
-        return res.status(200).json({ success: true, result: 'destroty', category: 'like', likes });
       } else {
         return res.status(200).json({ success: true });
       }
