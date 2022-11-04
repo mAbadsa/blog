@@ -16,10 +16,9 @@ const pulse = keyframes`
     transform: scale(0.2);
   }
 `;
-const animation = () =>
-  css`
-    ${pulse} 3s ease 0s 1 normal forwards;
-  `;
+const animation = () => css`
+  ${pulse} 3s ease 0s 1 normal forwards;
+`;
 
 export const LeftSideStyled = styled.aside(({ theme }) => ({
   display: 'block',
@@ -79,9 +78,10 @@ export const StyledActionInner = styled('div')`
 export const StyledButton = styled(Button)<{
   isliked?: Boolean;
   isSelected?: Boolean;
+  isInReadingList?: Boolean;
   clicked?: Boolean;
 }>`
-  ${({ theme, isliked, clicked }) => `
+  ${({ theme, isliked, isInReadingList, clicked }) => `
   background-color: transparent;
   padding: 0;
   .like-container {
@@ -89,23 +89,48 @@ export const StyledButton = styled(Button)<{
     border: ${isliked ? '2px solid #dc2526' : '2px solid transparent'};
     background-color: ${isliked ? '#dc26261a' : 'transparent'};
     transition: all 0.25s;
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        opacity: 0;
-        transform: scale(2);
-        border: 2px solid transparent;
-        border-radius: 50%;
-        background-color: transparent;
-        z-index: 1000;
-        transition: all 0.25s;
-        ${clicked ? `animation: ${animation}` : ''};
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      opacity: 0;
+      transform: scale(2);
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background-color: transparent;
+      z-index: 1000;
+      transition: all 0.25s;
+      animation: ${animation};
+      ${clicked ? `animation: ${animation}` : ''};
     }
+  }
+
+  .bookmark-icon_container {
+    position: relative;
+    border: ${isInReadingList ? '2px solid #4f46e5' : '2px solid transparent'};
+    background-color: ${isInReadingList ? '#4f46e51a' : 'transparent'};
+    transition: all 0.25s;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      opacity: 0;
+      transform: scale(2);
+      border: 2px solid transparent;
+      border-radius: 50%;
+      background-color: transparent;
+      z-index: 1000;
+      transition: all 0.25s;
+      ${clicked ? `animation: ${animation}` : ''};
+    }
+  }
+
   span {
       display: inline-flex;
       flex-direction: column;
@@ -117,11 +142,17 @@ export const StyledButton = styled(Button)<{
         align-items: center;
         justify-content: center;
       }
-      span:nth-of-type(2) {
+      .reaction-count_like {
         color: ${isliked ? '#dc2526' : '#3d3d3d'};
+      }
+      .reaction-count_bookmark {
+        color: ${isInReadingList ? '#4f46e5' : '#3d3d3d'};
       }
       svg[class='filledlike-icon'] {
         fill: #dc2626;
+      }
+      svg[class='filledbookmark-icon'] {
+        fill: #4f46e5;
       }
     }
   &:hover:nth-child(1) {
