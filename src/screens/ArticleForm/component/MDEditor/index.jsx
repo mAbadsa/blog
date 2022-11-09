@@ -30,9 +30,9 @@ const MDEditor = ({ handleMDText, mdText, setCursorPostion, setPanelValue, setRe
         <textarea
           className={classes.textArea}
           aria-label="Post Content"
-          onChange={handleMDText}
           placeholder="Write your post content here..."
           value={mdText}
+          onChange={handleMDText}
           onClick={handleFocus}
           onKeyDown={handleFocus}
           onKeyPress={handleChangeHeight}

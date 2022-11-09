@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     minHeight: '150px',
     flex: '1 0 auto',
     position: 'relative',
-    outline: 'none',
     display: 'flex',
     flexDirection: 'column',
     borderRadius: '0 0 0.375rem 0.375rem',
@@ -30,6 +29,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     overflow: 'hidden',
     transition: 'none',
+    outline: 'none',
+    fontSize: '18px',
+    resize: 'none',
+    borderWidth: '0px',
   },
 }));
 
