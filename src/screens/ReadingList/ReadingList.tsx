@@ -15,7 +15,12 @@ import { StyledGridContainer, StyledContent } from './styles';
 import { ReadingListType, TagType } from './type';
 
 const ReadingList: FC<{}> = ({}) => {
-  const { isError, isLoading, data } = useGetReadingListQuery('readingList');
+  const { isLoading, data } = useGetReadingListQuery('readingList', {
+    pollingInterval: 0,
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+  });
   const dispatch = useDispatch();
 
   let readingLists: ReadingListType[] = [];

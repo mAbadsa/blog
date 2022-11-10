@@ -47,7 +47,10 @@ export default auth0.withApiAuthRequired(
           throw new Error('something went wrong');
         }
 
-        const { rowCount: deleteCount } = await deleteArticleReadlinList({ connection })({ id });
+        const { rowCount: deleteCount } = await deleteArticleReadlinList({ connection })({
+          user_id: user[0].id,
+          article_id: id,
+        });
 
         if (deleteCount < 1) {
           throw new Error('something went wrong');
@@ -75,8 +78,6 @@ export default auth0.withApiAuthRequired(
           user_id: user[0].id,
         });
 
-        console.log(rows[0]);
-
         const readingList: any = rows.map(
           ({
             article_id,
@@ -89,7 +90,6 @@ export default auth0.withApiAuthRequired(
             tags,
             ...reset
           }) => {
-            console.log({ tags });
             const tagsArr: Array<string> = tags.split(', ');
             let tagsList: Array<{ id: number; tag: string }> = tagsArr.map((tag, id) => ({
               id,
@@ -109,12 +109,10 @@ export default auth0.withApiAuthRequired(
           },
         );
 
-        if (rowCount < 1) {
-          throw new Error('something went wrong');
-        }
-
-        return res.status(200).json({ success: false, articles: readingList });
+        return res.status(200).json({ success: true, articles: readingList });
       }
-    } catch (error) {}
+    } catch (error: any) {
+      return res.status(error.status || 500).json({ success: false, error: error.message });
+    }
   },
 );

@@ -26,9 +26,20 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
   const auth = useSelector<any>(state => state.auth) as any;
   const dispatch = useDispatch();
   const readingListCount = useSelector<any>(state => state.readingList) as any;
-  const { data: readingList, isLoading: readingListLoading } = useGetReadingListQuery('');
+  const {
+    data: readingList,
+    isLoading: readingListLoading,
+    error,
+  } = useGetReadingListQuery('readingList', {
+    pollingInterval: 0,
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+  });
 
-  !readingListLoading && dispatch(setReadingListCount(readingList.articles.length));
+  if (auth.isAuth) {
+    !readingListLoading && dispatch(setReadingListCount(readingList.articles.length));
+  }
 
   return (
     <>
