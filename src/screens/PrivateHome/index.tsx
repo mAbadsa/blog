@@ -18,9 +18,9 @@ const PrivateHome: FC<{ username: string }> = ({ username }) => {
   const { isLoading, data } = useGetUserProfileQuery(username);
   const dispatch = useDispatch();
 
-  console.log({ data });
+  !isLoading && console.log({ data });
 
-  if (username && !isLoading) {
+  if (username && !isLoading && data !== undefined) {
     dispatch(
       getUserAuth({
         isAuth: true,
