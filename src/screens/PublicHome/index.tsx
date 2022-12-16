@@ -12,7 +12,7 @@ import { getUserAuth } from '@redux/slices/authSlice';
 
 import useStyles from './styles';
 
-const Home: FC = () => {
+const PublicHome: FC = () => {
   const [drawer, setDrawer] = useState(false);
   const theme = useTheme();
   const classes = useStyles({ theme });
@@ -54,4 +54,4 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default PublicHome;
