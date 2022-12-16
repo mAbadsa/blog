@@ -11,12 +11,14 @@ import { getUserAuth } from '@redux/slices/authSlice';
 
 import useStyles from './styles';
 
-const Home: FC<{ username: string }> = ({ username }) => {
+const PrivateHome: FC<{ username: string }> = ({ username }) => {
   const [drawer, setDrawer] = useState(false);
   const theme = useTheme();
   const classes = useStyles({ theme });
   const { isLoading, data } = useGetUserProfileQuery(username);
   const dispatch = useDispatch();
+
+  console.log({ data });
 
   if (username && !isLoading) {
     dispatch(
@@ -65,4 +67,4 @@ const Home: FC<{ username: string }> = ({ username }) => {
   );
 };
 
-export default Home;
+export default PrivateHome;
