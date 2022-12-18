@@ -9,7 +9,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '@styles/theme';
-import { store, persistor } from '@redux/store';
+import { store, persistor } from '@redux/index';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import '@styles/globals.css';

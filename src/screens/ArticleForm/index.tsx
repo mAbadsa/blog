@@ -1,9 +1,12 @@
-import React, { FC, useLayoutEffect, useState, useRef, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useTheme } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
-import { useMutation } from 'react-query';
-import axios, { AxiosResponse } from 'axios';
-import { uploadDraftArticle, updateArticle } from '@services/ArticleForm';
+import {
+  usePostArticleMutation,
+  useUpdateArticleMutation,
+  usePostDraftArticleMutation,
+} from '@redux/index';
 
 import Form from './component/Form';
 import Header from './component/Header';
@@ -17,13 +20,6 @@ interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
-}
-
-async function postArticle<T extends Object>(article: T) {
-  const res: AxiosResponse = await axios.post('/api/articles', {
-    data: article,
-  });
-  return res;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -58,37 +54,11 @@ const ArticleForm: FC<{ mode?: string; defaultData?: any }> = ({
   const [title, setTitle] = useState(defaultTitle || '');
   const [coverImage, setCoverImage] = useState<string>(cover_image || '');
   const [open, setOpen] = useState<boolean>(false);
+  const router = useRouter();
 
-  console.log({ defaultData });
-
-  const articleMutate = useMutation((article: Object) => postArticle(article), {
-    onSuccess: async (data: AxiosResponse) => {},
-  });
-
-  const updateArticleMutate = useMutation(
-    (article: {
-      coverImage: string | undefined;
-      title: string;
-      slug: string;
-      tags: string[] | undefined;
-      textareaValue: string | undefined;
-    }) => updateArticle({ axios })(article),
-    {
-      onSuccess: async (data: AxiosResponse) => {},
-    },
-  );
-
-  const draftArticleMutate = useMutation(
-    (article: {
-      coverImage: string | undefined;
-      title: string;
-      tags: string[] | undefined;
-      textareaValue: string | undefined;
-    }) => uploadDraftArticle({ axios })(article),
-    {
-      onSuccess: async (data: AxiosResponse) => {},
-    },
-  );
+  const [postArticle] = usePostArticleMutation();
+  const [updateArticle] = useUpdateArticleMutation();
+  const [postDraftArticle] = usePostDraftArticleMutation();
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -137,18 +107,21 @@ const ArticleForm: FC<{ mode?: string; defaultData?: any }> = ({
     setOpen(true);
   }
 
-  function handlePublishArticle() {
+  async function handlePublishArticle() {
     const articlePayload = {
       coverImage,
       title,
       tags,
       textareaValue,
     };
-    console.log({ articlePayload });
-    articleMutate.mutate(articlePayload);
+    const res = await postArticle(articlePayload).unwrap();
+    if (res.statusCode === 201) {
+      resetForm();
+      router.push('/');
+    }
   }
 
-  function handleUpdateArticle() {
+  async function handleUpdateArticle() {
     const articlePayload = {
       coverImage,
       title,
@@ -157,16 +130,31 @@ const ArticleForm: FC<{ mode?: string; defaultData?: any }> = ({
       textareaValue,
     };
     console.log({ articlePayload });
-    updateArticleMutate.mutate(articlePayload);
+    const res = await updateArticle(articlePayload).unwrap();
+    if (res.statusCode === 200) {
+      resetForm();
+      router.push('/');
+    }
   }
 
-  function handleSaveDraft() {
-    draftArticleMutate.mutate({
+  async function handleSaveDraft() {
+    const res = await postDraftArticle({
       coverImage,
       title,
       tags,
       textareaValue,
-    });
+    }).unwrap();
+    if (res.statusCode === 201) {
+      resetForm();
+      router.push('/');
+    }
+  }
+
+  function resetForm() {
+    setCoverImage('');
+    setTitle('');
+    setTags([]);
+    setTextareaValue('');
   }
 
   return (

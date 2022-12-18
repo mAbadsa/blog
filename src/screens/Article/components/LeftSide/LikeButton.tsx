@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { usePostReactionMutation } from '@redux/slices/api';
-import { RootState } from '@redux/store';
+import { usePostReactionMutation } from '@redux/index';
+import { RootState } from '@redux/index';
 import { StyledButton, StyledIconContainer, StyledReactCount } from './styles';
 import SVGIcons from '@components/SVG/SVGIcons';
 
