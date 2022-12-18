@@ -10,7 +10,7 @@ import Button from '../Button';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { useGetReadingListQuery } from '@redux/slices/api';
+import { useGetReadingListQuery } from '@redux/index';
 import { setReadingListCount } from '@redux/slices/readingList';
 
 import SVGIcons from '@components/SVG/SVGIcons';
@@ -30,12 +30,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
     data: readingList,
     isLoading: readingListLoading,
     error,
-  } = useGetReadingListQuery('readingList', {
-    pollingInterval: 0,
-    refetchOnReconnect: true,
-    refetchOnMountOrArgChange: true,
-    refetchOnFocus: true,
-  });
+  } = useGetReadingListQuery('readingList');
 
   if (auth.isAuth) {
     !readingListLoading && dispatch(setReadingListCount(readingList.articles.length));
