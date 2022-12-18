@@ -6,7 +6,7 @@ import { useTheme } from '@material-ui/core';
 import SidebarList from '@components/SidebarList';
 import FeedTabs from './Tabs';
 import Additional from '@components/Additional';
-import { useGetUserProfileQuery } from '@redux/slices/api';
+import { useGetUserProfileQuery } from '@redux/index';
 import { getUserAuth } from '@redux/slices/authSlice';
 
 import useStyles from './styles';
@@ -17,8 +17,6 @@ const PrivateHome: FC<{ username: string }> = ({ username }) => {
   const classes = useStyles({ theme });
   const { isLoading, data } = useGetUserProfileQuery(username);
   const dispatch = useDispatch();
-
-  !isLoading && console.log({ data });
 
   if (username && !isLoading && data !== undefined) {
     dispatch(
