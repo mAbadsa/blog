@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import axios from 'axios';
 
-import { usePostReactionMutation } from '@redux/slices/api';
+import { usePostReactionMutation } from '@redux/index';
 import { useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
 import LikeButton from './LikeButton';
@@ -17,7 +17,7 @@ import {
   StyledReactCount,
 } from './styles';
 import { getReactions } from '@services/index';
-import { RootState } from '@redux/store';
+import { RootState } from '@redux/index';
 
 const LeftSide: FC<{
   articleId: number;
