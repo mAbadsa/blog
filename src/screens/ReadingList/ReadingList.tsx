@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { useGetReadingListQuery } from '@redux/slices/api';
+import { useGetReadingListQuery } from '@redux/index';
 import { setReadingListCount } from '@redux/slices/readingList';
 
 import { Grid, Hidden } from '@material-ui/core';
@@ -15,12 +15,7 @@ import { StyledGridContainer, StyledContent } from './styles';
 import { ReadingListType, TagType } from './type';
 
 const ReadingList: FC<{}> = ({}) => {
-  const { isLoading, data } = useGetReadingListQuery('readingList', {
-    pollingInterval: 0,
-    refetchOnReconnect: true,
-    refetchOnMountOrArgChange: true,
-    refetchOnFocus: true,
-  });
+  const { isLoading, data } = useGetReadingListQuery('readingList');
   const dispatch = useDispatch();
 
   let readingLists: ReadingListType[] = [];
