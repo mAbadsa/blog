@@ -7,7 +7,7 @@ import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
 import MainContent from './components/MainContent/MainContent';
 import { getReactions } from '@services/index';
-import { RootState } from '@redux/store';
+import { RootState } from '@redux/index';
 
 import { ArticleLayout, StyledContainer } from './styles';
 
