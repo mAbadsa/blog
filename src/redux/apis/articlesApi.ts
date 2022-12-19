@@ -5,9 +5,8 @@ const articleApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_URL }),
   tagTypes: ['Article'],
   endpoints: builder => ({
-    getArtciles: builder.query({
-      providesTags: ['Article'],
-      query: () => 'api/articles',
+    getArticles: builder.query({
+      query: ({ limit, offset }) => `api/articles/get-articles?limit=${limit}&offset=${offset}`,
     }),
     postArticle: builder.mutation({
       invalidatesTags: ['Article'],
@@ -43,7 +42,7 @@ const articleApi = createApi({
 });
 
 export const {
-  useGetArtcilesQuery,
+  useGetArticlesQuery,
   usePostArticleMutation,
   useUpdateArticleMutation,
   usePostDraftArticleMutation,
