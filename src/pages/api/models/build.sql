@@ -1,6 +1,7 @@
 BEGIN;
 DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags;
 
+DROP TYPE IF EXISTS statuses;
 CREATE TYPE statuses AS ENUM ('published', 'draft');
 
 CREATE TABLE users (
@@ -33,7 +34,6 @@ CREATE TABLE articles (
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE draft_articles (
 	id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
@@ -52,13 +52,12 @@ CREATE TABLE comments (
 	contents VARCHAR(240) NOT NULL,
 	user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
 	article_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
-	comment_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   CHECK(
     COALESCE((article_id)::BOOLEAN::INTEGER,0)
     +
-    COALESCE((comment_id)::BOOLEAN::INTEGER,0)
+    COALESCE((user_id)::BOOLEAN::INTEGER,0)
     = 1
 	)
 );
