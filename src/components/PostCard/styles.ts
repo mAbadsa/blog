@@ -97,6 +97,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     padding: '0.25rem 0.75rem',
     paddingLeft: '0.0rem',
+    '&:hover': {
+      background: 'rgba(0, 0, 0, 0.035)',
+      border: '0.375rem',
+    },
     '& svg, span': {
       fill: '#3d3d3d',
       color: '#3d3d3d',

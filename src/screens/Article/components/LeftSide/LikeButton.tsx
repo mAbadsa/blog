@@ -37,7 +37,12 @@ const LikeButton: FC<{ articleId: number; likesNumber: number; isLiked: Boolean 
   };
 
   return (
-    <StyledButton variant="text" color="secondary" onClick={handleReaction} isliked={isLikedState}>
+    <StyledButton
+      variant="text"
+      color="secondary"
+      onClick={handleReaction}
+      isliked={isLikedState.toString()}
+    >
       <StyledIconContainer className="like-container">
         {isLikedState ? <SVGIcons.FilledLike /> : <SVGIcons.Like />}
       </StyledIconContainer>

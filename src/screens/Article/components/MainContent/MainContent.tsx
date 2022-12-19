@@ -53,6 +53,7 @@ const MainContent: FC<{ article: any }> = ({ article }) => {
           <StyledMarkdown components={CodeBlock as any} remarkPlugins={[remarkGfm]}>
             {content}
           </StyledMarkdown>
+          <div id="comments">Add new comment</div>
         </StyledArticleMainContent>
       </Article>
     </MainContentStyled>

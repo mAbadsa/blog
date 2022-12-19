@@ -73,7 +73,7 @@ const PostCard: FC<{ article: ArticlesType; showCoverImage: boolean }> = ({
             <div className={classes.postCard__details}>
               <div className={classes.postCardActions__reactions}>
                 {reactions > 0 && (
-                  <Link href={`${username}/${title}`} passHref>
+                  <Link href={`${username}/${slug}`} passHref>
                     <MUILink className={classes.reactionLink}>
                       <SVGIcons.Love />
                       <span className={classes.noReaction}>
@@ -83,17 +83,19 @@ const PostCard: FC<{ article: ArticlesType; showCoverImage: boolean }> = ({
                     </MUILink>
                   </Link>
                 )}
-                {comments > 0 && (
-                  <Link href={`${username}/${title}`} passHref>
-                    <MUILink className={classes.reactionLink}>
-                      <SVGIcons.Comment />
+                <Link href={`${username}/${slug}`} passHref>
+                  <MUILink className={classes.reactionLink}>
+                    <SVGIcons.Comment />
+                    {comments > 0 ? (
                       <span className={classes.noReaction}>
                         {comments}&nbsp;
                         {`${comments === 1 ? 'comment' : 'comments'}`}
                       </span>
-                    </MUILink>
-                  </Link>
-                )}
+                    ) : (
+                      <span>{'Add comment'}</span>
+                    )}
+                  </MUILink>
+                </Link>
               </div>
               <div className={classes.postCard__save}>
                 <small className={classes.tertiary}>{getTime(lastReading.toString())}</small>
