@@ -1,105 +1,54 @@
 import { FC, ReactElement } from 'react';
-import { useQuery } from 'react-query';
-import Axios, { AxiosResponse } from 'axios';
+
+import { useGetArticlesQuery } from '@redux/index';
 
 import PostCard from '@components/PostCard';
-
 import Articles from '@components/interface/Articles';
 import tagsProps from '@components/interface/Tags';
-
-const getArticles = async ({ limit, offset }: { limit: number; offset: number }) => {
-  const res: AxiosResponse = await Axios.get(
-    `/api/articles/get-articles?limit=${limit}&offset=${offset}`,
-  );
-  return res;
-};
-
-interface dbData {
-  id: number;
-  title: string;
-  slug: string;
-  content: string;
-  cover_image: string;
-  tags: string;
-  last_reading: number;
-  created_at: string;
-  updated_at: string;
-  user_id: number;
-  username: string;
-  name: string;
-  email: string;
-  bio: string;
-  profile_image: string;
-  location: string;
-  github_account: string;
-  website_url: string;
-  user_created_at: string;
-}
+import { dbData } from './type';
 
 const PostsContainer: FC = () => {
-  const { data, isLoading, error } = useQuery('articles', () =>
-    getArticles({ limit: 15, offset: 0 }),
+  const { data, isLoading, error } = useGetArticlesQuery(
+    { limit: 15, offset: 0 },
+    { refetchOnMountOrArgChange: true },
   );
-
   const articles: Articles[] =
     !isLoading &&
-    data?.data.articles.map(
-      ({
-        id,
-        title,
-        slug,
-        content,
-        cover_image,
-        tags,
-        last_reading,
-        created_at,
-        updated_at,
-        user_id,
-        username,
-        name,
-        email,
-        bio,
-        profile_image,
-        location,
-        github_account,
-        website_url,
-        user_created_at,
-      }: dbData): Articles => {
-        const _tags: tagsProps[] = tags.split(', ').map((tag, idx): tagsProps => {
-          const t: tagsProps = {
-            id: 't' + idx,
-            tag,
-          };
-          return t;
-        });
-        const article: Articles = {
-          id,
-          title,
-          slug,
-          content,
-          coverImage: cover_image,
-          tags: _tags,
-          lastReading: last_reading,
-          reactions: 10,
-          comments: 2,
-          createdAt: created_at,
-          updatedAt: updated_at,
-          userData: {
-            id: user_id,
-            username: username,
-            name: name,
-            email: email,
-            bio: bio,
-            profileImage: profile_image,
-            location: location,
-            githubAccount: github_account,
-            websiteUrl: website_url,
-            joinedDate: user_created_at,
-          },
+    data?.articles.map((item: dbData): Articles => {
+      const _tags: tagsProps[] = item.tags.split(', ').map((tag, idx): tagsProps => {
+        const t: tagsProps = {
+          id: 't' + idx,
+          tag,
         };
-        return article;
-      },
-    );
+        return t;
+      });
+      const article: Articles = {
+        id: item.id,
+        title: item.title,
+        slug: item.slug,
+        content: item.content,
+        coverImage: item.cover_image,
+        tags: _tags,
+        lastReading: item.last_reading,
+        reactions: item.likeId || 0,
+        comments: item.commentId || 0,
+        createdAt: item.created_at,
+        updatedAt: item.updated_at,
+        userData: {
+          id: item.user_id,
+          username: item.username,
+          name: item.name,
+          email: item.email,
+          bio: item.bio,
+          profileImage: item.profile_image,
+          location: item.location,
+          githubAccount: item.github_account,
+          websiteUrl: item.website_url,
+          joinedDate: item.user_created_at,
+        },
+      };
+      return article;
+    });
 
   const postsElm: ReactElement[] | boolean =
     !isLoading &&

@@ -28,7 +28,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({ serializableCheck: false })
       .concat(articleApi.middleware)
       .concat(readingListApi.middleware)
       .concat(userApi.middleware),
@@ -51,7 +51,7 @@ export {} from './slices/articleSlice';
 export {} from './slices/authSlice';
 export {} from './slices/readingList';
 export {
-  useGetArtcilesQuery,
+  useGetArticlesQuery,
   usePostArticleMutation,
   useUpdateArticleMutation,
   usePostDraftArticleMutation,

@@ -76,7 +76,7 @@ export const StyledActionInner = styled('div')`
 `;
 
 export const StyledButton = styled(Button)<{
-  isliked?: Boolean;
+  isliked?: String;
   isSelected?: Boolean;
   isInReadingList?: Boolean;
   clicked?: Boolean;
@@ -86,8 +86,8 @@ export const StyledButton = styled(Button)<{
   padding: 0;
   .like-container {
     position: relative;
-    border: ${isliked ? '2px solid #dc2526' : '2px solid transparent'};
-    background-color: ${isliked ? '#dc26261a' : 'transparent'};
+    border: ${isliked === 'true' ? '2px solid #dc2526' : '2px solid transparent'};
+    background-color: ${isliked === 'true' ? '#dc26261a' : 'transparent'};
     transition: all 0.25s;
     &::after {
       content: '';
@@ -143,7 +143,7 @@ export const StyledButton = styled(Button)<{
         justify-content: center;
       }
       .reaction-count_like {
-        color: ${isliked ? '#dc2526' : '#3d3d3d'};
+        color: ${isliked === 'true' ? '#dc2526' : '#3d3d3d'};
       }
       .reaction-count_bookmark {
         color: ${isInReadingList ? '#4f46e5' : '#3d3d3d'};
