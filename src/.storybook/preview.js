@@ -1,10 +1,22 @@
-import { muiTheme } from 'storybook-addon-material-ui';
 import * as nextImage from 'next/image';
-import theme from '../../styles/theme';
+import theme from '../styles/theme';
 
-// import '../styles/globals.css';
+// .storybook/preview.js
+import { useMemo } from 'react';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-export const decorators = [muiTheme([theme])];
+const withMuiTheme = (Story, context) => {
+  const _theme = useMemo(() => theme);
+  return (
+    <MuiThemeProvider theme={_theme}>
+      <CssBaseline />
+      <Story {...context} />
+    </MuiThemeProvider>
+  );
+};
+
+export const decorators = [withMuiTheme];
 
 Object.defineProperty(nextImage, 'default', {
   configurable: true,

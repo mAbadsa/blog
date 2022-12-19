@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import Series from '.';
 import theme from '@styles/theme';
@@ -6,9 +6,9 @@ import theme from '@styles/theme';
 export default {
   title: 'Screens/Series',
   component: Series,
-} as ComponentMeta<typeof Series>;
+} as Meta<typeof Series>;
 
-const Template: ComponentStory<typeof Series> = args => {
+const Template: StoryFn<typeof Series> = args => {
   return (
     <ThemeProvider theme={theme}>
       <Series {...args} />
@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Series> = args => {
   );
 };
 
-export const standard = Template.bind({});
-standard.args = {};
+export const SeriesStandard = Template.bind({});
+SeriesStandard.args = {};
