@@ -7,10 +7,13 @@ import CodeBlock from '../MDEditor/codeBlock';
 import Tags from '@components/PostCard/Tags';
 import { toBase64, shimmer } from '@helpers/image/shimmer';
 import useStyles from './styles';
+import { useContext } from 'react';
+import { FormContext } from '@screens/ArticleForm/context/FormContext';
 
-const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
+const Preview = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { title, coverImage, textareaValue, tags } = useContext(FormContext);
 
   let _tags = tags.map((t, idx) => ({
     id: `${t}_${idx}`,
@@ -39,7 +42,7 @@ const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
             )}
           </div>
           <div className={classes.articleTitle}>
-            <Typography component={'h1'}>{articleTitle}</Typography>
+            <Typography component={'h1'}>{title}</Typography>
             <div className={classes.tags}></div>
             <Tags tags={_tags} />
           </div>
@@ -50,7 +53,7 @@ const Preview = ({ mdText, articleTitle, tags, coverImage }) => {
             components={CodeBlock}
             remarkPlugins={[remarkGfm]}
           >
-            {mdText}
+            {textareaValue}
           </ReactMarkdown>
         </div>
       </article>
