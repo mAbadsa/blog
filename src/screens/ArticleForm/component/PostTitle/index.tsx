@@ -1,13 +1,17 @@
-import { ChangeEventHandler, FC } from 'react';
+import { useContext, FC } from 'react';
 
 import { useTheme } from '@material-ui/core';
 
 import useStyles from './styles';
+import { FormContext } from '@screens/ArticleForm/context/FormContext';
+import { FormContextType } from '@screens/ArticleForm/types';
 
-const PostTitle: FC<{
-  handleChangeTitle: ChangeEventHandler<HTMLTextAreaElement>;
-  defaultTitle: string;
-}> = ({ handleChangeTitle, defaultTitle }) => {
+const PostTitle: FC = () => {
+  const { setTitle, title } = useContext<FormContextType>(FormContext);
+  function handleChangeTitle(evt: React.ChangeEvent<HTMLTextAreaElement>) {
+    setTitle(evt.target.value);
+  }
+
   const theme = useTheme();
   const classes = useStyles({ theme });
   return (
@@ -18,7 +22,7 @@ const PostTitle: FC<{
         placeholder="New post title here..."
         autoComplete="off"
         autoFocus
-        value={defaultTitle}
+        value={title}
         onChange={handleChangeTitle}
       />
     </div>

@@ -1,44 +1,28 @@
-import { FC, useState, useEffect, useRef, useCallback } from 'react';
+import { FC, useState, useEffect, useContext, useCallback } from 'react';
 import { useTheme } from '@material-ui/core';
-import tagsArr from './tags';
+import { FormContext } from '@screens/ArticleForm/context/FormContext';
+
 import useStyles from './styles';
 
-const Tags: FC<{
-  passSelectedTags: Function;
-  tags: Array<string>;
-}> = ({ passSelectedTags, tags }) => {
+import tagsArr from './tags';
+import { TagType } from './types';
+
+const Tags: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
 
+  const { tags, setTags } = useContext(FormContext);
   const [inputValue, setInputValue] = useState<string>('');
-  const [tagsList, setTagsList] = useState<
-    (
-      | {
-          name: string;
-          rules_html: string;
-        }
-      | {
-          name: string;
-          rules_html: null;
-        }
-    )[]
-  >([]);
+  const [tagsList, setTagsList] = useState<TagType[]>([]);
   const [selectedTags, setSelectedTags] = useState<(string | false)[]>([]);
   const [showingTopTags, setShowingTopTags] = useState(false);
-  const [searchResults, setSearchResults] = useState<
-    (
-      | {
-          name: string;
-          rules_html: string;
-        }
-      | {
-          name: string;
-          rules_html: null;
-        }
-    )[]
-  >([]);
-  const [topTags, setTopTags] = useState([]);
+  const [searchResults, setSearchResults] = useState<TagType[]>([]);
+  // const [topTags, setTopTags] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  function passSelectedTags(t: Array<string>) {
+    setTags(t);
+  }
 
   useEffect(() => {
     setInputValue(tags.join(', '));
@@ -170,7 +154,7 @@ const Tags: FC<{
 
   useEffect(() => {
     fetchTopTagSuggestions();
-    passSelectedTags(selectedTags);
+    passSelectedTags(selectedTags as Array<string>);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchTopTagSuggestions]);
 
@@ -224,7 +208,7 @@ const Tags: FC<{
           onKeyDown={handleTagEnter}
           data-content={tag.name}
         ></div>
-        <span>{tag.name}</span>
+        <span>#{tag.name}</span>
       </div>
     );
   });

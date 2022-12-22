@@ -1,4 +1,4 @@
-import { FC, useReducer, ChangeEvent } from 'react';
+import { FC, useReducer, ChangeEvent, useContext } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import { useMutation } from 'react-query';
@@ -6,6 +6,7 @@ import { useMutation } from 'react-query';
 import SVGIcons from '../PanleIcons/SVG/SVGIcons';
 import { ActionType, StateType } from '../../../../../../../types/ArticleForm';
 import { uploadImage } from '../../../../../../../services/ArticleForm';
+import { FormContext } from '@screens/ArticleForm/context/FormContext';
 
 const UploadImageReducer = (state: StateType, actions: ActionType) => {
   const { type, payload } = actions;
@@ -52,6 +53,8 @@ const UploadImage: FC<{
     insertionImageUrls: '',
   });
 
+  // const { textareaRef } = useContext(FormContext);
+
   const { isLoading, isError, isSuccess, mutate } = useMutation(
     (imgData: string | ArrayBuffer | null) => uploadImage({ axios })(imgData),
     {
@@ -97,7 +100,7 @@ const UploadImage: FC<{
     reader.readAsDataURL(image);
 
     reader.onload = async () => {
-      mutate(reader.result);
+      await mutate(reader.result);
     };
   };
 

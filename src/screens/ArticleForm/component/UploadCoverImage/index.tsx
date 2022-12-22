@@ -1,4 +1,4 @@
-import { FC, useState, useReducer, ChangeEvent, MouseEvent } from 'react';
+import { FC, useState, useReducer, ChangeEvent, MouseEvent, useContext } from 'react';
 import Image from 'next/image';
 import { useMutation } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
@@ -10,6 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './styles';
 import { useTheme } from '@material-ui/styles';
+import { FormContext } from '@screens/ArticleForm/context/FormContext';
 
 const uploadImage = async (imgData: string | ArrayBuffer | null) => {
   let response: AxiosResponse = await axios.post('/api/articles/cover-image', {
@@ -75,12 +76,10 @@ function coverImageUploaderReducer<T extends Object, U extends Object>(
   }
 }
 
-const UploadCoverImage: FC<{
-  articleCoverImage: Function;
-  defaultCoverImage: string;
-}> = ({ articleCoverImage, defaultCoverImage }) => {
+const UploadCoverImage: FC = () => {
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const { setCoverImage, coverImage } = useContext(FormContext);
   const [open, setOpen] = useState<boolean>(false);
   const { isLoading, isError, isSuccess, mutate } = useMutation(
     (imgData: string | ArrayBuffer | null) => uploadImage(imgData),
@@ -92,12 +91,16 @@ const UploadCoverImage: FC<{
     },
   );
 
+  function articleCoverImage(image: string) {
+    setCoverImage(image);
+  }
+
   const [state, dispatch] = useReducer(coverImageUploaderReducer, {
     uploadError: false,
     uploadErrorMessage: null,
     uploadingImage: isLoading,
-    insertionImageUrls: defaultCoverImage || '',
-    imageView: defaultCoverImage || '',
+    insertionImageUrls: coverImage || '',
+    imageView: coverImage || '',
   });
 
   const { uploadError, uploadErrorMessage, uploadingImage, insertionImageUrls, imageView } = state;
