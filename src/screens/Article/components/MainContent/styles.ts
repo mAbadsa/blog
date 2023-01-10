@@ -16,6 +16,8 @@ export const Article = styled.article({
   background: 'rgb(255, 255, 255)',
   color: 'rgb(23, 23, 23)',
   boxShadow: '0 0 0 1px rgba(23, 23, 23, 0.1)',
+  gridColumnStart: 2,
+  gridColumnEnd: 3,
 });
 
 export const ArticleHeader = styled.header(({ theme }) => ({
@@ -111,5 +113,8 @@ export const StyledMarkdown = styled(ReactMarkdown)({
     maxWidth: '100%',
     fontSize: '80%',
     padding: '0.1em 0.25em',
+  },
+  '& p img': {
+    width: '100%',
   },
 });
