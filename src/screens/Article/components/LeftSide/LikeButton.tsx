@@ -1,5 +1,8 @@
 import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
+
 import { usePostReactionMutation } from '@redux/index';
 import { RootState } from '@redux/index';
 import { StyledButton, StyledIconContainer, StyledReactCount } from './styles';
@@ -14,8 +17,14 @@ const LikeButton: FC<{ articleId: number; likesNumber: number; isLiked: Boolean 
   const [isLikedState, setIsLiked] = useState<Boolean>(isLiked);
   const [likesCount, setLikesCount] = useState<number>(likesNumber);
   const [postReaction, { data, isLoading, error }] = usePostReactionMutation();
+  const { user, isLoading: isUserLoading } = useUser();
+  const router = useRouter();
+
   const handleReaction = async () => {
     try {
+      if (!isUserLoading && !user) {
+        return router.push('/api/auth/login');
+      }
       const res = (await postReaction({
         reactableId: articleId,
         category: 'Like',
