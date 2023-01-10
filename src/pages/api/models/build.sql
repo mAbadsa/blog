@@ -1,5 +1,5 @@
 BEGIN;
-DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags;
+DROP TABLE IF EXISTS users, articles, comments, user_coding, reading_list, likes, tags, article_tags CASCADE;
 
 DROP TYPE IF EXISTS statuses;
 CREATE TYPE statuses AS ENUM ('published', 'draft');
@@ -34,18 +34,18 @@ CREATE TABLE articles (
 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE draft_articles (
-	id SERIAL PRIMARY KEY,
-	title TEXT NOT NULL,
-	slug TEXT NOT NULL,
-	content TEXT NOT NULL,
-	cover_image TEXT,
-	tags VARCHAR(255) NOT NULL,
-	last_reading TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE draft_articles (
+-- 	id SERIAL PRIMARY KEY,
+-- 	title TEXT NOT NULL,
+-- 	slug TEXT NOT NULL,
+-- 	content TEXT NOT NULL,
+-- 	cover_image TEXT,
+-- 	tags VARCHAR(255) NOT NULL,
+-- 	last_reading TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+-- 	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+-- 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+-- 	updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+-- );
 
 CREATE TABLE comments (
 	id SERIAL PRIMARY KEY,
@@ -76,8 +76,8 @@ CREATE TABLE user_coding (
 
 CREATE TABLE reading_list (
 	id SERIAL PRIMARY KEY,
-	user_id INTEGER REFERENCES users(id) NOT NULL,
-	article_id INTEGER REFERENCES articles(id) NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+	article_id INTEGER NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
 	archive BOOLEAN DEFAULT false,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE(user_id, article_id)
