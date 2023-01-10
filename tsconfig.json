@@ -40,7 +40,8 @@
     "components/ArticleForm/component/preview/index.jsx",
     "components/ArticleForm/component/MDEditor/codeBlock.jsx",
     "components/ArticleForm/component/Form/index.jsx",
-    "components/ArticleForm/component/MDEditor/codeBlock.jsx"
+    "components/ArticleForm/component/MDEditor/codeBlock.jsx",
+    "src/pages/404.tsx"
   ],
   "exclude": ["node_modules"]
 }
