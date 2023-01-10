@@ -1,5 +1,8 @@
 import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { useUser } from '@auth0/nextjs-auth0';
+
 import { usePostReactionMutation } from '@redux/index';
 import { RootState } from '@redux/index';
 import { StyledButton, StyledIconContainer, StyledReactCount } from './styles';
@@ -14,9 +17,14 @@ const ReadingListButton: FC<{
   const [readingListCount, setReadingListCount] = useState<number>(readingListNumber);
   const [isInReadingList, setIsInReadingList] = useState<Boolean>(isListed);
   const [postReaction, { data: likes, isLoading, error }] = usePostReactionMutation();
+  const { user, isLoading: isUserLoading } = useUser();
+  const router = useRouter();
 
   const handleReadingListReaction = async () => {
     try {
+      if (!isUserLoading && !user) {
+        return router.push('/api/auth/login');
+      }
       const res = (await postReaction({
         reactableId: articleId,
         category: 'ReadingList',
