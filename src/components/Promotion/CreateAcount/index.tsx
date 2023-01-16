@@ -22,12 +22,12 @@ const CreateAccount: FC = () => {
         We&apos;re a place where coders share, stay up-to-date and grow their careers.
       </Typography>
       <div className={classes.loginBtnBox}>
-        <Link href="/create-account" passHref>
+        <Link href="/api/auth/login" passHref>
           <NavLink color="primary" outlined>
             Create account
           </NavLink>
         </Link>
-        <Link href="/create-account" passHref>
+        <Link href="/api/auth/login" passHref>
           <NavLink textPrimary color="primary">
             Log in
           </NavLink>
