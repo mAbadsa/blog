@@ -19,6 +19,10 @@ export default async function getArticle(req: NextApiRequest, res: NextApiRespon
       slug: slug[1],
     });
 
+    if (!rows[0]) {
+      throw new Error('Article not fount');
+    }
+
     if (rowCount < 1) {
       throw new Error('Article not fount');
     }

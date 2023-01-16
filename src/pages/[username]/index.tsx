@@ -12,7 +12,6 @@ import UserProfile from '@screens/UserProfile';
 import Layout from '@components/Layout/Layout';
 
 const Profile: NextPage<any, any> = ({ data: userData }) => {
-  console.log(userData);
   const head = () => {
     return (
       <Head>
@@ -77,9 +76,7 @@ export const getServerSideProps: GetServerSideProps<
     );
 
     if (!res) {
-      return {
-        notFound: true,
-      };
+      throw new Error('Something went wrong!');
     }
 
     return {

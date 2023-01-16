@@ -31,7 +31,7 @@ const SidebarLeft: FC = () => {
             <ListItemText className={classes.ListItemText} primary="Home" />
           </ListItem>
         </Link>
-        <Link href="/api/auth/sign" passHref>
+        <Link href="/api/auth/login" passHref>
           <ListItem button>
             <ListItemIcon>
               <ContactMailRoundedIcon color="primary" />

@@ -60,7 +60,7 @@ const SidebarList: FC<SidebareListProps> = ({ drawer, closeSideBar }) => {
             </ListItem>
           </Link>
           {!auth.isAuth && (
-            <Link href="/api/auth/sigin" passHref>
+            <Link href="/api/auth/login" passHref>
               <ListItem className={classes.ListItem} button>
                 <SVGIcons.Signin />
                 <ListItemText className={classes.listItemText} primary="Sign In/Up" />
