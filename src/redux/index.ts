@@ -56,5 +56,9 @@ export {
   useUpdateArticleMutation,
   usePostDraftArticleMutation,
 } from './apis/articlesApi';
-export { useGetReadingListQuery, usePostReactionMutation } from './apis/readingListApi';
+export {
+  useGetReadingListQuery,
+  usePostReactionMutation,
+  useGetReactionsQuery,
+} from './apis/readingListApi';
 export { useGetUserProfileQuery } from './apis/userApi';
