@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useUser } from '@auth0/nextjs-auth0';
 
-import { usePostReactionMutation } from '@redux/index';
 import { RootState } from '@redux/index';
 import { StyledButton, StyledIconContainer, StyledReactCount } from './styles';
 import SVGIcons from '@components/SVG/SVGIcons';
+import { usePostReadingList } from './hooks';
 
 const ReadingListButton: FC<{
   articleId: number;
@@ -14,11 +14,21 @@ const ReadingListButton: FC<{
   isListed: Boolean;
 }> = ({ articleId, readingListNumber, isListed }) => {
   const state = useSelector((state: RootState) => state.auth) as any;
-  const [readingListCount, setReadingListCount] = useState<number>(readingListNumber);
-  const [isInReadingList, setIsInReadingList] = useState<Boolean>(isListed);
-  const [postReaction, { data: likes, isLoading, error }] = usePostReactionMutation();
   const { user, isLoading: isUserLoading } = useUser();
   const router = useRouter();
+  const [
+    postReaction,
+    setIsInReadingList,
+    setReadingListCount,
+    isInReadingList,
+    readingListCount,
+    isLoading,
+    error,
+  ] = usePostReadingList({
+    articleId,
+    readingListNumber,
+    isListed,
+  });
 
   const handleReadingListReaction = async () => {
     try {
