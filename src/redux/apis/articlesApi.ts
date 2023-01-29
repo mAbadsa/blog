@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const articleApi = createApi({
-  reducerPath: 'articles',
+  reducerPath: 'articles11',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_URL }),
   tagTypes: ['Article'],
   endpoints: builder => ({

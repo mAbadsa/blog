@@ -66,8 +66,6 @@ export const getServerSideProps: GetServerSideProps<
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/articles/${username}/${slug}`,
     );
 
-    console.log({ res });
-
     if (!res) {
       throw new Error('Something went wrong!');
     }
@@ -78,7 +76,6 @@ export const getServerSideProps: GetServerSideProps<
       },
     };
   } catch (error: any) {
-    console.log({ error: error.response.data });
     return {
       props: {
         data: {

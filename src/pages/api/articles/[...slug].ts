@@ -10,7 +10,7 @@ type Data = {
 export default async function getArticle(req: NextApiRequest, res: NextApiResponse<Data>) {
   try {
     const { slug } = req.query;
-    console.log({ slug });
+
     if (slug === undefined || slug[0] === undefined || slug[1] === undefined) {
       throw new Error('Not Found');
     }
