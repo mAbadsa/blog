@@ -111,11 +111,28 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   saveButton: {
     overflowWrap: 'normal',
-    backgroundColor: '#d6d6d7',
-    color: '#3d3d3d',
+    backgroundColor: '#f5f5f501',
+    minWidth: '40px',
+    padding: '8px',
     '&:hover': {
-      backgroundColor: '#bdbdbd',
-      color: '#090909',
+      backgroundColor: '#c7c7c77a',
+      color: '#4f46e5',
+      transition: 'all 0.25s',
+    },
+    '& svg': {
+      width: '24px',
+      height: '24px',
+      fill: '#252525',
+      transition: 'all 0.25s',
+      '&:hover': {
+        fill: '#4f46e5',
+        transition: 'all 0.25s',
+      },
+    },
+    "& svg[class='filledbookmark-icon']": {
+      '&:hover': {
+        fill: '#4f46e5',
+      },
     },
   },
   tertiary: {

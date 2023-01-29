@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -11,21 +11,39 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import getTime from '@helpers/getTime';
-
+import { RootState, usePostReactionMutation } from '@redux/index';
 import SVGIcons from '@components/SVG/SVGIcons';
-import PostCardAvatar from './PostCardAvatar';
-import Tags from './Tags';
+import { useUser } from '@auth0/nextjs-auth0';
 import ArticlesType from '@components/interface/Articles';
 import { shimmer, toBase64 } from '@helpers/image/shimmer';
+import { useGetReactionsQuery } from '@redux/index';
 
+import Tags from './Tags';
+import PostCardAvatar from './PostCardAvatar';
+import { usePostReadingList } from '@screens/Article/components/LeftSide/hooks';
 import useStyles from './styles';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 const PostCard: FC<{ article: ArticlesType; showCoverImage: boolean }> = ({
   article,
   showCoverImage,
 }) => {
+  const [isInReadingList, setIsInReadingList] = useState<Boolean>(false);
+  const state = useSelector((state: RootState) => state.auth) as any;
+  const { user, isLoading: isUserLoading } = useUser();
   const theme = useTheme();
   const classes = useStyles({ theme });
+  const router = useRouter();
+  const { data: readingList, isLoading: readingListLoading } = useGetReactionsQuery({
+    articleId: article.id,
+  });
+
+  const [postReaction, setReadingListCount, readingListCount, isLoading, error] =
+    usePostReadingList({
+      articleId: article.id,
+      isListed: isInReadingList,
+    });
 
   const {
     title,
@@ -38,6 +56,39 @@ const PostCard: FC<{ article: ArticlesType; showCoverImage: boolean }> = ({
     lastReading,
     userData: { username, joinedDate, profileImage, email, location, work },
   } = article;
+
+  const handleReadingListReaction = async () => {
+    try {
+      if (!isUserLoading && !user) {
+        return router.push('/api/auth/login');
+      }
+      const res = (await postReaction({
+        reactableId: article.id,
+        category: 'ReadingList',
+        reactableType: 'Article',
+      }).unwrap()) as any;
+      if (!isLoading && !error) {
+        setReadingListCount(res?.readingList.length);
+        setIsInReadingList(
+          res.readingList.some(
+            (readingListItem: { user_id: Number | undefined }) =>
+              readingListItem.user_id === state.user_id && state.isAuth === true,
+          ),
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setIsInReadingList(
+      readingList?.readingList.some(
+        (readingListItem: { user_id: Number | undefined }) =>
+          readingListItem.user_id === state.user_id && state.isAuth === true,
+      ),
+    );
+  }, [readingList, setIsInReadingList]);
 
   return (
     <article className={classes.Article}>
@@ -102,11 +153,12 @@ const PostCard: FC<{ article: ArticlesType; showCoverImage: boolean }> = ({
                 <Button
                   className={classes.saveButton}
                   size="small"
+                  onClick={handleReadingListReaction}
                   color="secondary"
                   variant="contained"
                   disableElevation
                 >
-                  Save
+                  {isInReadingList ? <SVGIcons.FilledBookmark /> : <SVGIcons.Bookmark />}
                 </Button>
               </div>
             </div>
