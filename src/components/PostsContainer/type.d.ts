@@ -18,6 +18,6 @@ export interface dbData {
   github_account: string;
   website_url: string;
   user_created_at: string;
-  likeId: number | null;
-  commentId: number | null;
+  likecount: number | null;
+  commentcount: number | null;
 }
