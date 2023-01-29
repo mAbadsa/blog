@@ -10,6 +10,10 @@ const readingListApi = createApi({
       query: () => 'api/reading-list',
       providesTags: ['ReadingList'],
     }),
+    getReactions: builder.query({
+      query: ({ articleId }) => `/api/reactions/${articleId}`,
+      providesTags: ['ReadingList'],
+    }),
     postReaction: builder.mutation<any, Partial<ReactionPayload>>({
       invalidatesTags: ['ReadingList'],
       query: ({ reactableId, category, reactableType }) => ({
@@ -25,5 +29,6 @@ const readingListApi = createApi({
   }),
 });
 
-export const { usePostReactionMutation, useGetReadingListQuery } = readingListApi;
+export const { usePostReactionMutation, useGetReadingListQuery, useGetReactionsQuery } =
+  readingListApi;
 export { readingListApi };
