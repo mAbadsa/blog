@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import axios from 'axios';
 
-import { usePostReactionMutation } from '@redux/index';
 import { useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
 import LikeButton from './LikeButton';
@@ -23,13 +22,8 @@ const LeftSide: FC<{
   articleId: number;
 }> = ({ articleId }) => {
   const state = useSelector((state: RootState) => state.auth) as any;
-
-  // const [postReaction, { data: likes, isLoading: isUpdating }] = usePostReactionMutation();
   const [isLiked, setIsLiked] = useState<Boolean>(false);
   const [isInReadingList, setIsInReadingList] = useState<Boolean>(false);
-  // const [likesCount, setLikesCount] = useState<number>(0);
-  // const [readingListCount, setReadingListCount] = useState<number>(0);
-  // const [clickAnimation, setClickAnimation] = useState<Boolean>(true);
   const { isLoading, isError, data, error } = useQuery(
     'reactions',
     async () => await getReactions({ axios })({ articleId }),
