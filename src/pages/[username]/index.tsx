@@ -85,12 +85,14 @@ export const getServerSideProps: GetServerSideProps<
       },
     };
   } catch (error: any) {
+    // error.response is undefined for network failures, so don't assume it exists
+    const body = error.response?.data;
     return {
       props: {
         data: {
           user: null,
-          error: !error.response.data.success,
-          message: error.response.data.error || null,
+          error: !body?.success,
+          message: body?.error || null,
         },
       },
     };
