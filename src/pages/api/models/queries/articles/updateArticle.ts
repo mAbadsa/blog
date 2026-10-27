@@ -6,6 +6,7 @@ type articleObj = {
   content: string;
   coverImage: string;
   tags: string;
+  userId: number;
 };
 
 const updateArticle =
@@ -16,15 +17,16 @@ const updateArticle =
     content,
     coverImage,
     tags,
+    userId,
   }: T): Promise<QueryResult<any>> => {
     const sql: QueryConfig<any[]> = {
-      text: `UPDATE articles 
+      text: `UPDATE articles
       SET title = $1,
       content = $2,
       cover_image = $3,
       tags = $4
-      WHERE slug = $5;`,
-      values: [title, content, coverImage, tags, slug],
+      WHERE slug = $5 AND user_id = $6;`,
+      values: [title, content, coverImage, tags, slug, userId],
     };
 
     return connection.query(sql);
