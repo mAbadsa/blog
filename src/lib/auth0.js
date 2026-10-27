@@ -7,8 +7,9 @@ export default initAuth0({
   clientID: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   routes: {
-    callback: process.env.NEXT_PUBLIC_REDIRECT_URI || 'http://localhost:3000/api/callback',
-    postLogoutRedirect: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI || 'http://localhost:3000',
+    // The SDK requires relative paths here; absolute URLs make every auth route throw.
+    callback: process.env.NEXT_PUBLIC_REDIRECT_URI || '/api/auth/callback',
+    postLogoutRedirect: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI || '/',
   },
   authorizationParams: {
     response_type: 'code',

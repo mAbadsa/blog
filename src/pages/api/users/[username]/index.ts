@@ -12,7 +12,7 @@ const getUserProfile: NextApiHandler = async (req: NextApiRequest, res: NextApiR
   try {
     const { rows } = await getUserByUsername({ username });
     if (!rows[0]) {
-      throw new Error('something went error');
+      throw Object.assign(new Error('User not found'), { status: 404 });
     }
     return res.status(200).json({ success: true, data: rows[0] });
   } catch (error: any) {
